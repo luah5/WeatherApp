@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 func getTime() -> String {
     let formatter = DateFormatter()
@@ -40,10 +41,44 @@ func getJsonObject(string: String) -> [String: Any] {
     }
 }
 
-func getWeatherData() -> Any? {
-    let url = """
-    https://api.openweathermap.org/data/2.5/weather?q=london&appid=59b882df8e35c2c5eefe87e105b2d6df&units=metric
-"""
+func getCurrentCity() -> String {
+    // Create a CLLocation object from the latitude and longitude coordinates
+    let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
+
+    // Create a CLGeocoder object
+    let geocoder = CLGeocoder()
+
+    var returnText: String = "London"
+
+    // Use the geocoder to get the nearest placemark
+    geocoder.reverseGeocodeLocation(location) { placemarks, error in
+        guard error == nil else {
+            print("Error: \(error!.localizedDescription)")
+            returnText = "London"
+            return
+        }
+
+        // Get the first placemark
+        guard let placemark = placemarks?.first else {
+            print("No placemarks found.")
+            returnText = "London"
+            return
+        }
+
+        // Get the city from the placemark
+        if let city = placemark.locality {
+            returnText = city.replacingOccurrences(of: " ", with: "%20").lowercased()
+        } else {
+            returnText = "London"
+            return
+        }
+    }
+
+    return returnText
+}
+
+func getWeatherData() -> Any {
+    let url = "https://api.openweathermap.org/data/2.5/weather?q=\(getCurrentCity())&appid=59b882df8e35c2c5eefe87e105b2d6df&units=metric"
 
     guard let myURL = URL(string: url) else {
         return "error"
@@ -58,12 +93,40 @@ func getWeatherData() -> Any? {
             .replacingOccurrences(of: ";", with: "")
             .replacingOccurrences(of: "\n", with: " = ")
             .split(separator: " = ")
+        return WeatherData(product: product)
     } catch let error {
         print("error")
         return error
     }
+}
 
-    return 0
+struct WeatherData {
+    var humidity: Int, temp: Int, minTemp: Int, maxTemp: Int, feelsLike: Int, pressure: Int
+    var description: String, icon: String
+
+    init(product: [String: Any]) {
+        print(product)
+        let mainData = String(describing: product["main"])
+            .replacingOccurrences(of: ";", with: "")
+            .replacingOccurrences(of: "\n", with: " = ")
+            .split(separator: " = ")
+
+        let descriptionData = String(describing: product["weather"])
+            .replacingOccurrences(of: ";", with: "")
+            .replacingOccurrences(of: "\n", with: " = ")
+            .split(separator: " = ")
+
+        self.description = String(describing: descriptionData[3].removeQuotationMarks()).capitalized
+        self.icon = String(describing: descriptionData[9])
+
+        self.feelsLike = Int(Double(mainData[2].removeQuotationMarks()) ?? 1.0)
+        self.humidity = Int(mainData[4]) ?? 0
+        self.pressure = Int(mainData[6]) ?? 0
+        self.temp = Int(Double(mainData[8].removeQuotationMarks()) ?? 1.0)
+
+        self.maxTemp = Int(Double(mainData[10].removeQuotationMarks()) ?? 1.0)
+        self.minTemp = Int(Double(mainData[12].removeQuotationMarks()) ?? 1.0)
+    }
 }
 
 @ViewBuilder
@@ -129,7 +192,8 @@ func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: 
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
                 .opacity(0.6)
-
+            let maxRoundedTemp = ceil(round(CGFloat(maxTemp * 5)) / 5)
+            let minRoundedTemp = floor(round(CGFloat(minTemp * 5)) / 5)
             HStack(spacing: 0) {
                 PreviewColor(.accentColor.opacity(0.3), width: 30)
                 PreviewColor(.yellow, width: 30)

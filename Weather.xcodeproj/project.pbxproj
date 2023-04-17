@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		85730EA429ED995B001DB918 /* String+jsonDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA329ED995B001DB918 /* String+jsonDecode.swift */; };
+		85730EA429ED995B001DB918 /* String+removeFirstAndLast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA329ED995B001DB918 /* String+removeFirstAndLast.swift */; };
 		859AB9E229ED43E8004246A3 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AB9E129ED43E8004246A3 /* WeatherApp.swift */; };
 		859AB9E429ED43E8004246A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AB9E329ED43E8004246A3 /* ContentView.swift */; };
 		859AB9E629ED43E9004246A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859AB9E529ED43E9004246A3 /* Assets.xcassets */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		85730EA329ED995B001DB918 /* String+jsonDecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+jsonDecode.swift"; sourceTree = "<group>"; };
+		85730EA329ED995B001DB918 /* String+removeFirstAndLast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+removeFirstAndLast.swift"; sourceTree = "<group>"; };
 		859AB9DE29ED43E8004246A3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859AB9E129ED43E8004246A3 /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		859AB9E329ED43E8004246A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		85730EA029ED97EA001DB918 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				85730EA329ED995B001DB918 /* String+jsonDecode.swift */,
+				85730EA329ED995B001DB918 /* String+removeFirstAndLast.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,7 +297,7 @@
 			files = (
 				859AB9E429ED43E8004246A3 /* ContentView.swift in Sources */,
 				859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */,
-				85730EA429ED995B001DB918 /* String+jsonDecode.swift in Sources */,
+				85730EA429ED995B001DB918 /* String+removeFirstAndLast.swift in Sources */,
 				859AB9E229ED43E8004246A3 /* WeatherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +461,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Better Weather";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -487,6 +489,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Better Weather";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
