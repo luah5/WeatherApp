@@ -13,5 +13,9 @@ struct WeatherApp: App {
         WindowGroup {
             ContentView()
         }
+
+        Settings {
+            Text("Settings")
+        }
     }
 }
