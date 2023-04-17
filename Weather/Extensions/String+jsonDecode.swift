@@ -10,5 +10,6 @@ import Foundation
 extension String {
     func jsonDecode() {
 
+        
     }
 }
