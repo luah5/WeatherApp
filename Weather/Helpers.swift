@@ -99,6 +99,7 @@ func getWeatherData() -> Any {
     }
 }
 
+/// A structure for holding weather data, intialization of values is handled within the init function
 struct WeatherData {
     var humidity: Int, temp: Int, minTemp: Int, maxTemp: Int, feelsLike: Int, pressure: Int
     var description: String, icon: String
@@ -159,34 +160,34 @@ func timeView(time: String, weather: String, temp: Int) -> some View {
 
 @ViewBuilder
 // swiftlint:disable function_body_length
+/// Generates a View from given values
 func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: Int) -> some View {
-    HStack(spacing: 30) {
-        Text("\(day)")
-            .font(.system(size: 14, weight: .semibold))
+    VStack {
+        HStack(spacing: 30) {
+            Text("\(day)")
+                .font(.system(size: 14, weight: .semibold))
 
-        if weather == "Sun" {
-            Image(systemName: "sun.max.fill")
-                .foregroundColor(.yellow)
-                .fixedSize()
-        } else if weather == "Cloudy" {
-            Image(systemName: "cloud")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else if weather == "Partly Cloudy" {
-            Image(systemName: "cloud.sun.fill")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else if weather == "Clear" {
-            Image(systemName: "moon.fill")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.red)
-                .fixedSize()
-        }
-
-        HStack {
+            if weather == "Sun" {
+                Image(systemName: "sun.max.fill")
+                    .foregroundColor(.yellow)
+                    .fixedSize()
+            } else if weather == "Cloudy" {
+                Image(systemName: "cloud")
+                    .foregroundColor(.gray)
+                    .fixedSize()
+            } else if weather == "Partly Cloudy" {
+                Image(systemName: "cloud.sun.fill")
+                    .foregroundColor(.gray)
+                    .fixedSize()
+            } else if weather == "Clear" {
+                Image(systemName: "moon.fill")
+                    .foregroundColor(.gray)
+                    .fixedSize()
+            } else {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundColor(.red)
+                    .fixedSize()
+            }
             Text("\(minTemp)º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
@@ -211,25 +212,25 @@ func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: 
             }
             Text("\(maxTemp)º")
                 .font(.system(size: 14, weight: .semibold))
+                .padding(.trailing)
+                .frame(alignment: .trailing)
         }
-        .padding(.trailing)
-        .frame(alignment: .trailing)
+
         HStack {
             Group {
-                Divider()
                 timeView(time: "0:00", weather: "Clear", temp: 6)
                 Divider()
-                timeView(time: "4:00", weather: "Clear", temp: 3)
+                timeView(time: "1:00", weather: "Clear", temp: 3)
                 Divider()
-                timeView(time: "8:00", weather: "Sun", temp: 13)
+                timeView(time: "2:00", weather: "Clear", temp: 13)
                 Divider()
             }
             Group {
-                timeView(time: "12:00", weather: "Sun", temp: 15)
+                timeView(time: "3:00", weather: "Clear", temp: 15)
                 Divider()
-                timeView(time: "16:00", weather: "Sun", temp: 14)
+                timeView(time: "4:00", weather: "Clear", temp: 14)
                 Divider()
-                timeView(time: "20:00", weather: "Clear", temp: 9)
+                timeView(time: "5:00", weather: "Clear", temp: 9)
                 Divider()
             }
         }

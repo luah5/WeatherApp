@@ -11,6 +11,7 @@ struct WeatherView: View {
     // swiftlint:disable force_cast
     private var weatherData: WeatherData = getWeatherData() as! WeatherData
 
+    /// The main view for looking at all the weather
     var body: some View {
         NavigationSplitView {
             Form {
@@ -100,3 +101,4 @@ struct WeatherView_Previews: PreviewProvider {
         WeatherView()
     }
 }
+// swiftlint:enable force_cast
