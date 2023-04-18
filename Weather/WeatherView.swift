@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
     // swiftlint:disable force_cast
     private var weatherData: WeatherData = getWeatherData() as! WeatherData
 
     var body: some View {
         NavigationSplitView {
             Form {
-                Button {
-
-                } label: {
+                Form {
                     VStack {
                         Text("My Location")
                             .fontWeight(.medium)
@@ -29,9 +27,8 @@ struct ContentView: View {
                             .font(.system(size: 12))
                             .foregroundColor(.secondary)
                     }
-                    .padding(.leading)
-                    .frame(minWidth: 0, maxWidth: .infinity)
                 }
+                .border(.black)
             }
             .formStyle(.grouped)
         } detail: {
@@ -98,8 +95,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WeatherView()
     }
 }

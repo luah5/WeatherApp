@@ -87,7 +87,6 @@ func getWeatherData() -> Any {
     do {
         let contents = try String(contentsOf: myURL, encoding: .ascii)
         let product = getJsonObject(string: contents)
-        print(product["main"] ?? "none")
 
         let items = String(describing: product["main"] ?? "none")
             .replacingOccurrences(of: ";", with: "")
@@ -194,11 +193,15 @@ func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: 
                 .opacity(0.6)
             let maxRoundedTemp = ceil(round(CGFloat(maxTemp * 5)) / 5)
             let minRoundedTemp = floor(round(CGFloat(minTemp * 5)) / 5)
+            let range = maxRoundedTemp - minRoundedTemp
+            let width = (range / (range - (CGFloat(minTemp) - minRoundedTemp))) * 10
+            let multiplication = (100 - width) / maxRoundedTemp
             HStack(spacing: 0) {
-                PreviewColor(.accentColor.opacity(0.3), width: 30)
-                PreviewColor(.yellow, width: 30)
-                PreviewColor(.gray, width: 5)
-                PreviewColor(.yellow, width: 30)
+                PreviewColor(.gray, width: width)
+                PreviewColor(.yellow, width: (CGFloat(maxTemp) * multiplication) - 5)
+                PreviewColor(.blue, width: maxRoundedTemp)
+                PreviewColor(.white, width: 5)
+                PreviewColor(.yellow, width: 95 - (width + (CGFloat(maxTemp) * multiplication) - 5))
             }
             .clipShape(Capsule())
             .overlay {
@@ -240,6 +243,7 @@ struct PreviewColor: View {
     init(_ color: Color, width: CGFloat) {
         self.color = color
         self.width = width
+        print(width)
     }
 
      var body: some View {
