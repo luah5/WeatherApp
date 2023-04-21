@@ -33,6 +33,9 @@ struct WeatherView: View {
             }
             .formStyle(.grouped)
         } detail: {
+            Button("hi") {
+                multipleDays()
+            }
             Spacer()
             VStack(spacing: 0) {
                 Text(getCurrentCity())
@@ -96,9 +99,4 @@ struct WeatherView: View {
     }
 }
 
-struct WeatherView_Previews: PreviewProvider {
-    static var previews: some View {
-        WeatherView()
-    }
-}
 // swiftlint:enable force_cast

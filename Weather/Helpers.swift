@@ -41,6 +41,12 @@ func getJsonObject(string: String) -> [String: Any] {
     }
 }
 
+func getJSONObject(string: String) -> [String: NSArray?] {
+    do {
+        return try! JSONSerialization.jsonObject(with: string.data(using: .utf8)!, options: .fragmentsAllowed) as! [String: NSArray?]
+    }
+}
+
 func getCurrentCity() -> String {
     // Create a CLLocation object from the latitude and longitude coordinates
     let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
@@ -105,7 +111,6 @@ struct WeatherData {
     var description: String, icon: String
 
     init(product: [String: Any]) {
-        print(product)
         let mainData = String(describing: product["main"])
             .replacingOccurrences(of: ";", with: "")
             .replacingOccurrences(of: "\n", with: " = ")
@@ -244,7 +249,6 @@ struct PreviewColor: View {
     init(_ color: Color, width: CGFloat) {
         self.color = color
         self.width = width
-        print(width)
     }
 
      var body: some View {
