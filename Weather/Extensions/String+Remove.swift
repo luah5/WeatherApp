@@ -8,7 +8,12 @@
 import Foundation
 
 extension String {
-    func formatJSONString() -> String {
-        return self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+    func removePrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+
+    func removePrefix(_ count: Int) -> String {
+        return String(self.dropFirst(count))
     }
 }

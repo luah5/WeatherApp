@@ -41,9 +41,9 @@ func getJsonObject(string: String) -> [String: Any] {
     }
 }
 
-func getJSONObject(string: String) -> [String: NSArray?] {
+func getJSONObject(string: String) -> Any {
     do {
-        return try! JSONSerialization.jsonObject(with: string.data(using: .utf8)!, options: .fragmentsAllowed) as! [String: NSArray?]
+        return try! JSONSerialization.jsonObject(with: string.data(using: .utf8)!, options: .fragmentsAllowed)
     }
 }
 
@@ -84,7 +84,8 @@ func getCurrentCity() -> String {
 }
 
 func getWeatherData() -> Any {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=\(getCurrentCity())&appid=59b882df8e35c2c5eefe87e105b2d6df&units=metric"
+    let baseURL = "https://api.openweathermap.org/data/2.5/weather?q="
+    let url = "\(baseURL)\(getCurrentCity())&appid=59b882df8e35c2c5eefe87e105b2d6df&units=metric"
 
     guard let myURL = URL(string: url) else {
         return "error"
@@ -94,7 +95,7 @@ func getWeatherData() -> Any {
         let contents = try String(contentsOf: myURL, encoding: .ascii)
         let product = getJsonObject(string: contents)
 
-        let items = String(describing: product["main"] ?? "none")
+        _ = String(describing: product["main"] ?? "none")
             .replacingOccurrences(of: ";", with: "")
             .replacingOccurrences(of: "\n", with: " = ")
             .split(separator: " = ")

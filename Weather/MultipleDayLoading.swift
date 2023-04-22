@@ -12,64 +12,82 @@ import SwiftyJSON
 
 let baseURL: String = "https://api.openweathermap.org/data/2.5/onecall?"
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
+let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
 let exclude: String = "&exclude=current,minutely"
 
-func getLatitudeAndLongtitude() -> String {
-    return "lat=51.49900424070662&lon=-0.25151805030659496"
-}
-
 func constructURL() -> String {
-    let url = baseURL + getLatitudeAndLongtitude() + apiKey + units + exclude
+    let url = baseURL + location + apiKey + units + exclude
 
     return url
+}
+
+func throwNSAlert(messageText: String, severity: NSAlert.Style) {
+    let alert = NSAlert()
+    alert.alertStyle = severity
+    alert.messageText = messageText
+    alert.addButton(withTitle: "Ok")
+    alert.runModal()
+
+    if severity == .critical {
+        fatalError(messageText)
+    }
 }
 
 func multipleDays() {
 
     guard let myURL = URL(string: constructURL()) else {
-        fatalError("failed to get weather data")
+        throwNSAlert(messageText: "URL: \(constructURL()) does not exist.", severity: .critical)
+        fatalError("URL: \(constructURL()) does not exist.")
     }
 
     do {
         let contents: Data = try String(contentsOf: myURL, encoding: .ascii).data(using: .ascii)!
-        print(contents)
-        // swiftlint:disable force_cast identifier_name superfluous_disable_command
+
         let json = try JSON(data: contents)
-        for object in json["hourly"] {
-            print("hourly object \n \n \n")
 
-            let string = String(describing: object)
-
-            let JSON = try getJsonObject(string: string)
-            print(JSON)
-
-            for object2 in try JSON {
-                print(object2.1)
-            }
+        for index in 0...(json["hourly"].count - 1) {
+            print(json["hourly"][index])
         }
     } catch {
-        fatalError("why is this failing??")
+        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
     }
 }
 
+
+struct WeatherDescription {
+    var mainDescription: String, description: String
+
+    init(json: JSON) {
+        self.mainDescription = String(describing: json["main"])
+        self.description = String(describing: json["description"])
+    }
+}
+
+// TODO: Implement the remaining fields
 struct WeatherHour {
-    var dt: Int
-    var tem: Float
-    var feels_like: Float
-    var pressure: Int
-    var humidity: Int
-    var dew_point: Float
-    var uvi: Int
-    var clouds: Float
-    var visibility: Int
-    var wind_speed: Float
-    var wind_deg: Int
-    var wind_gust: Float
+    var wind_gust: Float, pressure: Int, temp: Float, clouds: Int, dew_point: Float, visibility: Int
+    var dt: Int, humidity: Int, feels_like: Float, uvi: Int, wind_deg: Int, wind_speed: Float, weather: WeatherDescription
+
+    init(json: JSON) {
+        wind_gust = Float(json["wind_gust"].stringValue) ?? -100
+        pressure = Int(json["pressure"].stringValue) ?? -100
+        temp = Float(json["temp"].stringValue) ?? -100
+        clouds = Int(json["clouds"].stringValue) ?? -100
+        dew_point = Float(json["dew_point"].stringValue) ?? -100
+        visibility = Int(json["visibilty"].stringValue) ?? -100
+
+        dt = Int(json["dt"].stringValue) ?? -100
+        humidity = Int(json["humidity"].stringValue) ?? -100
+        feels_like = Float(json["feels_like"].stringValue) ?? -100
+        uvi = Int(json["uvi"].stringValue) ?? -100
+        wind_deg = Int(json["wind_deg"].stringValue) ?? -100
+        wind_speed = Float(json["wind_speed"].stringValue) ?? -100
+
+        weather = WeatherDescription(json: json["weather"][0])
+    }
 }
 
 struct WeatherDays {
     var weatherHours: [WeatherHour]
 }
-
-// swiftlint:enable force_cast identifier_name superfluous_disable_command

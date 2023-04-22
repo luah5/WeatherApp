@@ -20,7 +20,7 @@
 		859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ABA0C29ED49F8004246A3 /* Helpers.swift */; };
 		859B35BB29F1C8B000D63031 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35BA29F1C8B000D63031 /* SettingsView.swift */; };
 		859B35BE29F1CA7400D63031 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 859B35BD29F1CA7400D63031 /* SwiftyJSON */; };
-		859B35C029F2FC9900D63031 /* String+formatJSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35BF29F2FC9900D63031 /* String+formatJSONString.swift */; };
+		859B35C029F2FC9900D63031 /* String+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35BF29F2FC9900D63031 /* String+Remove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		859AB9FF29ED43E9004246A3 /* WeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		859ABA0C29ED49F8004246A3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		859B35BA29F1C8B000D63031 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		859B35BF29F2FC9900D63031 /* String+formatJSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+formatJSONString.swift"; sourceTree = "<group>"; };
+		859B35BF29F2FC9900D63031 /* String+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Remove.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				85730EA329ED995B001DB918 /* Substring+removeQuotationMarks.swift */,
-				859B35BF29F2FC9900D63031 /* String+formatJSONString.swift */,
+				859B35BF29F2FC9900D63031 /* String+Remove.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 				859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */,
 				85730EA429ED995B001DB918 /* Substring+removeQuotationMarks.swift in Sources */,
 				859B35BB29F1C8B000D63031 /* SettingsView.swift in Sources */,
-				859B35C029F2FC9900D63031 /* String+formatJSONString.swift in Sources */,
+				859B35C029F2FC9900D63031 /* String+Remove.swift in Sources */,
 				859AB9E229ED43E8004246A3 /* WeatherApp.swift in Sources */,
 				85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */,
 			);
