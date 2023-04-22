@@ -63,7 +63,6 @@ struct WeatherDescription {
     }
 }
 
-// TODO: Implement the remaining fields
 struct WeatherHour {
     var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Int, windSpeed: Float, weather: WeatherDescription
