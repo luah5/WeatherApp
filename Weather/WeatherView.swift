@@ -14,27 +14,23 @@ struct WeatherView: View {
     /// The main view for looking at all the weather
     var body: some View {
         NavigationSplitView {
-            Form {
-                Form {
-                    VStack {
-                        Text("My Location")
-                            .fontWeight(.medium)
-                            .padding([.top, .leading])
-                        Text(getTime())
-                            .font(.system(size: 12))
-                            .foregroundColor(.secondary)
-                        Spacer()
-                        Text("\(weatherData.description)")
-                            .font(.system(size: 12))
-                            .foregroundColor(.secondary)
-                    }
-                }
-                .border(.black)
+            VStack {
+                Text("My Location")
+                    .fontWeight(.medium)
+                    .padding([.top, .leading])
+                Text(getTime())
+                    .font(.system(size: 12))
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text("\(weatherData.description)")
+                    .font(.system(size: 12))
+                    .foregroundColor(.secondary)
             }
-            .formStyle(.grouped)
         } detail: {
             Button("hi") {
-                multipleDays()
+                for hour in multipleDays() {
+                    print(hour.time)
+                }
             }
             Spacer()
             VStack(spacing: 0) {
@@ -53,7 +49,7 @@ struct WeatherView: View {
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundColor(.secondary)
-                    Text("4 DAY WEATHER")
+                    Text("2 DAY WEATHER")
                         .foregroundColor(.secondary)
                 }
                 temperatureDetailView(day: "17th", weather: "Rain", minTemp: 8, maxTemp: 17)
@@ -93,7 +89,10 @@ struct WeatherView: View {
                 }
             }
             .formStyle(.grouped)
-            .background(.opacity(0.2))
+            .background(
+                Image("Clouds")
+                    .resizable()
+            )
         }
         .navigationSplitViewStyle(.prominentDetail)
     }

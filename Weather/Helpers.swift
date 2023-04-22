@@ -16,24 +16,6 @@ func getTime() -> String {
     return dateString
 }
 
-@discardableResult
-func shell(_ command: String) -> String {
-    let task = Process()
-    let pipe = Pipe()
-
-    task.standardOutput = pipe
-    task.standardError = pipe
-    task.arguments = ["-c", command]
-    task.launchPath = "/bin/zsh"
-    task.standardInput = nil
-    task.launch()
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: data, encoding: .utf8)!
-
-    return output
-}
-
 // swiftlint:disable force_cast force_try
 func getJsonObject(string: String) -> [String: Any] {
     do {

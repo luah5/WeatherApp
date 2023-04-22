@@ -21,6 +21,8 @@
 		859B35BB29F1C8B000D63031 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35BA29F1C8B000D63031 /* SettingsView.swift */; };
 		859B35BE29F1CA7400D63031 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 859B35BD29F1CA7400D63031 /* SwiftyJSON */; };
 		859B35C029F2FC9900D63031 /* String+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35BF29F2FC9900D63031 /* String+Remove.swift */; };
+		859B35C329F3C24B00D63031 /* WeatherHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35C229F3C24B00D63031 /* WeatherHour.swift */; };
+		859B35C529F3C28300D63031 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B35C429F3C28300D63031 /* WeatherDescription.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		859ABA0C29ED49F8004246A3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		859B35BA29F1C8B000D63031 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		859B35BF29F2FC9900D63031 /* String+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Remove.swift"; sourceTree = "<group>"; };
+		859B35C229F3C24B00D63031 /* WeatherHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHour.swift; sourceTree = "<group>"; };
+		859B35C429F3C28300D63031 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		859AB9E029ED43E8004246A3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				859B35C129F3C22900D63031 /* Structs */,
 				85730EA029ED97EA001DB918 /* Extensions */,
 				859AB9E129ED43E8004246A3 /* WeatherApp.swift */,
 				859B35BA29F1C8B000D63031 /* SettingsView.swift */,
@@ -155,6 +160,15 @@
 				859AB9FF29ED43E9004246A3 /* WeatherUITestsLaunchTests.swift */,
 			);
 			path = WeatherUITests;
+			sourceTree = "<group>";
+		};
+		859B35C129F3C22900D63031 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				859B35C229F3C24B00D63031 /* WeatherHour.swift */,
+				859B35C429F3C28300D63031 /* WeatherDescription.swift */,
+			);
+			path = Structs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,8 +332,10 @@
 			files = (
 				859AB9E429ED43E8004246A3 /* WeatherView.swift in Sources */,
 				859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */,
+				859B35C329F3C24B00D63031 /* WeatherHour.swift in Sources */,
 				85730EA429ED995B001DB918 /* Substring+removeQuotationMarks.swift in Sources */,
 				859B35BB29F1C8B000D63031 /* SettingsView.swift in Sources */,
+				859B35C529F3C28300D63031 /* WeatherDescription.swift in Sources */,
 				859B35C029F2FC9900D63031 /* String+Remove.swift in Sources */,
 				859AB9E229ED43E8004246A3 /* WeatherApp.swift in Sources */,
 				85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */,

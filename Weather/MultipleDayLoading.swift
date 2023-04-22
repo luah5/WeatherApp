@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AppKit
 import SwiftUI
 import SwiftyJSON
 
@@ -17,9 +16,7 @@ let units: String = "&units=metric"
 let exclude: String = "&exclude=current,minutely"
 
 func constructURL() -> String {
-    let url = baseURL + location + apiKey + units + exclude
-
-    return url
+    return baseURL + location + apiKey + units + exclude
 }
 
 func throwNSAlert(messageText: String, severity: NSAlert.Style) {
@@ -34,8 +31,8 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     }
 }
 
-func multipleDays() {
-
+func multipleDays() -> [WeatherHour] {
+    var hours: [WeatherHour] = []
     guard let myURL = URL(string: constructURL()) else {
         throwNSAlert(messageText: "URL: \(constructURL()) does not exist.", severity: .critical)
         fatalError("URL: \(constructURL()) does not exist.")
@@ -44,48 +41,14 @@ func multipleDays() {
     do {
         let contents: Data = try String(contentsOf: myURL, encoding: .ascii).data(using: .ascii)!
 
-        let json = try JSON(data: contents)
+        let hourlyJSON = try JSON(data: contents)["hourly"]
 
-        for index in 0...(json["hourly"].count - 1) {
-            print(json["hourly"][index])
+        for index in 0...(hourlyJSON.count - 1) {
+            hours.append(WeatherHour(json: hourlyJSON[index]))
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
     }
-}
 
-struct WeatherDescription {
-    var mainDescription: String, description: String
-
-    init(json: JSON) {
-        self.mainDescription = String(describing: json["main"])
-        self.description = String(describing: json["description"])
-    }
-}
-
-struct WeatherHour {
-    var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
-    var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Int, windSpeed: Float, weather: WeatherDescription
-
-    init(json: JSON) {
-        windGust = Float(json["wind_gust"].stringValue) ?? -100
-        pressure = Int(json["pressure"].stringValue) ?? -100
-        temp = Float(json["temp"].stringValue) ?? -100
-        clouds = Int(json["clouds"].stringValue) ?? -100
-        dewPoint = Float(json["dew_point"].stringValue) ?? -100
-        visibility = Int(json["visibilty"].stringValue) ?? -100
-        time = Int(json["dt"].stringValue) ?? -100
-
-        humidity = Int(json["humidity"].stringValue) ?? -100
-        feelsLike = Float(json["feels_like"].stringValue) ?? -100
-        uvi = Int(json["uvi"].stringValue) ?? -100
-        windDeg = Int(json["wind_deg"].stringValue) ?? -100
-        windSpeed = Float(json["wind_speed"].stringValue) ?? -100
-
-        weather = WeatherDescription(json: json["weather"][0])
-    }
-}
-
-struct WeatherDays {
-    var weatherHours: [WeatherHour]
+    return hours
 }
