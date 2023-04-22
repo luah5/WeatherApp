@@ -7,9 +7,8 @@
 
 import Foundation
 
-
 extension String {
     func formatJSONString() -> String {
-        return self.replacingOccurrences(of: "(", with: "")
+        return self.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
     }
 }
