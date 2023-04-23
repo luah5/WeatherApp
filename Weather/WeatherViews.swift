@@ -29,7 +29,7 @@ extension WeatherView {
                 .padding(.bottom)
         }
         .frame(width: 100, height: 100)
-        .cornerRadius(25)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .border(.black)
     }
 
@@ -46,7 +46,7 @@ extension WeatherView {
                 .padding([.bottom, .leading])
         }
         .frame(width: 100, height: 100)
-        .cornerRadius(25)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .border(.black)
     }
 
@@ -60,7 +60,7 @@ extension WeatherView {
                 .font(.system(.largeTitle))
         }
         .frame(width: 100, height: 100)
-        .cornerRadius(25)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .border(.secondary)
     }
 }

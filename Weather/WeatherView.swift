@@ -13,7 +13,7 @@ struct WeatherView: View {
     /// The main view for looking at all the weather
     var body: some View {
         NavigationSplitView {
-            VStack {
+            Form {
                 Text("My Location")
                     .fontWeight(.medium)
                     .padding([.top, .leading])
@@ -25,10 +25,8 @@ struct WeatherView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
             }
+        .formStyle(.grouped)
         } detail: {
-            Button("hi") {
-                print(multipleDays().count)
-            }
             Spacer()
             VStack(spacing: 0) {
                 Text(getCurrentCity())
@@ -49,10 +47,6 @@ struct WeatherView: View {
                     Text("2 DAY WEATHER")
                         .foregroundColor(.secondary)
                 }
-                temperatureDetailView(day: "17th", weather: "Rain", minTemp: 8, maxTemp: 17)
-                temperatureDetailView(day: "18th", weather: "Run", minTemp: 2, maxTemp: 13)
-                temperatureDetailView(day: "19th", weather: "Sun", minTemp: 11, maxTemp: 18)
-                temperatureDetailView(day: "20th", weather: "Sun", minTemp: 15, maxTemp: 19)
             }
             .formStyle(.grouped)
 

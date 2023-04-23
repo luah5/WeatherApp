@@ -47,6 +47,32 @@ func multipleDays() -> [WeatherHour] {
 
         for index in 0...(json["hourly"].count - 1) {
             hours.append(WeatherHour(json: json["hourly"][index]))
+            print(Int(json["hourly"][index]["dt"].stringValue)!.toTimestamp())
+        }
+    } catch {
+        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
+    }
+
+    return hours
+}
+
+func getWeatherData() -> [WeatherHour] {
+    var hours: [WeatherHour] = []
+    guard let myURL = URL(string: constructURL()) else {
+        throwNSAlert(messageText: "URL: \(constructURL()) does not exist.", severity: .critical)
+        fatalError("URL: \(constructURL()) does not exist.")
+    }
+
+    do {
+        let contents: Data = try String(contentsOf: myURL, encoding: .ascii).data(using: .ascii)!
+
+        let json = try JSON(data: contents)
+
+        hours.append(WeatherHour(json: json["current"]))
+
+        for index in 0...(json["hourly"].count - 1) {
+            hours.append(WeatherHour(json: json["hourly"][index]))
+            print(Int(json["hourly"][index]["dt"].stringValue)!.toTimestamp())
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)

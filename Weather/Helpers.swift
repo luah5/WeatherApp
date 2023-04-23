@@ -16,19 +16,6 @@ func getTime() -> String {
     return dateString
 }
 
-// swiftlint:disable force_cast force_try
-func getJsonObject(string: String) -> [String: Any] {
-    do {
-        return try! JSONSerialization.jsonObject(with: string.data(using: .utf8)!) as! [String: Any]
-    }
-}
-
-func getJSONObject(string: String) -> Any {
-    do {
-        return try! JSONSerialization.jsonObject(with: string.data(using: .utf8)!, options: .fragmentsAllowed)
-    }
-}
-
 func getCurrentCity() -> String {
     // Create a CLLocation object from the latitude and longitude coordinates
     let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
@@ -63,58 +50,6 @@ func getCurrentCity() -> String {
     }
 
     return returnText
-}
-
-func getWeatherData() -> Any {
-    let baseURL = "https://api.openweathermap.org/data/2.5/weather?q="
-    let url = "\(baseURL)\(getCurrentCity())&appid=59b882df8e35c2c5eefe87e105b2d6df&units=metric"
-
-    guard let myURL = URL(string: url) else {
-        return "error"
-    }
-
-    do {
-        let contents = try String(contentsOf: myURL, encoding: .ascii)
-        let product = getJsonObject(string: contents)
-
-        _ = String(describing: product["main"] ?? "none")
-            .replacingOccurrences(of: ";", with: "")
-            .replacingOccurrences(of: "\n", with: " = ")
-            .split(separator: " = ")
-        return WeatherData(product: product)
-    } catch let error {
-        print("error")
-        return error
-    }
-}
-
-/// A structure for holding weather data, intialization of values is handled within the init function
-struct WeatherData {
-    var humidity: Int, temp: Int, minTemp: Int, maxTemp: Int, feelsLike: Int, pressure: Int
-    var description: String, icon: String
-
-    init(product: [String: Any]) {
-        let mainData = String(describing: product["main"])
-            .replacingOccurrences(of: ";", with: "")
-            .replacingOccurrences(of: "\n", with: " = ")
-            .split(separator: " = ")
-
-        let descriptionData = String(describing: product["weather"])
-            .replacingOccurrences(of: ";", with: "")
-            .replacingOccurrences(of: "\n", with: " = ")
-            .split(separator: " = ")
-
-        self.description = String(describing: descriptionData[3].removeQuotationMarks()).capitalized
-        self.icon = String(describing: descriptionData[9])
-
-        self.feelsLike = Int(Double(mainData[2].removeQuotationMarks()) ?? 1.0)
-        self.humidity = Int(mainData[4]) ?? 0
-        self.pressure = Int(mainData[6]) ?? 0
-        self.temp = Int(Double(mainData[8].removeQuotationMarks()) ?? 1.0)
-
-        self.maxTemp = Int(Double(mainData[10].removeQuotationMarks()) ?? 1.0)
-        self.minTemp = Int(Double(mainData[12].removeQuotationMarks()) ?? 1.0)
-    }
 }
 
 @ViewBuilder
@@ -240,4 +175,3 @@ struct PreviewColor: View {
             .cornerRadius(5)
     }
 }
-// swiftlint:enable force_cast force_try function_body_length
