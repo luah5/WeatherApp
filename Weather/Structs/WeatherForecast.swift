@@ -14,14 +14,15 @@ struct WeatherForecast {
         /// Get the weather data
         let weatherHours: [WeatherHour] = getWeatherData()
 
-        var lastDay: Int = Int(weatherHours[1].time
+        let lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
             .split(separator: " ")[0])!
         var day: Int = 0
 
-        var todayWeatherHours: [WeatherHour] = [], tomorrowWeatherHours: [WeatherHour] = [], dayAfterTomorrowWeatherHours: [WeatherHour] = []
+        var todayWeatherHours: [WeatherHour] = [], tomorrowWeatherHours: [WeatherHour] = []
+        var dayAfterTomorrowWeatherHours: [WeatherHour] = []
 
-        // For some reason Xcode will throw the error "Return from initializer without initializing all stored properties"
+        // For some reason swift will throw "Return from initializer without initializing all stored properties"
         // The following code is to fix it
         self.today = WeatherDay(weatherHours: [])
         self.tomorrow = WeatherDay(weatherHours: [])
@@ -29,7 +30,7 @@ struct WeatherForecast {
 
         for index in 1...weatherHours.count {
 
-            var currentDay = Int(
+            let currentDay = Int(
                 weatherHours[index].time.toTimestamp()
                     .split(separator: " ")[0])!
 

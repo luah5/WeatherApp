@@ -82,50 +82,24 @@ func timeView(time: String, weather: String, temp: Int) -> some View {
 }
 
 @ViewBuilder
-// swiftlint:disable function_body_length
 /// Generates a View from given values
 func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: Int) -> some View {
     VStack {
         HStack(spacing: 30) {
             Text("\(day)")
                 .font(.system(size: 14, weight: .semibold))
-
-            if weather == "Sun" {
-                Image(systemName: "sun.max.fill")
-                    .foregroundColor(.yellow)
-                    .fixedSize()
-            } else if weather == "Cloudy" {
-                Image(systemName: "cloud")
-                    .foregroundColor(.gray)
-                    .fixedSize()
-            } else if weather == "Partly Cloudy" {
-                Image(systemName: "cloud.sun.fill")
-                    .foregroundColor(.gray)
-                    .fixedSize()
-            } else if weather == "Clear" {
-                Image(systemName: "moon.fill")
-                    .foregroundColor(.gray)
-                    .fixedSize()
-            } else {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.red)
-                    .fixedSize()
-            }
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(.red)
+                .fixedSize()
             Text("\(minTemp)º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
-                .opacity(0.6)
-            let maxRoundedTemp = ceil(round(CGFloat(maxTemp * 5)) / 5)
-            let minRoundedTemp = floor(round(CGFloat(minTemp * 5)) / 5)
-            let range = maxRoundedTemp - minRoundedTemp
-            let width = (range / (range - (CGFloat(minTemp) - minRoundedTemp))) * 10
-            let multiplication = (100 - width) / maxRoundedTemp
             HStack(spacing: 0) {
-                PreviewColor(.gray, width: width)
-                PreviewColor(.yellow, width: (CGFloat(maxTemp) * multiplication) - 5)
-                PreviewColor(.blue, width: maxRoundedTemp)
-                PreviewColor(.white, width: 5)
-                PreviewColor(.yellow, width: 95 - (width + (CGFloat(maxTemp) * multiplication) - 5))
+                PreviewColor(.gray, width: 60)
+                PreviewColor(.yellow, width: 10)
+                PreviewColor(.blue, width: 10)
+                PreviewColor(.white, width: 10)
+                PreviewColor(.yellow, width: 10)
             }
             .clipShape(Capsule())
             .overlay {
@@ -138,7 +112,6 @@ func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: 
                 .padding(.trailing)
                 .frame(alignment: .trailing)
         }
-
         HStack {
             Group {
                 timeView(time: "0:00", weather: "Clear", temp: 6)
