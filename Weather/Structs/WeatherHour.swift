@@ -18,7 +18,7 @@ struct WeatherHour {
         temp = Float(json["temp"].stringValue) ?? -100
         clouds = Int(json["clouds"].stringValue) ?? -100
         dewPoint = Float(json["dew_point"].stringValue) ?? -100
-        visibility = Int(json["visibilty"].stringValue) ?? -100
+        visibility = Int(json["visibility"].stringValue) ?? -100
         time = Int(json["dt"].stringValue) ?? -100
 
         humidity = Int(json["humidity"].stringValue) ?? -100

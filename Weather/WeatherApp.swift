@@ -13,6 +13,12 @@ struct WeatherApp: App {
         WindowGroup {
             WeatherView()
                 .presentedWindowToolbarStyle(.unifiedCompact(showsTitle: false))
+            /*
+                .background(
+                    Image("Clouds")
+                        .scaledToFit()
+                )
+            */
         }
 
         Settings {
