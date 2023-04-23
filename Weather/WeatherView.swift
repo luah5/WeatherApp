@@ -28,6 +28,7 @@ struct WeatherView: View {
             }
         } detail: {
             Button("hi") {
+                print()
                 for hour in multipleDays() {
                     print(hour.time)
                 }
