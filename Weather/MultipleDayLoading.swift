@@ -15,7 +15,7 @@ let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
 let exclude: String = "&exclude=minutely"
 
-func constructURL() -> String {
+func constructURL(baseURL: String) -> String {
     return baseURL + location + apiKey + units + exclude
 }
 
@@ -31,11 +31,13 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     }
 }
 
-func multipleDays() -> [WeatherHour] {
+func getHourlyWeatherData() -> [WeatherHour] {
     var hours: [WeatherHour] = []
-    guard let myURL = URL(string: constructURL()) else {
-        throwNSAlert(messageText: "URL: \(constructURL()) does not exist.", severity: .critical)
-        fatalError("URL: \(constructURL()) does not exist.")
+    let url = "https://api.openweathermap.org/data/2.5/onecall?"
+
+    guard let myURL = URL(string: constructURL(baseURL: url)) else {
+        throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
+        fatalError()
     }
 
     do {
@@ -55,11 +57,13 @@ func multipleDays() -> [WeatherHour] {
     return hours
 }
 
-func getWeatherData() -> [WeatherHour] {
+func getThreeHourWeatherData() -> [WeatherHour] {
     var hours: [WeatherHour] = []
-    guard let myURL = URL(string: constructURL()) else {
-        throwNSAlert(messageText: "URL: \(constructURL()) does not exist.", severity: .critical)
-        fatalError("URL: \(constructURL()) does not exist.")
+    let url = "https://api.openweathermap.org/data/2.5/forecast?"
+
+    guard let myURL = URL(string: constructURL(baseURL: url)) else {
+        throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
+        fatalError()
     }
 
     do {
@@ -67,9 +71,9 @@ func getWeatherData() -> [WeatherHour] {
 
         let json = try JSON(data: contents)
 
-        hours.append(WeatherHour(json: json["current"]))
+        hours.append(WeatherHour(json: json["list"]))
 
-        for index in 0...(json["hourly"].count - 1) {
+        for index in 16...(json["hourly"].count - 1) {
             hours.append(WeatherHour(json: json["hourly"][index]))
         }
     } catch {

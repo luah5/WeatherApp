@@ -12,7 +12,7 @@ struct WeatherForecast {
 
     init() {
         /// Get the weather data
-        let weatherHours: [WeatherHour] = getWeatherData()
+        let weatherHours: [WeatherHour] = getHourlyWeatherData()
 
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()

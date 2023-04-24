@@ -81,6 +81,7 @@ struct WeatherView: View {
                 }
             }
             .formStyle(.grouped)
+
             Form {
                 HStack {
                     Image(systemName: "calendar")
