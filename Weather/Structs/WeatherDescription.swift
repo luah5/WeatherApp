@@ -7,13 +7,14 @@
 
 import Foundation
 import SwiftyJSON
+import SwiftUI
 
 struct WeatherDescription {
-    var mainDescription: String, description: String, icon: String
+    var mainDescription: String, description: String, icon: Image
 
     init(json: JSON) {
         self.mainDescription = String(describing: json["main"])
         self.description = String(describing: json["description"])
-        self.icon = String(describing: json["icon"])
+        self.icon = String(describing: json["icon"]).iconToSFSymbol()
     }
 }

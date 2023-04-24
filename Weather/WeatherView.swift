@@ -44,9 +44,52 @@ struct WeatherView: View {
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundColor(.secondary)
+                    Text("HOURLY FORECAST")
+                        .foregroundColor(.secondary)
+                }
+                HStack {
+                    Divider()
+                    ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
+                        let split = hour.time.toTimestamp().split(separator: " ")
+
+                        VStack {
+                            Text(split[split.count - 1])
+                            hour.weather.icon
+                            Text("\(hour.temp.toInt())º")
+                        }
+                        .frame(width: 45, height: 50)
+
+                        Divider()
+                    }
+                }
+            }
+            .formStyle(.grouped)
+            Form {
+                VStack {
+                    HStack {
+                        Image(systemName: "humidity")
+                            .foregroundColor(.secondary)
+                        Text("HUMIDITY")
+                            .foregroundColor(.secondary)
+                            .font(.system(.caption2))
+                    }
+                    .padding(.leading)
+
+                    Text("\(weatherForecast.current.humidity)%")
+                        .font(.system(.title))
+                        .padding(.leading)
+                }
+            }
+            .formStyle(.grouped)
+            Form {
+                HStack {
+                    Image(systemName: "calendar")
+                        .foregroundColor(.secondary)
                     Text("2 DAY WEATHER")
                         .foregroundColor(.secondary)
                 }
+                temperatureDetailView(day: weatherForecast.tomorrow)
+                temperatureDetailView(day: weatherForecast.dayAfterTomorrow)
             }
             .formStyle(.grouped)
 

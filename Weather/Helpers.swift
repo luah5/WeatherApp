@@ -53,46 +53,18 @@ func getCurrentCity() -> String {
 }
 
 @ViewBuilder
-func timeView(time: String, weather: String, temp: Int) -> some View {
-    VStack {
-        Text(time)
-        if weather == "Sun" {
-            Image(systemName: "sun.max.fill")
-                .foregroundColor(.yellow)
-                .fixedSize()
-        } else if weather == "Clouds" {
-            Image(systemName: "cloud")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else if weather == "Partly Cloudy" {
-            Image(systemName: "cloud.sun.fill")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else if weather == "Clear" {
-            Image(systemName: "moon.fill")
-                .foregroundColor(.gray)
-                .fixedSize()
-        } else {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.red)
-                .fixedSize()
-        }
-        Text("\(temp)º")
-    }
-}
-
-@ViewBuilder
 /// Generates a View from given values
 func temperatureDetailView(day: WeatherDay) -> some View {
+    let timestamp = day.weatherHours[0].time.toTimestamp().split(separator: " ")
+    @State var showConnectionAlert = false
     VStack {
         HStack(spacing: 30) {
-            Text(day.weatherHours[0].time.toTimestamp().split(separator: " ")[0])
-            // Text("\(day.weatherHours[0].time.toTimestamp().split(separator: " ")[0]) th")
+            Text(timestamp[0] + "th")
                 .font(.system(size: 14, weight: .semibold))
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundColor(.red)
                 .fixedSize()
-            Text("\(day.minTemp)º")
+            Text("\(day.minTemp.toInt())º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
             HStack(spacing: 0) {
@@ -108,29 +80,30 @@ func temperatureDetailView(day: WeatherDay) -> some View {
                     .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Text("\(day.maxTemp)º")
+            Text("\(day.maxTemp.toInt())º")
                 .font(.system(size: 14, weight: .semibold))
                 .padding(.trailing)
                 .frame(alignment: .trailing)
         }
+        .frame(alignment: .center)
+
         HStack {
-            Group {
-                timeView(time: "0:00", weather: "Clear", temp: 6)
-                Divider()
-                timeView(time: "1:00", weather: "Clear", temp: 3)
-                Divider()
-                timeView(time: "2:00", weather: "Clear", temp: 13)
-                Divider()
-            }
-            Group {
-                timeView(time: "3:00", weather: "Clear", temp: 15)
-                Divider()
-                timeView(time: "4:00", weather: "Clear", temp: 14)
-                Divider()
-                timeView(time: "5:00", weather: "Clear", temp: 9)
+            Divider()
+
+            ForEach(day.weatherHours, id: \.time) { hour in
+                let split = hour.time.toTimestamp().split(separator: " ")
+
+                VStack {
+                    Text(split[split.count - 1])
+                    hour.weather.icon
+                    Text("\(hour.temp.toInt())º")
+                }
+                .frame(width: 45, height: 50)
+
                 Divider()
             }
         }
+        .frame(alignment: .center)
     }
 }
 

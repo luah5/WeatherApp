@@ -11,14 +11,15 @@ import SwiftUI
 extension String {
     // swiftlint:disable cyclomatic_complexity
     func iconToSFSymbol() -> Image {
-        var systemName: String = "warning"
+        var systemName: String = "exclamationmark.triangle.fill"
         var color: SwiftUI.Color = .red
 
         if self.last == "d" {
             color = .white
         } else if self.last == "n" {
             color = .gray
-        } else if self == "01d" {
+        }
+        if self == "01d" {
             systemName = "sun.max.fill"
             color = .yellow
         } else if self == "01n" {
@@ -45,8 +46,10 @@ extension String {
             color = .white
         }
 
-        // swiftlint:disable force_cast
-        return Image(systemName: systemName).foregroundColor(color) as! Image
+        var image = Image(systemName: systemName)
+        image.foregroundColor(color)
+
+        return image
     }
 }
-// swiftlint:enable force_cast cyclomatic_complexity
+// swiftlint:enable cyclomatic_complexity
