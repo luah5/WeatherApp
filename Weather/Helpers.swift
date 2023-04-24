@@ -60,7 +60,7 @@ func timeView(time: String, weather: String, temp: Int) -> some View {
             Image(systemName: "sun.max.fill")
                 .foregroundColor(.yellow)
                 .fixedSize()
-        } else if weather == "Cloudy" {
+        } else if weather == "Clouds" {
             Image(systemName: "cloud")
                 .foregroundColor(.gray)
                 .fixedSize()
@@ -83,15 +83,16 @@ func timeView(time: String, weather: String, temp: Int) -> some View {
 
 @ViewBuilder
 /// Generates a View from given values
-func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: Int) -> some View {
+func temperatureDetailView(day: WeatherDay) -> some View {
     VStack {
         HStack(spacing: 30) {
-            Text("\(day)")
+            Text(day.weatherHours[0].time.toTimestamp().split(separator: " ")[0])
+            // Text("\(day.weatherHours[0].time.toTimestamp().split(separator: " ")[0]) th")
                 .font(.system(size: 14, weight: .semibold))
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundColor(.red)
                 .fixedSize()
-            Text("\(minTemp)º")
+            Text("\(day.minTemp)º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
             HStack(spacing: 0) {
@@ -107,7 +108,7 @@ func temperatureDetailView(day: String, weather: String, minTemp: Int, maxTemp: 
                     .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Text("\(maxTemp)º")
+            Text("\(day.maxTemp)º")
                 .font(.system(size: 14, weight: .semibold))
                 .padding(.trailing)
                 .frame(alignment: .trailing)

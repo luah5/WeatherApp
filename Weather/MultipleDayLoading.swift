@@ -47,7 +47,6 @@ func multipleDays() -> [WeatherHour] {
 
         for index in 0...(json["hourly"].count - 1) {
             hours.append(WeatherHour(json: json["hourly"][index]))
-            print(Int(json["hourly"][index]["dt"].stringValue)!.toTimestamp())
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
@@ -72,7 +71,6 @@ func getWeatherData() -> [WeatherHour] {
 
         for index in 0...(json["hourly"].count - 1) {
             hours.append(WeatherHour(json: json["hourly"][index]))
-            print(Int(json["hourly"][index]["dt"].stringValue)!.toTimestamp())
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)

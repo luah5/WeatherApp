@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    let weatherForecast: [WeatherHour] = multipleDays()
+    let weatherForecast: WeatherForecast = .init()
 
     /// The main view for looking at all the weather
     var body: some View {
@@ -21,7 +21,7 @@ struct WeatherView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
                 Spacer()
-                Text("\(weatherForecast[0].weather.mainDescription)")
+                Text("\(weatherForecast.current.weather.mainDescription)")
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
             }
@@ -31,13 +31,13 @@ struct WeatherView: View {
             VStack(spacing: 0) {
                 Text(getCurrentCity())
                     .font(.system(.title))
-                Text("\(Int(weatherForecast[0].temp))º")
+                Text("\(Int(weatherForecast.current.temp))º")
                     .font(.system(size: 56, weight: .thin))
-                Text("\(weatherForecast[0].weather.mainDescription)")
+                Text("\(weatherForecast.current.weather.mainDescription)")
                     .font(.system(.headline, weight: .semibold))
                 Text(getTime())
                     .font(.system(.headline, weight: .semibold))
-                Text("Low: todoº High: todoº")
+                Text("Low: \(weatherForecast.today.minTemp.toInt())º High: \(weatherForecast.today.maxTemp.toInt())º")
                     .font(.system(.headline, weight: .semibold))
             }
             Form {

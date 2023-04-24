@@ -8,13 +8,13 @@
 import Foundation
 
 struct WeatherForecast {
-    var today: WeatherDay, tomorrow: WeatherDay, dayAfterTomorrow: WeatherDay
+    var current: WeatherHour, today: WeatherDay, tomorrow: WeatherDay, dayAfterTomorrow: WeatherDay
 
     init() {
         /// Get the weather data
         let weatherHours: [WeatherHour] = getWeatherData()
 
-        let lastDay: Int = Int(weatherHours[1].time
+        var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
             .split(separator: " ")[0])!
         var day: Int = 0
@@ -24,25 +24,16 @@ struct WeatherForecast {
 
         // For some reason swift will throw "Return from initializer without initializing all stored properties"
         // The following code is to fix it
-        self.today = WeatherDay(weatherHours: [])
-        self.tomorrow = WeatherDay(weatherHours: [])
-        self.dayAfterTomorrow = WeatherDay(weatherHours: [])
+        self.current = weatherHours[0]
 
-        for index in 1...weatherHours.count {
-
+        for index in 1...weatherHours.count - 1 {
             let currentDay = Int(
                 weatherHours[index].time.toTimestamp()
                     .split(separator: " ")[0])!
 
             if currentDay != lastDay {
-                if day == 0 {
-                    self.today = WeatherDay(weatherHours: todayWeatherHours)
-                } else if day == 1 {
-                    self.tomorrow = WeatherDay(weatherHours: tomorrowWeatherHours)
-                } else if day == 2 {
-                    self.dayAfterTomorrow = WeatherDay(weatherHours: dayAfterTomorrowWeatherHours)
-                }
                 day += 1
+                lastDay = currentDay
             }
 
             if day == 0 {
@@ -53,5 +44,9 @@ struct WeatherForecast {
                 dayAfterTomorrowWeatherHours.append(weatherHours[index])
             }
         }
+
+        self.today = WeatherDay(weatherHours: todayWeatherHours)
+        self.tomorrow = WeatherDay(weatherHours: tomorrowWeatherHours)
+        self.dayAfterTomorrow = WeatherDay(weatherHours: dayAfterTomorrowWeatherHours)
     }
 }

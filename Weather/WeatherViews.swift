@@ -22,10 +22,10 @@ extension WeatherView {
         VStack {
             createFormIcon(systemName: "humidity", text: "HUMIDITY")
 
-            Text("\(weatherForecast[0].humidity)%")
+            Text("\(weatherForecast.current.humidity)%")
                 .font(.system(.largeTitle))
 
-            Text("The dew point is \(weatherForecast[0].dewPoint.toInt())º right now.")
+            Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º right now.")
                 .padding(.bottom)
         }
         .frame(width: 100, height: 100)
@@ -38,7 +38,7 @@ extension WeatherView {
             createFormIcon(systemName: "thermometer.medium", text: "FEELS LIKE")
                 .padding([.top, .leading])
 
-            Text("\(weatherForecast[0].feelsLike.toInt())º")
+            Text("\(weatherForecast.current.feelsLike.toInt())º")
                 .padding(.leading)
                 .font(.system(.largeTitle))
 
@@ -55,7 +55,7 @@ extension WeatherView {
             createFormIcon(systemName: "eye.fill", text: "VISIBILITY")
                 .padding([.top, .leading])
 
-            Text("\(weatherForecast[0].visibility) km")
+            Text("\(weatherForecast.current.visibility) km")
                 .padding(.leading)
                 .font(.system(.largeTitle))
         }

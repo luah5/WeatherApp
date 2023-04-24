@@ -9,10 +9,11 @@ import Foundation
 import SwiftyJSON
 
 struct WeatherDescription {
-    var mainDescription: String, description: String
+    var mainDescription: String, description: String, icon: String
 
     init(json: JSON) {
         self.mainDescription = String(describing: json["main"])
         self.description = String(describing: json["description"])
+        self.icon = String(describing: json["icon"])
     }
 }

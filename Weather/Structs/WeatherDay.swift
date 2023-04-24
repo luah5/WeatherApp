@@ -13,7 +13,7 @@ struct WeatherDay {
     init(weatherHours: [WeatherHour]) {
         self.weatherHours = weatherHours
 
-        self.minTemp = -100
+        self.minTemp = 100
         self.maxTemp = -100
 
         for hour in weatherHours {
