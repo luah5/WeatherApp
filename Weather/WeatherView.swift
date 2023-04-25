@@ -41,56 +41,39 @@ struct WeatherView: View {
                     .font(.system(.headline, weight: .semibold))
             }
             Form {
-                HStack {
-                    Image(systemName: "calendar")
-                        .foregroundColor(.secondary)
-                    Text("HOURLY FORECAST")
-                        .foregroundColor(.secondary)
-                }
-                HStack {
-                    Divider()
-                    ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
-                        let split = hour.time.toTimestamp().split(separator: " ")
-
-                        VStack {
-                            Text(split[split.count - 1])
-                            hour.weather.icon
-                            Text("\(hour.temp.toInt())º")
-                        }
-                        .frame(width: 45, height: 50)
-
-                        Divider()
-                    }
-                }
-            }
-            .formStyle(.grouped)
-            Form {
-                VStack {
+                Section {
                     HStack {
-                        Image(systemName: "humidity")
+                        Image(systemName: "calendar")
                             .foregroundColor(.secondary)
-                        Text("HUMIDITY")
+                        Text("HOURLY FORECAST")
                             .foregroundColor(.secondary)
-                            .font(.system(.caption2))
                     }
-                    .padding(.leading)
+                    HStack {
+                        Divider()
+                        ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
+                            let split = hour.time.toTimestamp().split(separator: " ")
 
-                    Text("\(weatherForecast.current.humidity)%")
-                        .font(.system(.title))
-                        .padding(.leading)
-                }
-            }
-            .formStyle(.grouped)
+                            VStack {
+                                Text(split[split.count - 1])
+                                hour.weather.icon
+                                Text("\(hour.temp.toInt())º")
+                            }
+                            .frame(width: 45, height: 50)
 
-            Form {
-                HStack {
-                    Image(systemName: "calendar")
-                        .foregroundColor(.secondary)
-                    Text("2 DAY WEATHER")
-                        .foregroundColor(.secondary)
+                            Divider()
+                        }
+                    }
                 }
-                temperatureDetailView(day: weatherForecast.tomorrow)
-                temperatureDetailView(day: weatherForecast.dayAfterTomorrow)
+                Section {
+                    HStack {
+                        Image(systemName: "calendar")
+                            .foregroundColor(.secondary)
+                        Text("2 DAY WEATHER")
+                            .foregroundColor(.secondary)
+                    }
+                    tempDetailView(day: weatherForecast.tomorrow)
+                    tempDetailView(day: weatherForecast.dayAfterTomorrow)
+                }
             }
             .formStyle(.grouped)
 

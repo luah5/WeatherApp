@@ -8,59 +8,58 @@
 import SwiftUI
 
 extension WeatherView {
-    func createFormIcon(systemName: String, text: String) -> some View {
-        HStack(spacing: 2) {
-            Image(systemName: systemName)
-                .foregroundColor(.secondary)
-            Text("\(text)")
-                .foregroundColor(.secondary)
-                .font(.system(size: 8))
-        }
-    }
-
     var humidity: some View {
-        VStack {
-            createFormIcon(systemName: "humidity", text: "HUMIDITY")
+        Form {
+            HStack(spacing: 5) {
+                Image(systemName: "humidity")
+                    .controlSize(.small)
+                    .foregroundColor(.secondary)
+                Text("HUMIDITY")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
 
             Text("\(weatherForecast.current.humidity)%")
-                .font(.system(.largeTitle))
+                .font(.system(.title))
 
-            Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º right now.")
-                .padding(.bottom)
+            Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
+                .font(.system(.footnote))
         }
-        .frame(width: 100, height: 100)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .border(.black)
+        .formStyle(.grouped)
+        .frame(width: 200, height: 200)
     }
 
     var feelsLike: some View {
-        VStack {
-            createFormIcon(systemName: "thermometer.medium", text: "FEELS LIKE")
-                .padding([.top, .leading])
-
+        Form {
+            HStack(spacing: 5) {
+                Image(systemName: "thermometer.medium")
+                    .controlSize(.small)
+                    .foregroundColor(.secondary)
+                Text("FEELS LIKE")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
             Text("\(weatherForecast.current.feelsLike.toInt())º")
-                .padding(.leading)
-                .font(.system(.largeTitle))
-
-            Text("")
-                .padding([.bottom, .leading])
+                .font(.system(.title))
         }
-        .frame(width: 100, height: 100)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .border(.black)
+        .formStyle(.grouped)
+        .frame(width: 200, height: 200)
     }
 
     var visibility: some View {
-        VStack {
-            createFormIcon(systemName: "eye.fill", text: "VISIBILITY")
-                .padding([.top, .leading])
-
-            Text("\(weatherForecast.current.visibility) km")
-                .padding(.leading)
-                .font(.system(.largeTitle))
+        Form {
+            HStack(spacing: 5) {
+                Image(systemName: "eye")
+                    .controlSize(.small)
+                    .foregroundColor(.secondary)
+                Text("VISIBILITY")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
+            Text("\(Int(weatherForecast.current.visibility / 1000)) km")
+                .font(.system(.title))
         }
-        .frame(width: 100, height: 100)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .border(.secondary)
+        .formStyle(.grouped)
+        .frame(width: 200, height: 200)
     }
 }

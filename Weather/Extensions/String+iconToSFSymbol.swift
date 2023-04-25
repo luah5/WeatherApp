@@ -46,10 +46,7 @@ extension String {
             color = .white
         }
 
-        var image = Image(systemName: systemName)
-        image.foregroundColor(color)
-
-        return image
+        return Image(systemName: systemName)
     }
 }
 // swiftlint:enable cyclomatic_complexity

@@ -54,16 +54,71 @@ func getCurrentCity() -> String {
 
 @ViewBuilder
 /// Generates a View from given values
-func temperatureDetailView(day: WeatherDay) -> some View {
+func temperatureDetailView(days: [WeatherDay]) -> some View {
+    Output(arg: "\(String(describing: days))")
+    ForEach(days, id: \.minTemp) { day in
+        let timestamp = day.weatherHours[0].time.toTimestamp().split(separator: " ")
+        VStack {
+            HStack(spacing: 30) {
+                Text(timestamp[0] + "th")
+                    .font(.system(size: 14, weight: .semibold))
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundColor(.red)
+                    .fixedSize()
+                Text("\(day.minTemp.toInt())º")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.secondary)
+                HStack(spacing: 0) {
+                    PreviewColor(.gray, width: 60)
+                    PreviewColor(.yellow, width: 35)
+                    PreviewColor(.blue, width: 5)
+                }
+                .clipShape(Capsule())
+                .overlay {
+                    Capsule()
+                        .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                Text("\(day.maxTemp.toInt())º")
+                    .font(.system(size: 14, weight: .semibold))
+                    .padding(.trailing)
+                    .frame(alignment: .trailing)
+            }
+            .frame(alignment: .center)
+
+            ScrollView(.horizontal) {
+                HStack {
+                    Divider()
+
+                    ForEach(day.weatherHours, id: \.time) { hour in
+                        let split = hour.time.toTimestamp().split(separator: " ")
+
+                        VStack {
+                            Text(split[split.count - 1])
+                            hour.weather.icon
+                            Text("\(hour.temp.toInt())º")
+                        }
+                        .frame(width: 45, height: 50)
+
+                        Divider()
+                    }
+                }
+                .frame(alignment: .center)
+            }
+            .frame(height: 50)
+        }
+    }
+}
+
+@ViewBuilder
+func tempDetailView(day: WeatherDay) -> some View {
     let timestamp = day.weatherHours[0].time.toTimestamp().split(separator: " ")
     @State var showConnectionAlert = false
     VStack {
         HStack(spacing: 30) {
             Text(timestamp[0] + "th")
                 .font(.system(size: 14, weight: .semibold))
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.red)
-                .fixedSize()
+            day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon
             Text("\(day.minTemp.toInt())º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)

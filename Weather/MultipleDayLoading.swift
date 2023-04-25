@@ -25,10 +25,6 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.messageText = messageText
     alert.addButton(withTitle: "Ok")
     alert.runModal()
-
-    if severity == .critical {
-        fatalError(messageText)
-    }
 }
 
 func getHourlyWeatherData() -> [WeatherHour] {
@@ -52,6 +48,7 @@ func getHourlyWeatherData() -> [WeatherHour] {
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
+        fatalError()
     }
 
     return hours
@@ -78,7 +75,9 @@ func getThreeHourWeatherData() -> [WeatherHour] {
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
+        fatalError()
     }
 
+    print(hours)
     return hours
 }
