@@ -10,9 +10,9 @@ import SwiftUI
 
 extension String {
     // swiftlint:disable cyclomatic_complexity
-    func iconToSFSymbol() -> Image {
+    func iconToSFSymbol() -> IconImage {
         var systemName: String = "exclamationmark.triangle.fill"
-        var color: SwiftUI.Color = .red
+        var color: Color = .red
 
         if self.last == "d" {
             color = .white
@@ -46,7 +46,7 @@ extension String {
             color = .white
         }
 
-        return Image(systemName: systemName)
+        return IconImage(image: Image(systemName: systemName), color: color)
     }
 }
 // swiftlint:enable cyclomatic_complexity

@@ -10,7 +10,7 @@ import SwiftyJSON
 import SwiftUI
 
 struct WeatherDescription {
-    var mainDescription: String, description: String, icon: Image
+    var mainDescription: String, description: String, icon: IconImage
 
     init(json: JSON) {
         self.mainDescription = String(describing: json["main"])

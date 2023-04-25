@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A struct for getting the weather forecast [#10](https://github.com/luah5/WeatherApp/issues/10)
 struct WeatherForecast {
     var current: WeatherHour, today: WeatherDay, tomorrow: WeatherDay, dayAfterTomorrow: WeatherDay
 
@@ -26,6 +27,7 @@ struct WeatherForecast {
         // The following code is to fix it
         self.current = weatherHours[0]
 
+        /// Loop through the weather hours (excluding the first one)
         for index in 1...weatherHours.count - 1 {
             let currentDay = Int(
                 weatherHours[index].time.toTimestamp()
@@ -45,6 +47,7 @@ struct WeatherForecast {
             }
         }
 
+        /// Create the WeatherDay( ... ) objects
         self.today = WeatherDay(weatherHours: todayWeatherHours)
         self.tomorrow = WeatherDay(weatherHours: tomorrowWeatherHours)
         self.dayAfterTomorrow = WeatherDay(weatherHours: dayAfterTomorrowWeatherHours)

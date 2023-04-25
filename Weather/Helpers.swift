@@ -95,7 +95,8 @@ func temperatureDetailView(days: [WeatherDay]) -> some View {
 
                         VStack {
                             Text(split[split.count - 1])
-                            hour.weather.icon
+                            hour.weather.icon.image
+                                .foregroundColor(hour.weather.icon.color)
                             Text("\(hour.temp.toInt())º")
                         }
                         .frame(width: 45, height: 50)
@@ -118,7 +119,8 @@ func tempDetailView(day: WeatherDay) -> some View {
         HStack(spacing: 30) {
             Text(timestamp[0] + "th")
                 .font(.system(size: 14, weight: .semibold))
-            day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon
+            day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
+                .foregroundColor(day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.color)
             Text("\(day.minTemp.toInt())º")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.secondary)
@@ -151,7 +153,8 @@ func tempDetailView(day: WeatherDay) -> some View {
 
                     VStack {
                         Text(split[split.count - 1])
-                        hour.weather.icon
+                        hour.weather.icon.image
+                            .foregroundColor(hour.weather.icon.color)
                         Text("\(hour.temp.toInt())º")
                     }
                     .frame(width: 45, height: 50)

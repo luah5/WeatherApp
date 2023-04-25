@@ -55,7 +55,8 @@ struct WeatherView: View {
 
                             VStack {
                                 Text(split[split.count - 1])
-                                hour.weather.icon
+                                hour.weather.icon.image
+                                    .foregroundColor(hour.weather.icon.color)
                                 Text("\(hour.temp.toInt())º")
                             }
                             .frame(width: 45, height: 50)
