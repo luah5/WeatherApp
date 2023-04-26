@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "shiny-swift-ui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flowductive/shiny-swift-ui",
+      "state" : {
+        "revision" : "fc1f779fc1bfc0701d0d22cd11ef91e0c15a7f92",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON",

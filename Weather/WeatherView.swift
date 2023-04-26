@@ -51,17 +51,7 @@ struct WeatherView: View {
                     HStack {
                         Divider()
                         ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
-                            let split = hour.time.toTimestamp().split(separator: " ")
-
-                            VStack {
-                                Text(split[split.count - 1])
-                                hour.weather.icon.image
-                                    .foregroundColor(hour.weather.icon.color)
-                                Text("\(hour.temp.toInt())º")
-                            }
-                            .frame(width: 45, height: 50)
-
-                            Divider()
+                            HourItemView(weatherHour: hour)
                         }
                     }
                 }
@@ -72,8 +62,9 @@ struct WeatherView: View {
                         Text("2 DAY WEATHER")
                             .foregroundColor(.secondary)
                     }
-                    tempDetailView(day: weatherForecast.tomorrow)
-                    tempDetailView(day: weatherForecast.dayAfterTomorrow)
+                    days
+//                    tempDetailView(day: weatherForecast.tomorrow)
+//                    tempDetailView(day: weatherForecast.dayAfterTomorrow)
                 }
             }
             .formStyle(.grouped)

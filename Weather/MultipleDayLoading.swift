@@ -54,8 +54,8 @@ func getHourlyWeatherData() -> [WeatherHour] {
     return hours
 }
 
-func getThreeHourWeatherData() -> [WeatherHour] {
-    var hours: [WeatherHour] = []
+func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
+    var hours: [FiveDayWeatherHour] = []
     let url = "https://api.openweathermap.org/data/2.5/forecast?"
 
     guard let myURL = URL(string: constructURL(baseURL: url)) else {
@@ -68,10 +68,8 @@ func getThreeHourWeatherData() -> [WeatherHour] {
 
         let json = try JSON(data: contents)
 
-        hours.append(WeatherHour(json: json["list"]))
-
-        for index in 16...(json["hourly"].count - 1) {
-            hours.append(WeatherHour(json: json["hourly"][index]))
+        for index in 16...(json["list"].count - 1) {
+            hours.append(FiveDayWeatherHour(json: json["list"][index]))
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)

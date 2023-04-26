@@ -9,6 +9,7 @@ import Foundation
 import SwiftyJSON
 import SwiftUI
 
+/// A struct for getting the weather description and icon
 struct WeatherDescription {
     var mainDescription: String, description: String, icon: IconImage
 
