@@ -65,50 +65,50 @@ extension WeatherView {
 
     @ViewBuilder
     var days: some View {
-        var days: [WeatherDay] = [weatherForecast.tomorrow, weatherForecast.dayAfterTomorrow]
-
-        ForEach(days, id: \.minTemp) { day in
-            let timestamp = day.weatherHours[0].time.toTimestamp().split(separator: " ")
-            VStack {
-                HStack(spacing: 30) {
-                    Text(timestamp[0] + "th")
-                        .font(.system(size: 14, weight: .semibold))
-                    day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
-                        .foregroundColor(day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.color)
-                    Text("\(day.minTemp.toInt())º")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.secondary)
-                    HStack(spacing: 0) {
-                        PreviewColor(.gray, width: 60)
-                        PreviewColor(.yellow, width: 10)
-                        PreviewColor(.blue, width: 10)
-                        PreviewColor(.white, width: 10)
-                        PreviewColor(.yellow, width: 10)
-                    }
-                    .clipShape(Capsule())
-                    .overlay {
-                        Capsule()
-                            .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                    Text("\(day.maxTemp.toInt())º")
-                        .font(.system(size: 14, weight: .semibold))
-                        .padding(.trailing)
-                        .frame(alignment: .trailing)
-                }
-                .frame(alignment: .center)
-
-                ScrollView(.horizontal) {
-                    HStack {
-                        Divider()
-
-                        ForEach(day.weatherHours, id: \.time) { hour in
-                            HourItemView(weatherHour: hour)
+        ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
+            if String(describing: day.weatherHours).count > 20 {
+                let timestamp = day.weatherHours[1].time.toTimestamp().split(separator: " ")
+                VStack {
+                    HStack(spacing: 30) {
+                        Text(timestamp[0] + "th")
+                            .font(.system(size: 14, weight: .semibold))
+                        day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
+                            .foregroundColor(day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.color)
+                        Text("\(day.minTemp.toInt())º")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.secondary)
+                        HStack(spacing: 0) {
+                            PreviewColor(.gray, width: 60)
+                            PreviewColor(.yellow, width: 10)
+                            PreviewColor(.blue, width: 10)
+                            PreviewColor(.white, width: 10)
+                            PreviewColor(.yellow, width: 10)
                         }
+                        .clipShape(Capsule())
+                        .overlay {
+                            Capsule()
+                                .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        Text("\(day.maxTemp.toInt())º")
+                            .font(.system(size: 14, weight: .semibold))
+                            .padding(.trailing)
+                            .frame(alignment: .trailing)
                     }
                     .frame(alignment: .center)
+
+                    ScrollView(.horizontal) {
+                        HStack {
+                            Divider()
+
+                            ForEach(day.weatherHours, id: \.time) { hour in
+                                HourItemView(weatherHour: hour)
+                            }
+                        }
+                        .frame(alignment: .center)
+                    }
+                    .frame(height: 50)
                 }
-                .frame(height: 50)
             }
         }
     }

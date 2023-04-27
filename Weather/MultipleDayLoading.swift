@@ -76,6 +76,5 @@ func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
         fatalError()
     }
 
-    print(hours)
     return hours
 }

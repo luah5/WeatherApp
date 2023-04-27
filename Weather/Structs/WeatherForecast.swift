@@ -9,23 +9,28 @@ import Foundation
 
 /// A struct for getting the weather forecast [#10](https://github.com/luah5/WeatherApp/issues/10)
 struct WeatherForecast {
-    var current: WeatherHour, today: WeatherDay, tomorrow: WeatherDay, dayAfterTomorrow: WeatherDay
+    var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay]
 
     init() {
         /// Get the weather data
-        let weatherHours: [WeatherHour] = getHourlyWeatherData()
+        var weatherHours: [WeatherHour] = getHourlyWeatherData()
+        let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData()
+
+        for hour in fiveDayWeatherHours {
+            weatherHours.append(toWeatherHour(fiveDayWeatherHour: hour))
+        }
 
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
             .split(separator: " ")[0])!
         var day: Int = 0
 
-        var todayWeatherHours: [WeatherHour] = [], tomorrowWeatherHours: [WeatherHour] = []
-        var dayAfterTomorrowWeatherHours: [WeatherHour] = []
+        var otherDayHours: [WeatherHour] = [], todayWeatherHours: [WeatherHour] = []
 
         // For some reason swift will throw "Return from initializer without initializing all stored properties"
         // The following code is to fix it
         self.current = weatherHours[0]
+        weatherDays = []
 
         /// Loop through the weather hours (excluding the first one)
         for index in 1...weatherHours.count - 1 {
@@ -36,20 +41,20 @@ struct WeatherForecast {
             if currentDay != lastDay {
                 day += 1
                 lastDay = currentDay
+                if !(day == 0) {
+                    weatherDays.append(WeatherDay(weatherHours: otherDayHours))
+                }
+                otherDayHours = []
             }
 
             if day == 0 {
                 todayWeatherHours.append(weatherHours[index])
-            } else if day == 1 {
-                tomorrowWeatherHours.append(weatherHours[index])
             } else {
-                dayAfterTomorrowWeatherHours.append(weatherHours[index])
+                otherDayHours.append(weatherHours[index])
             }
         }
 
-        /// Create the WeatherDay( ... ) objects
+        /// Create the WeatherDay( ... ) object
         self.today = WeatherDay(weatherHours: todayWeatherHours)
-        self.tomorrow = WeatherDay(weatherHours: tomorrowWeatherHours)
-        self.dayAfterTomorrow = WeatherDay(weatherHours: dayAfterTomorrowWeatherHours)
     }
 }

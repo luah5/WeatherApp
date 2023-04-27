@@ -38,6 +38,7 @@ struct HourItemView: View {
                 Text("Feels Like: **\(hour.feelsLike.toInt())º**")
                 Text("Cloud coverage: **\(hour.clouds)%**")
                 Text("1 Hour Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                Text("Chance of rain: **\(hour.chanceOfRain)%**")
             }
             .frame(width: 250, height: 225)
             .formStyle(.grouped)
