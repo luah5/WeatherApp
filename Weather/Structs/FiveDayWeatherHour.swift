@@ -29,7 +29,7 @@ struct FiveDayWeatherHour {
         windGust = Float(json["wind"]["gust"].stringValue) ?? -100
         windDeg = Int(json["wind"]["deg"].stringValue) ?? -100
         windSpeed = Float(json["wind"]["speed"].stringValue) ?? -100
-        chanceOfRain = Int((Int(json["pop"].stringValue) ?? 0) * 100)
+        chanceOfRain = Int(Float(json["pop"].stringValue)! * 100)
 
         if json["rain"].exists() {
             threeHourRain = Float(json["rain"]["3h"].stringValue) ?? -100

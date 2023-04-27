@@ -20,7 +20,6 @@ struct WeatherView: View {
                 Text(getTime())
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
-                Spacer()
                 Text("\(weatherForecast.current.weather.mainDescription)")
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
@@ -59,12 +58,10 @@ struct WeatherView: View {
                     HStack {
                         Image(systemName: "calendar")
                             .foregroundColor(.secondary)
-                        Text("2 DAY WEATHER")
+                        Text("4 DAY WEATHER")
                             .foregroundColor(.secondary)
                     }
                     days
-//                    tempDetailView(day: weatherForecast.tomorrow)
-//                    tempDetailView(day: weatherForecast.dayAfterTomorrow)
                 }
             }
             .formStyle(.grouped)

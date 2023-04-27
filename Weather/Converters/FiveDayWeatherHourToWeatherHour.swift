@@ -34,9 +34,8 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
     "pop": "\(fiveDayWeatherHour.chanceOfRain)"
 }
 """
+    print(json)
     do {
-        print(fiveDayWeatherHour.icon)
-        print(try WeatherHour(json: JSON(data: json.data(using: .utf8)!)))
         return try WeatherHour(json: JSON(data: json.data(using: .ascii)!))
     } catch {
         fatalError("Error getting weather data")

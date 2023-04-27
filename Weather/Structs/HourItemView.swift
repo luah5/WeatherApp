@@ -37,10 +37,10 @@ struct HourItemView: View {
                 Text("Visibility: **\(hour.visibility) km**")
                 Text("Feels Like: **\(hour.feelsLike.toInt())º**")
                 Text("Cloud coverage: **\(hour.clouds)%**")
-                Text("1 Hour Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
                 Text("Chance of rain: **\(hour.chanceOfRain)%**")
             }
-            .frame(width: 250, height: 225)
+            .frame(width: 250, height: 300)
             .formStyle(.grouped)
         }
         .frame(width: 45, height: 50)
