@@ -12,8 +12,8 @@
 		85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA929EF360A001DB918 /* MultipleDayLoading.swift */; };
 		8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+ToTimestamp.swift */; };
 		858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */; };
-		858EA0BE29F98EDB0021EAAC /* ShinySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 858EA0BD29F98EDB0021EAAC /* ShinySwiftUI */; };
 		858EA0C029F9B0FE0021EAAC /* HourItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */; };
+		858EA0C629FADDB80021EAAC /* Float+removeZeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */; };
 		859AB9E229ED43E8004246A3 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AB9E129ED43E8004246A3 /* WeatherApp.swift */; };
 		859AB9E429ED43E8004246A3 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AB9E329ED43E8004246A3 /* WeatherView.swift */; };
 		859AB9E629ED43E9004246A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 859AB9E529ED43E9004246A3 /* Assets.xcassets */; };
@@ -61,6 +61,7 @@
 		8574129229F5859600CFC20F /* Int+ToTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ToTimestamp.swift"; sourceTree = "<group>"; };
 		858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherHour.swift; sourceTree = "<group>"; };
 		858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourItemView.swift; sourceTree = "<group>"; };
+		858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+removeZeros.swift"; sourceTree = "<group>"; };
 		859AB9DE29ED43E8004246A3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859AB9E129ED43E8004246A3 /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		859AB9E329ED43E8004246A3 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				858EA0BE29F98EDB0021EAAC /* ShinySwiftUI in Frameworks */,
 				859B35BE29F1CA7400D63031 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +122,7 @@
 				85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */,
 				8574129229F5859600CFC20F /* Int+ToTimestamp.swift */,
 				85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */,
+				858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,7 +226,6 @@
 			name = Weather;
 			packageProductDependencies = (
 				859B35BD29F1CA7400D63031 /* SwiftyJSON */,
-				858EA0BD29F98EDB0021EAAC /* ShinySwiftUI */,
 			);
 			productName = Weather;
 			productReference = 859AB9DE29ED43E8004246A3 /* Weather.app */;
@@ -301,7 +301,6 @@
 			mainGroup = 859AB9D529ED43E7004246A3;
 			packageReferences = (
 				859B35BC29F1CA7400D63031 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				858EA0BC29F98EDB0021EAAC /* XCRemoteSwiftPackageReference "shiny-swift-ui" */,
 			);
 			productRefGroup = 859AB9DF29ED43E8004246A3 /* Products */;
 			projectDirPath = "";
@@ -375,6 +374,7 @@
 				859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */,
 				859B35C329F3C24B00D63031 /* WeatherHour.swift in Sources */,
 				85730EA429ED995B001DB918 /* Substring+removeQuotationMarks.swift in Sources */,
+				858EA0C629FADDB80021EAAC /* Float+removeZeros.swift in Sources */,
 				85C9E64A29F8741A0025BD42 /* PreviewColor.swift in Sources */,
 				858EA0C029F9B0FE0021EAAC /* HourItemView.swift in Sources */,
 				85C9E64829F871600025BD42 /* IconImage.swift in Sources */,
@@ -702,14 +702,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		858EA0BC29F98EDB0021EAAC /* XCRemoteSwiftPackageReference "shiny-swift-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Flowductive/shiny-swift-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		859B35BC29F1CA7400D63031 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
@@ -721,11 +713,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		858EA0BD29F98EDB0021EAAC /* ShinySwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 858EA0BC29F98EDB0021EAAC /* XCRemoteSwiftPackageReference "shiny-swift-ui" */;
-			productName = ShinySwiftUI;
-		};
 		859B35BD29F1CA7400D63031 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 859B35BC29F1CA7400D63031 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
