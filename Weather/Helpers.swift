@@ -29,14 +29,12 @@ func getCurrentCity() -> String {
     // Use the geocoder to get the nearest placemark
     geocoder.reverseGeocodeLocation(location) { placemarks, error in
         guard error == nil else {
-            print("Error: \(error!.localizedDescription)")
             returnText = "London"
             return
         }
 
         // Get the first placemark
         guard let placemark = placemarks?.first else {
-            print("No placemarks found.")
             returnText = "London"
             return
         }

@@ -17,6 +17,7 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
     "temp": "\(fiveDayWeatherHour.temp)",
     "clouds": "\(fiveDayWeatherHour.clouds)",
     "dt": "\(fiveDayWeatherHour.time)",
+    "pressure": "\(fiveDayWeatherHour.pressure)",
     "dew_point": "8",
     "visibility": "\(fiveDayWeatherHour.visibility)",
     "humidity": "\(fiveDayWeatherHour.humidity)",
@@ -24,14 +25,20 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
     "uvi": "12",
     "weather": [
         {
-            "main": "\(fiveDayWeatherHour.weather.mainDescription)",
-            "description": "\(fiveDayWeatherHour.weather.description)",
-            "icon": "\(fiveDayWeatherHour.weather.icon)"
+            "main": "\(fiveDayWeatherHour.mainDesc)",
+            "description": "\(fiveDayWeatherHour.desc)",
+            "icon": "\(fiveDayWeatherHour.icon)"
         }
     ],
     "clouds": "\(fiveDayWeatherHour.clouds)",
     "pop": "\(fiveDayWeatherHour.chanceOfRain)"
 }
 """
-    return WeatherHour(json: JSON(rawValue: json)!)
+    do {
+        print(fiveDayWeatherHour.icon)
+        print(try WeatherHour(json: JSON(data: json.data(using: .utf8)!)))
+        return try WeatherHour(json: JSON(data: json.data(using: .ascii)!))
+    } catch {
+        fatalError("Error getting weather data")
+    }
 }

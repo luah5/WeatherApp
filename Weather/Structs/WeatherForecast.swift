@@ -19,6 +19,7 @@ struct WeatherForecast {
         for hour in fiveDayWeatherHours {
             weatherHours.append(toWeatherHour(fiveDayWeatherHour: hour))
         }
+        print(fiveDayWeatherHours.count, weatherHours.count)
 
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
@@ -38,12 +39,14 @@ struct WeatherForecast {
                 weatherHours[index].time.toTimestamp()
                     .split(separator: " ")[0])!
 
+            // print(currentDay, day)
             if currentDay != lastDay {
-                day += 1
-                lastDay = currentDay
-                if !(day == 0) {
+                if !(day == 0) && !otherDayHours.isEmpty {
                     weatherDays.append(WeatherDay(weatherHours: otherDayHours))
                 }
+                day += 1
+                lastDay = currentDay
+                // print(day)
                 otherDayHours = []
             }
 

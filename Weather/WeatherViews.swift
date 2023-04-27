@@ -66,7 +66,7 @@ extension WeatherView {
     @ViewBuilder
     var days: some View {
         ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
-            if String(describing: day.weatherHours).count > 20 {
+            // if String(describing: day.weatherHours).count > 20 {
                 let timestamp = day.weatherHours[1].time.toTimestamp().split(separator: " ")
                 VStack {
                     HStack(spacing: 30) {
@@ -109,7 +109,7 @@ extension WeatherView {
                     }
                     .frame(height: 50)
                 }
-            }
+            // }
         }
     }
 }

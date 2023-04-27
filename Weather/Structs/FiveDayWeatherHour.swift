@@ -10,8 +10,8 @@ import SwiftyJSON
 
 struct FiveDayWeatherHour {
     var pressure: Int, temp: Float, minTemp: Float, maxTemp: Float, feelsLike: Float, humidity: Int
-    var clouds: Int, weather: WeatherDescription, threeHourRain: Float, time: Int
-    var visibility: Int, windGust: Float, windDeg: Int, windSpeed: Float, chanceOfRain: Int
+    var clouds: Int, weather: WeatherDescription, threeHourRain: Float, time: Int, icon: String, mainDesc: String
+    var visibility: Int, windGust: Float, windDeg: Int, windSpeed: Float, chanceOfRain: Int, desc: String
 
     init(json: JSON) {
         let mainJSON = json["main"]
@@ -42,5 +42,8 @@ struct FiveDayWeatherHour {
         clouds = Int(json["clouds"]["all"].stringValue) ?? 0
 
         weather = WeatherDescription(json: json["weather"])
+        icon = json["weather"][0]["icon"].stringValue
+        mainDesc = json["weather"][0]["main"].stringValue.capitalized
+        desc = json["description"][0]["description"].stringValue.capitalized
     }
 }
