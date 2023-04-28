@@ -11,7 +11,6 @@ struct HourItemView: View {
     var hour: WeatherHour
     init(weatherHour: WeatherHour) {
         hour = weatherHour
-        let split = hour.time.toTimestamp().split(separator: " ")
     }
 
     @State
@@ -24,8 +23,15 @@ struct HourItemView: View {
                 .padding(.top)
             hour.weather.icon.image
                 .foregroundColor(hour.weather.icon.color)
-            Text("\(hour.temp.toInt())º")
-                .padding(.bottom)
+            Spacer()
+            if hour.chanceOfRain >= 10 {
+                Text("\(hour.chanceOfRain)%")
+                    .foregroundColor(.blue)
+                    .padding(.bottom)
+            } else {
+                Text("\(hour.temp.toInt())º")
+                    .padding(.bottom)
+            }
         }
         .onHover(perform: {_ in
             presented.toggle()
@@ -43,7 +49,7 @@ struct HourItemView: View {
             .frame(width: 250, height: 300)
             .formStyle(.grouped)
         }
-        .frame(width: 45, height: 50)
+        .frame(width: 50, height: 60)
         Divider()
     }
 }

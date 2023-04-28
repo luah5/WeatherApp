@@ -11,9 +11,8 @@ import XCTest
 final class WeatherTests: XCTestCase {
     func testPerformance() throws {
         self.measure {
-            let data = getThreeHourWeatherData()
-            let data1 = getHourlyWeatherData()
-            print(data.count, data1.count)
+            let data = WeatherForecast()
+            print(data.current)
         }
     }
 
