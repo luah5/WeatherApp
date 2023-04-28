@@ -78,11 +78,68 @@ extension WeatherView {
         .frame(width: 200, height: 200)
     }
 
+    var uvi: some View {
+        Form {
+            HStack(spacing: 5) {
+                Image(systemName: "sun.max.fill")
+                    .controlSize(.small)
+                    .foregroundColor(.secondary)
+                Text("UV INDEX")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
+            VStack {
+                Text("\(weatherForecast.current.uvi)")
+                    .font(.system(.title))
+                    .padding(.trailing)
+
+                if weatherForecast.current.uvi < 5 {
+                    Text("Low")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi >= 5 {
+                    Text("Medium")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi >= 10 {
+                    Text("High")
+                        .font(.system(.title2))
+                }
+            }
+            GeometryReader { geometry in
+                ZStack {
+                    LinearGradient(
+                       gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
+                       startPoint: .leading,
+                       endPoint: .trailing
+                    )
+                        .cornerRadius(5)
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 20, height: geometry.size.height)
+                        .offset(
+                            x: self.markerOffset(
+                                for: CGFloat(weatherForecast.current.uvi) + 0.5,
+                                in: geometry.size.width
+                            )
+                        )
+                }
+            }
+            .frame(width: 200, height: 5)
+        }
+        .formStyle(.grouped)
+        .frame(width: 200, height: 200)
+    }
+
+    private func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
+        let markerPosition = (value - 8) / 15 // normalize to 0-1 range
+        return markerPosition * width
+    }
+
     var weatherDetailViews: some View {
         HStack {
             feelsLike
             humidity
             visibility
+            uvi
         }
     }
 
