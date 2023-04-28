@@ -11,7 +11,7 @@ import XCTest
 final class WeatherTests: XCTestCase {
     func testPerformance() throws {
         self.measure {
-            let data = WeatherForecast()
+            let data: WeatherForecast = WeatherForecast()
             print(data.current)
         }
     }

@@ -10,10 +10,10 @@ import SwiftUI
 import CoreLocation
 
 func getTime() -> String {
-    let formatter = DateFormatter()
+    let formatter: DateFormatter = DateFormatter()
     formatter.timeStyle = .short
-    let dateString = formatter.string(from: Date())
-    return dateString
+
+    return formatter.string(from: Date())
 }
 
 func getCurrentCity() -> String {

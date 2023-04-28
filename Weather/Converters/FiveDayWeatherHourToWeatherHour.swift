@@ -9,7 +9,7 @@ import Foundation
 import SwiftyJSON
 
 func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
-    let json = """
+    let json: String = """
 {
     "wind_gust": "\(fiveDayWeatherHour.windGust)",
     "wind_deg": "\(fiveDayWeatherHour.windDeg)",

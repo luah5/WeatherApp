@@ -20,7 +20,7 @@ func constructURL(baseURL: String) -> String {
 }
 
 func throwNSAlert(messageText: String, severity: NSAlert.Style) {
-    let alert = NSAlert()
+    let alert: NSAlert = NSAlert()
     alert.alertStyle = severity
     alert.messageText = messageText
     alert.addButton(withTitle: "Ok")
@@ -39,7 +39,7 @@ func getHourlyWeatherData() -> [WeatherHour] {
     do {
         let contents: Data = try String(contentsOf: url, encoding: .ascii).data(using: .ascii)!
 
-        let json = try JSON(data: contents)
+        let json: JSON = try JSON(data: contents)
 
         hours.append(WeatherHour(json: json["current"]))
 
@@ -66,14 +66,14 @@ func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
     do {
         let contents: Data = try String(contentsOf: URL, encoding: .ascii).data(using: .ascii)!
 
-        let json = try JSON(data: contents)
+        let json: JSON = try JSON(data: contents)
 
         for index in 16...(json["list"].count - 1) {
             hours.append(FiveDayWeatherHour(json: json["list"][index]))
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
-        fatalError()
+        fatalError("Failed to gather weather data")
     }
 
     return hours

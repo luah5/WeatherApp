@@ -8,6 +8,21 @@
 import SwiftUI
 
 extension WeatherView {
+    var topView: some View {
+        VStack(spacing: 0) {
+            Text(getCurrentCity())
+                .font(.system(.title))
+            Text("\(Int(weatherForecast.current.temp))º")
+                .font(.system(size: 56, weight: .thin))
+            Text("\(weatherForecast.current.weather.mainDescription)")
+                .font(.system(.headline, weight: .semibold))
+            Text(getTime())
+                .font(.system(.headline, weight: .semibold))
+            Text("Low: \(weatherForecast.today.minTemp.toInt())º High: \(weatherForecast.today.maxTemp.toInt())º")
+                .font(.system(.headline, weight: .semibold))
+        }
+    }
+
     var humidity: some View {
         Form {
             HStack(spacing: 5) {
@@ -61,6 +76,14 @@ extension WeatherView {
         }
         .formStyle(.grouped)
         .frame(width: 200, height: 200)
+    }
+
+    var weatherDetailViews: some View {
+        HStack {
+            feelsLike
+            humidity
+            visibility
+        }
     }
 
     @ViewBuilder

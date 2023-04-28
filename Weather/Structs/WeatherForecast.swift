@@ -34,7 +34,7 @@ struct WeatherForecast {
 
         /// Loop through the weather hours (excluding the first one)
         for index in 1...weatherHours.count - 1 {
-            let currentDay = Int(
+            let currentDay: Int = Int(
                 weatherHours[index].time.toTimestamp()
                     .split(separator: " ")[0])!
 

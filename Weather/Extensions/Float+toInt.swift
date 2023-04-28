@@ -1,5 +1,5 @@
 //
-//  Float+Int.swift
+//  Float+toInt.swift
 //  Weather
 //
 //  Created by Raymond Vleeshouwer on 23/04/23.

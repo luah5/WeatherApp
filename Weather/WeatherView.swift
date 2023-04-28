@@ -13,32 +13,10 @@ struct WeatherView: View {
     /// The main view for looking at all the weather
     var body: some View {
         NavigationSplitView {
-            Form {
-                Text("My Location")
-                    .fontWeight(.medium)
-                    .padding([.top, .leading])
-                Text(getTime())
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-                Text("\(weatherForecast.current.weather.mainDescription)")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-        .formStyle(.grouped)
+            Text("Location")
         } detail: {
             Spacer()
-            VStack(spacing: 0) {
-                Text(getCurrentCity())
-                    .font(.system(.title))
-                Text("\(Int(weatherForecast.current.temp))º")
-                    .font(.system(size: 56, weight: .thin))
-                Text("\(weatherForecast.current.weather.mainDescription)")
-                    .font(.system(.headline, weight: .semibold))
-                Text(getTime())
-                    .font(.system(.headline, weight: .semibold))
-                Text("Low: \(weatherForecast.today.minTemp.toInt())º High: \(weatherForecast.today.maxTemp.toInt())º")
-                    .font(.system(.headline, weight: .semibold))
-            }
+            topView
             Form {
                 Section {
                     HStack {
@@ -66,11 +44,7 @@ struct WeatherView: View {
             }
             .formStyle(.grouped)
 
-            HStack {
-                feelsLike
-                humidity
-                visibility
-            }
+            weatherDetailViews
         }
     }
 }

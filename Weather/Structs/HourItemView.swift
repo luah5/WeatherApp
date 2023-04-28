@@ -9,15 +9,17 @@ import SwiftUI
 
 struct HourItemView: View {
     var hour: WeatherHour
-    init(weatherHour: WeatherHour) {
-        hour = weatherHour
-    }
 
     @State
     private var presented: Bool = false
 
+    init(weatherHour: WeatherHour) {
+        hour = weatherHour
+    }
+
     var body: some View {
-        let split = hour.time.toTimestamp().split(separator: " ")
+        let split: [String.SubSequence] = hour.time.toTimestamp().split(separator: " ")
+
         VStack {
             Text(split[split.count - 1])
                 .padding(.top)
