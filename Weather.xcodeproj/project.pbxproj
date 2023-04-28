@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8536CB9E29FC614900E90A20 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8536CB9D29FC614900E90A20 /* Cities.json */; };
 		85730EA829EEFFF7001DB918 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85730EA729EEFFF7001DB918 /* README.md */; };
 		85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA929EF360A001DB918 /* MultipleDayLoading.swift */; };
 		8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+ToTimestamp.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8536CB9D29FC614900E90A20 /* Cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
 		85730EA729EEFFF7001DB918 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85730EA929EF360A001DB918 /* MultipleDayLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayLoading.swift; sourceTree = "<group>"; };
 		8574129229F5859600CFC20F /* Int+ToTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ToTimestamp.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				859AB9E729ED43E9004246A3 /* Preview Content */,
 				859ABA0C29ED49F8004246A3 /* Helpers.swift */,
 				85730EA929EF360A001DB918 /* MultipleDayLoading.swift */,
+				8536CB9D29FC614900E90A20 /* Cities.json */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8536CB9E29FC614900E90A20 /* Cities.json in Resources */,
 				85730EA829EEFFF7001DB918 /* README.md in Resources */,
 				859AB9E929ED43E9004246A3 /* Preview Assets.xcassets in Resources */,
 				859AB9E629ED43E9004246A3 /* Assets.xcassets in Resources */,
