@@ -44,6 +44,6 @@ struct FiveDayWeatherHour {
         weather = WeatherDescription(json: json["weather"])
         icon = json["weather"][0]["icon"].stringValue
         mainDesc = json["weather"][0]["main"].stringValue.capitalized
-        desc = json["description"][0]["description"].stringValue.capitalized
+        desc = json["weather"][0]["description"].stringValue.capitalized
     }
 }

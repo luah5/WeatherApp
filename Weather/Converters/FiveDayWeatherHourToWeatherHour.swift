@@ -30,13 +30,14 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
             "icon": "\(fiveDayWeatherHour.icon)"
         }
     ],
-    "clouds": "\(fiveDayWeatherHour.clouds)",
     "pop": "\(fiveDayWeatherHour.chanceOfRain)"
 }
 """
-    print(json)
     do {
-        return try WeatherHour(json: JSON(data: json.data(using: .ascii)!))
+        var weatherHour: WeatherHour = try WeatherHour(json: JSON(data: json.data(using: .ascii)!))
+        weatherHour.chanceOfRain = fiveDayWeatherHour.chanceOfRain
+
+        return weatherHour
     } catch {
         fatalError("Error getting weather data")
     }

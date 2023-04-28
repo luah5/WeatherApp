@@ -29,15 +29,15 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
 
 func getHourlyWeatherData() -> [WeatherHour] {
     var hours: [WeatherHour] = []
-    let url = "https://api.openweathermap.org/data/2.5/onecall?"
+    let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
 
-    guard let myURL = URL(string: constructURL(baseURL: url)) else {
+    guard let url = URL(string: constructURL(baseURL: url)) else {
         throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
         fatalError()
     }
 
     do {
-        let contents: Data = try String(contentsOf: myURL, encoding: .ascii).data(using: .ascii)!
+        let contents: Data = try String(contentsOf: url, encoding: .ascii).data(using: .ascii)!
 
         let json = try JSON(data: contents)
 
@@ -56,15 +56,15 @@ func getHourlyWeatherData() -> [WeatherHour] {
 
 func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
-    let url = "https://api.openweathermap.org/data/2.5/forecast?"
+    let url: String = "https://api.openweathermap.org/data/2.5/forecast?"
 
-    guard let myURL = URL(string: constructURL(baseURL: url)) else {
+    guard let URL = URL(string: constructURL(baseURL: url)) else {
         throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
         fatalError()
     }
 
     do {
-        let contents: Data = try String(contentsOf: myURL, encoding: .ascii).data(using: .ascii)!
+        let contents: Data = try String(contentsOf: URL, encoding: .ascii).data(using: .ascii)!
 
         let json = try JSON(data: contents)
 

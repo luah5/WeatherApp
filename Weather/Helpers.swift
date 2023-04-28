@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import CoreLocation
-import ShinySwiftUI
 
 func getTime() -> String {
     let formatter = DateFormatter()
