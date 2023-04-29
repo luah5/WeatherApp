@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import AppKit
+import CoreLocation
 import SwiftyJSON
 
 let baseURL: String = "https://api.openweathermap.org/data/2.5/onecall?"
@@ -25,6 +27,19 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.messageText = messageText
     alert.addButton(withTitle: "Ok")
     alert.runModal()
+}
+
+func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
+    let geocoder = CLGeocoder()
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+
+    geocoder.geocodeAddressString(address) { placemarks, error in
+        if ((placemarks?.first?.location?.coordinate) != nil) {
+            coordinate = placemarks!.first!.location!.coordinate
+        }
+    }
+
+    return coordinate
 }
 
 func getHourlyWeatherData() -> [WeatherHour] {
