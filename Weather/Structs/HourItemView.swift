@@ -35,8 +35,8 @@ struct HourItemView: View {
                     .padding(.bottom)
             }
         }
-        .onHover(perform: {_ in
-            presented.toggle()
+        .onHover(perform: {hovering in
+            presented = hovering
         })
         .popover(isPresented: $presented) {
             Form {

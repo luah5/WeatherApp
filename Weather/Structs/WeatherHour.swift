@@ -24,7 +24,7 @@ struct WeatherHour {
 
         humidity = Int(json["humidity"].stringValue) ?? -100
         feelsLike = Float(json["feels_like"].stringValue) ?? -100
-        uvi = Int(json["uvi"].stringValue) ?? -100
+        uvi = Float(json["uvi"].stringValue)?.toInt() ?? 0
         windDeg = Float(json["wind_deg"].stringValue) ?? -100
         windSpeed = Float(json["wind_speed"].stringValue) ?? -100
         chanceOfRain = Int((Int(json["pop"].stringValue) ?? 0) * 100)
