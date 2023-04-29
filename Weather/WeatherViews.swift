@@ -44,6 +44,28 @@ extension WeatherView {
         .frame(width: 200, height: 200)
     }
 
+    @ViewBuilder
+    var hourlyForecast: some View {
+        HStack {
+            Image(systemName: "calendar")
+                .foregroundColor(.secondary)
+            Text("HOURLY FORECAST")
+                .foregroundColor(.secondary)
+        }
+        HStack {
+            var index: Int = 0
+
+            ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
+                if index == 0 {
+                    HourItemView(weatherHour: hour, first: true)
+                } else {
+                    HourItemView(weatherHour: hour, first: false)
+                }
+                index += 1
+            }
+        }
+    }
+
     var feelsLike: some View {
         Form {
             HStack(spacing: 5) {
@@ -187,8 +209,6 @@ extension WeatherView {
 
                 ScrollView(.horizontal) {
                     HStack {
-                        Divider()
-
                         ForEach(day.weatherHours, id: \.time) { hour in
                             HourItemView(weatherHour: hour)
                         }

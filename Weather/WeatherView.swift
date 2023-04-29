@@ -19,18 +19,7 @@ struct WeatherView: View {
             topView
             Form {
                 Section {
-                    HStack {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.secondary)
-                        Text("HOURLY FORECAST")
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Divider()
-                        ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
-                            HourItemView(weatherHour: hour)
-                        }
-                    }
+                    hourlyForecast
                 }
                 Section {
                     HStack {
