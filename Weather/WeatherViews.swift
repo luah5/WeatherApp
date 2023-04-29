@@ -96,11 +96,14 @@ extension WeatherView {
                 if weatherForecast.current.uvi < 5 {
                     Text("Low")
                         .font(.system(.title2))
-                } else if weatherForecast.current.uvi >= 5 {
-                    Text("Medium")
+                } else if weatherForecast.current.uvi >= 4 {
+                    Text("Moderate")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi >= 7 {
+                    Text("High")
                         .font(.system(.title2))
                 } else if weatherForecast.current.uvi >= 10 {
-                    Text("High")
+                    Text("Extreme")
                         .font(.system(.title2))
                 }
             }

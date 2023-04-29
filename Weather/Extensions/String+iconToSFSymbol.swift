@@ -19,6 +19,7 @@ extension String {
         } else if self.last == "n" {
             color = .gray
         }
+
         if self == "01d" {
             systemName = "sun.max.fill"
             color = .yellow

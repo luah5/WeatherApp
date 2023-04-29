@@ -14,7 +14,7 @@ struct WeatherHour {
     var precipitation: Float, chanceOfRain: Int
 
     init(json: JSON) {
-        windGust = Float(json["wind_gust"].stringValue) ?? -100
+        windGust = Float(json["wind_gust"].stringValue) ?? 0
         pressure = Int(json["pressure"].stringValue) ?? -100
         temp = Float(json["temp"].stringValue) ?? -100
         clouds = Int(json["clouds"].stringValue) ?? -100
@@ -33,7 +33,7 @@ struct WeatherHour {
 
         precipitation = 0
         if json["rain"].exists() {
-            precipitation = Float(json["rain"]["1h"].stringValue) ?? -100
+            precipitation = Float(json["rain"]["1h"].stringValue) ?? 0
         }
     }
 }

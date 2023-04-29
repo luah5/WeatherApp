@@ -33,8 +33,8 @@ func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
     let geocoder = CLGeocoder()
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
-    geocoder.geocodeAddressString(address) { placemarks, error in
-        if ((placemarks?.first?.location?.coordinate) != nil) {
+    geocoder.geocodeAddressString(address) { placemarks, _ in
+        if placemarks?.first?.location?.coordinate != nil {
             coordinate = placemarks!.first!.location!.coordinate
         }
     }
