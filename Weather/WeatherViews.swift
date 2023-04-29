@@ -24,24 +24,25 @@ extension WeatherView {
     }
 
     var humidity: some View {
-        Form {
-            HStack(spacing: 5) {
-                Image(systemName: "humidity")
-                    .controlSize(.small)
-                    .foregroundColor(.secondary)
-                Text("HUMIDITY")
+        VStack {
+            Form {
+                HStack(spacing: 5) {
+                    Image(systemName: "humidity")
+                        .controlSize(.small)
+                        .foregroundColor(.secondary)
+                    Text("HUMIDITY")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+
+                Text("\(weatherForecast.current.humidity)%")
+                    .font(.system(.title))
+
+                Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
                     .font(.system(.footnote))
-                    .foregroundColor(.secondary)
             }
-
-            Text("\(weatherForecast.current.humidity)%")
-                .font(.system(.title))
-
-            Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
-                .font(.system(.footnote))
+            .formStyle(.grouped)
         }
-        .formStyle(.grouped)
-        .frame(width: 200, height: 200)
     }
 
     @ViewBuilder
@@ -53,114 +54,110 @@ extension WeatherView {
                 .foregroundColor(.secondary)
         }
         HStack {
-            var index: Int = 0
-
             ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
-                if index == 0 {
-                    HourItemView(weatherHour: hour, first: true)
-                } else {
-                    HourItemView(weatherHour: hour, first: false)
-                }
-                index += 1
+                HourItemView(weatherHour: hour, first: false)
             }
         }
     }
 
     var feelsLike: some View {
-        Form {
-            HStack(spacing: 5) {
-                Image(systemName: "thermometer.medium")
-                    .controlSize(.small)
-                    .foregroundColor(.secondary)
-                Text("FEELS LIKE")
-                    .font(.system(.footnote))
-                    .foregroundColor(.secondary)
+        VStack {
+            Form {
+                HStack(spacing: 5) {
+                    Image(systemName: "thermometer.medium")
+                        .controlSize(.small)
+                        .foregroundColor(.secondary)
+                    Text("FEELS LIKE")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+                Text("\(weatherForecast.current.feelsLike.toInt())º")
+                    .font(.system(.title))
             }
-            Text("\(weatherForecast.current.feelsLike.toInt())º")
-                .font(.system(.title))
+            .formStyle(.grouped)
         }
-        .formStyle(.grouped)
-        .frame(width: 200, height: 200)
     }
 
     var visibility: some View {
-        Form {
-            HStack(spacing: 5) {
-                Image(systemName: "eye")
-                    .controlSize(.small)
-                    .foregroundColor(.secondary)
-                Text("VISIBILITY")
-                    .font(.system(.footnote))
-                    .foregroundColor(.secondary)
+        VStack {
+            Form {
+                HStack(spacing: 5) {
+                    Image(systemName: "eye")
+                        .controlSize(.small)
+                        .foregroundColor(.secondary)
+                    Text("VISIBILITY")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+                Text("\(Int(weatherForecast.current.visibility / 1000)) km")
+                    .font(.system(.title))
             }
-            Text("\(Int(weatherForecast.current.visibility / 1000)) km")
-                .font(.system(.title))
+            .formStyle(.grouped)
         }
-        .formStyle(.grouped)
-        .frame(width: 200, height: 200)
     }
 
     var uvi: some View {
-        Form {
-            HStack(spacing: 5) {
-                Image(systemName: "sun.max.fill")
-                    .controlSize(.small)
-                    .foregroundColor(.secondary)
-                Text("UV INDEX")
-                    .font(.system(.footnote))
-                    .foregroundColor(.secondary)
-            }
-            VStack {
-                Text("\(weatherForecast.current.uvi)")
-                    .font(.system(.title))
-                    .padding(.trailing)
+        VStack {
+            Form {
+                HStack(spacing: 5) {
+                    Image(systemName: "sun.max.fill")
+                        .controlSize(.small)
+                        .foregroundColor(.secondary)
+                    Text("UV INDEX")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+                VStack {
+                    Text("\(weatherForecast.current.uvi)")
+                        .font(.system(.title))
+                        .padding(.trailing)
 
-                if weatherForecast.current.uvi < 5 {
-                    Text("Low")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi >= 4 {
-                    Text("Moderate")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi >= 7 {
-                    Text("High")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi >= 10 {
-                    Text("Extreme")
-                        .font(.system(.title2))
+                    if weatherForecast.current.uvi < 5 {
+                        Text("Low")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi >= 4 {
+                        Text("Moderate")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi >= 7 {
+                        Text("High")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi >= 10 {
+                        Text("Extreme")
+                            .font(.system(.title2))
+                    }
                 }
-            }
-            GeometryReader { geometry in
-                ZStack {
-                    LinearGradient(
-                       gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
-                       startPoint: .leading,
-                       endPoint: .trailing
-                    )
-                        .cornerRadius(5)
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 20, height: geometry.size.height)
-                        .offset(
-                            x: self.markerOffset(
-                                for: CGFloat(weatherForecast.current.uvi) + 0.5,
-                                in: geometry.size.width
-                            )
+                GeometryReader { geometry in
+                    ZStack {
+                        LinearGradient(
+                            gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
+                        .cornerRadius(5)
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 20, height: geometry.size.height)
+                            .offset(
+                                x: self.markerOffset(
+                                    for: CGFloat(weatherForecast.current.uvi) + 0.5,
+                                    in: geometry.size.width
+                                )
+                            )
+                    }
                 }
+                .frame(width: 200, height: 5)
             }
-            .frame(width: 200, height: 5)
+            .formStyle(.grouped)
         }
-        .formStyle(.grouped)
-        .frame(width: 200, height: 200)
     }
 
     private func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
-        let markerPosition = (value - 8) / 15 // normalize to 0-1 range
+        let markerPosition = (value - 8) / 15
         return markerPosition * width
     }
 
     var weatherDetailViews: some View {
-        HStack {
+        HStack(spacing: 25) {
             feelsLike
             humidity
             visibility
@@ -210,12 +207,11 @@ extension WeatherView {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(day.weatherHours, id: \.time) { hour in
-                            HourItemView(weatherHour: hour)
+                            HourItemView(weatherHour: hour, first: false)
                         }
                     }
                     .frame(alignment: .center)
                 }
-                .frame(height: 50)
             }
         }
     }
