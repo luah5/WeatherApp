@@ -16,6 +16,13 @@ func getTime() -> String {
     return formatter.string(from: Date())
 }
 
+enum PollenLevel: String {
+    case low = "Low"
+    case medium = "Medium"
+    case high = "High"
+    case veryHigh = "Very High"
+}
+
 func getCurrentCity() -> String {
     // Create a CLLocation object from the latitude and longitude coordinates
     let location = CLLocation(latitude: 37.7749, longitude: -122.4194)

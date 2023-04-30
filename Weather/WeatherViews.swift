@@ -126,6 +126,7 @@ extension WeatherView {
                             .font(.system(.title2))
                     }
                 }
+
                 GeometryReader { geometry in
                     ZStack {
                         LinearGradient(
@@ -156,8 +157,13 @@ extension WeatherView {
         return markerPosition * width
     }
 
+    private func markerOffset2(for value: CGFloat, in width: CGFloat) -> CGFloat {
+        let markerPosition = (value - 20) / 60
+        return markerPosition * width
+    }
+
     var weatherDetailViews: some View {
-        HStack(spacing: 25) {
+        HStack(spacing: 10) {
             feelsLike
             humidity
             visibility
@@ -182,19 +188,32 @@ extension WeatherView {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.secondary)
 
-                    HStack(spacing: 0) {
-                        PreviewColor(.gray, width: 60)
-                        PreviewColor(.yellow, width: 10)
-                        PreviewColor(.blue, width: 10)
-                        PreviewColor(.white, width: 10)
-                        PreviewColor(.yellow, width: 10)
+                    GeometryReader { geometry in
+                        ZStack {
+                            LinearGradient(
+                                gradient: Gradient(
+                                    colors: [.blue, .green, .yellow, .orange, .red]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                            .cornerRadius(5)
+
+                            Capsule()
+                                .fill(Color.white)
+                                .offset(
+                                    x: self.markerOffset2(
+                                        for: CGFloat(day.minTemp),
+                                        in: geometry.size.width
+                                    )
+                                )
+                                .frame(
+                                    width: CGFloat(day.maxTemp - day.minTemp) * 2,
+                                    height: 5
+                                )
+                                .opacity(0.9)
+                        }
                     }
-                    .clipShape(Capsule())
-                    .overlay {
-                        Capsule()
-                            .stroke(Color(.white).opacity(0.15), lineWidth: 0.5)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
+                    .frame(width: 200, height: 5)
 
                     Text("\(day.maxTemp.toInt())º")
                         .font(.system(size: 14, weight: .semibold))
