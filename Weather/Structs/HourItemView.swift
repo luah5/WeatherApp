@@ -30,7 +30,9 @@ struct HourItemView: View {
                 .foregroundColor(hour.weather.icon.color)
                 .scaledToFit()
                 .frame(width: 10, height: 10)
+
             Spacer()
+
             if hour.chanceOfRain >= 10 {
                 Text("\(hour.chanceOfRain)%")
                     .foregroundColor(.blue)
