@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854B1D2E29FF909500AA0299 /* AddCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854B1D2D29FF909500AA0299 /* AddCityView.swift */; };
 		85730EA829EEFFF7001DB918 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85730EA729EEFFF7001DB918 /* README.md */; };
 		85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA929EF360A001DB918 /* MultipleDayLoading.swift */; };
 		8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+ToTimestamp.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		854B1D2D29FF909500AA0299 /* AddCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityView.swift; sourceTree = "<group>"; };
 		85730EA729EEFFF7001DB918 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85730EA929EF360A001DB918 /* MultipleDayLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayLoading.swift; sourceTree = "<group>"; };
 		8574129229F5859600CFC20F /* Int+ToTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ToTimestamp.swift"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				85C9E64729F871600025BD42 /* IconImage.swift */,
 				858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */,
 				858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */,
+				854B1D2D29FF909500AA0299 /* AddCityView.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */,
 				858EA0C929FADFDA0021EAAC /* FiveDayWeatherHourToWeatherHour.swift in Sources */,
 				85C9E60D29F83F460025BD42 /* Output.swift in Sources */,
+				854B1D2E29FF909500AA0299 /* AddCityView.swift in Sources */,
 				85C8A8A529F6E2CB002258E7 /* String+iconToSFSymbol.swift in Sources */,
 				859B35BB29F1C8B000D63031 /* SettingsView.swift in Sources */,
 				85C8A8A029F59E08002258E7 /* WeatherDay.swift in Sources */,

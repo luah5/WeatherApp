@@ -15,5 +15,4 @@ final class WeatherTests: XCTestCase {
             print(data.current)
         }
     }
-
 }

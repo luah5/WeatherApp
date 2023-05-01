@@ -11,6 +11,8 @@ import SwiftUI
 extension WeatherView {
     var topView: some View {
         VStack(spacing: 0) {
+            AddCityView()
+                .padding(.trailing)
             Text(getCurrentCity())
                 .font(.system(.title))
             Text("\(Int(weatherForecast.current.temp))º")
