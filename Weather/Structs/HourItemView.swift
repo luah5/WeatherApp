@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// This view is for showing the hours of every WeatherDay
 struct HourItemView: View {
     var hour: WeatherHour
     var isFirst: Bool

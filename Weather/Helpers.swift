@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
+/// Returns the current time.
 func getTime() -> String {
     let formatter: DateFormatter = DateFormatter()
     formatter.timeStyle = .short
@@ -16,6 +17,7 @@ func getTime() -> String {
     return formatter.string(from: Date())
 }
 
+/// An enum for the current pollen level
 enum PollenLevel: String {
     case low = "Low"
     case medium = "Medium"
@@ -23,6 +25,7 @@ enum PollenLevel: String {
     case veryHigh = "Very High"
 }
 
+/// Gets the current city at latitude 37.7749 and longitude: -122.4194
 func getCurrentCity() -> String {
     // Create a CLLocation object from the latitude and longitude coordinates
     let location = CLLocation(latitude: 37.7749, longitude: -122.4194)

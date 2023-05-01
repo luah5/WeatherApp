@@ -7,16 +7,17 @@
 
 import SwiftUI
 
+/// The main view for looking at all the weather
 struct WeatherView: View {
     let weatherForecast: WeatherForecast = .init()
 
-    /// The main view for looking at all the weather
     var body: some View {
         NavigationSplitView {
             Text("Location")
         } detail: {
             Spacer()
             topView
+
             Form {
                 Section {
                     hourlyForecast

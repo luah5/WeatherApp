@@ -11,16 +11,17 @@ import AppKit
 import CoreLocation
 import SwiftyJSON
 
-let baseURL: String = "https://api.openweathermap.org/data/2.5/onecall?"
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
 let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
 let exclude: String = "&exclude=minutely"
 
+/// Constructs the URL for getting weather data.
 func constructURL(baseURL: String) -> String {
     return baseURL + location + apiKey + units + exclude
 }
 
+/// Throws an NSAlert with specified text and severity.
 func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     let alert: NSAlert = NSAlert()
     alert.alertStyle = severity
@@ -29,6 +30,7 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.runModal()
 }
 
+/// Gets coordinates from the specified address, if it doesn't exist, will return 0, 0.
 func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
     let geocoder = CLGeocoder()
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -42,6 +44,7 @@ func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
     return coordinate
 }
 
+/// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData() -> [WeatherHour] {
     var hours: [WeatherHour] = []
     let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
@@ -69,6 +72,7 @@ func getHourlyWeatherData() -> [WeatherHour] {
     return hours
 }
 
+/// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
     let url: String = "https://api.openweathermap.org/data/2.5/forecast?"

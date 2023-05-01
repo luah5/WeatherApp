@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Converts a unix time integer to a timestamp.
 extension Int {
     func toTimestamp() -> String {
         let date = NSDate(timeIntervalSince1970: TimeInterval(self))

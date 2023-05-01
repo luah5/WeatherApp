@@ -12,7 +12,8 @@ import SwiftUI
 struct Output: View {
     var args: String
 
-    init(arg: String) {
+    /// Default intializer, takes one argument
+    init(_ arg: String) {
         print(arg)
         args = arg
     }

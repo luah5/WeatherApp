@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyJSON
 
+/// This struct exists so that when five days worth of weather data is loaded it can be converted to a WeatherHour.
 struct FiveDayWeatherHour {
     var pressure: Int, temp: Float, minTemp: Float, maxTemp: Float, feelsLike: Float, humidity: Int
     var clouds: Int, weather: WeatherDescription, threeHourRain: Float, time: Int, icon: String, mainDesc: String

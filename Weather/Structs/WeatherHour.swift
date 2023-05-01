@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyJSON
 
+/// A weather hour contained by a WeatherDay
 struct WeatherHour {
     var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription

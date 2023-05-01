@@ -13,6 +13,7 @@ import SwiftUI
 struct WeatherDescription {
     var mainDescription: String, description: String, icon: IconImage
 
+    /// Default intializer, takes one argument: a JSON object.
     init(json: JSON) {
         self.mainDescription = String(describing: json["main"])
         self.description = String(describing: json["description"])

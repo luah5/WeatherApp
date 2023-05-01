@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Extends WeatherView and adds the main body
 extension WeatherView {
     var topView: some View {
         VStack(spacing: 0) {

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-/// This struct is for storing an Icon image for weather icons
+/// This struct is for storing an icon image for weather icons
 struct IconImage {
     var image: Image, color: Color
 

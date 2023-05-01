@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// Extends String so that an openweathermap.com icon can be converted to the apple-native SF Symbol.
 extension String {
     // swiftlint:disable cyclomatic_complexity
     func iconToSFSymbol() -> IconImage {

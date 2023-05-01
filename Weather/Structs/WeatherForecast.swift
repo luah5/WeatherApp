@@ -16,6 +16,7 @@ struct WeatherForecast {
         var weatherHours: [WeatherHour] = getHourlyWeatherData()
         let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData()
 
+        /// Loops through the FiveDayWeatherHours and appends it to the weatherHours array by converting
         for hour in fiveDayWeatherHours {
             weatherHours.append(toWeatherHour(fiveDayWeatherHour: hour))
         }
@@ -25,6 +26,7 @@ struct WeatherForecast {
             .split(separator: " ")[0])!
         var day: Int = 0
 
+        /// Intialize the WeatherHour arrays
         var otherDayHours: [WeatherHour] = [], todayWeatherHours: [WeatherHour] = []
 
         /// For some reason swift will throw "Return from initializer without initializing all stored properties"

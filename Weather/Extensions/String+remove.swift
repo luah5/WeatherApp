@@ -7,9 +7,13 @@
 
 import Foundation
 
+/// Removes a prefix from a string, it can remove a string or a certain amount of letters.
 extension String {
     func removePrefix(_ prefix: String) -> String {
-        guard self.hasPrefix(prefix) else { return self }
+        guard self.hasPrefix(prefix) else {
+            return self
+        }
+
         return String(self.dropFirst(prefix.count))
     }
 

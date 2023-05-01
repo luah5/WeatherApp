@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A weather day with respective weather hours used by the WeatherForecast struct
 struct WeatherDay {
     var weatherHours: [WeatherHour], minTemp: Float, maxTemp: Float
 
