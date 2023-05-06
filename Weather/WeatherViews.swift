@@ -187,6 +187,19 @@ extension WeatherView {
                     day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
                         .foregroundColor(day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.color)
 
+                    if day.weatherHours[
+                        Int(day.weatherHours.count) / 2
+                    ].chanceOfRain >= 10 {
+                        Text("""
+                            \(String(
+                            describing: day.weatherHours[Int(day.weatherHours.count) / 2].chanceOfRain
+                            ))%
+                            """
+                        )
+                        .foregroundColor(.blue)
+                        .bold()
+                    }
+
                     Text("\(day.minTemp.toInt())º")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.secondary)

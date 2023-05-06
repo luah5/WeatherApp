@@ -38,6 +38,7 @@ struct HourItemView: View {
                 Text("\(hour.chanceOfRain)%")
                     .foregroundColor(.blue)
                     .padding(.bottom)
+                    .bold()
             } else {
                 Text("\(hour.temp.toInt())º")
                     .padding(.bottom)

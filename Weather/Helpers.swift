@@ -59,3 +59,19 @@ func getCurrentCity() -> String {
 
     return returnText
 }
+
+func convertAddressToPlacemark(_ address: String) -> [CLPlacemark] {
+    var placemarks: [CLPlacemark] = []
+
+    CLGeocoder().geocodeAddressString(address) { CLPlacemarks, _ in
+        if (CLPlacemarks?.count ?? 0) >= 1 {
+            placemarks = CLPlacemarks!
+        }
+
+        let lat = CLPlacemarks?.first?.location?.coordinate.latitude
+        let lon = CLPlacemarks?.first?.location?.coordinate.longitude
+        print("Lat: \(String(describing: lat)), Lon: \(String(describing: lon))")
+    }
+
+    return placemarks
+}

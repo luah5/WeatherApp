@@ -161,11 +161,11 @@
 		859AB9E029ED43E8004246A3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				85CBA34429FFAB7C00A00251 /* Settings */,
 				858EA0C729FADFC50021EAAC /* Converters */,
 				859B35C129F3C22900D63031 /* Structs */,
 				85730EA029ED97EA001DB918 /* Extensions */,
 				859AB9E129ED43E8004246A3 /* WeatherApp.swift */,
-				859B35BA29F1C8B000D63031 /* SettingsView.swift */,
 				859AB9E329ED43E8004246A3 /* WeatherView.swift */,
 				85D6D3AF29F514E10080FB54 /* WeatherViews.swift */,
 				859AB9E529ED43E9004246A3 /* Assets.xcassets */,
@@ -216,6 +216,14 @@
 				854B1D2D29FF909500AA0299 /* AddCityView.swift */,
 			);
 			path = Structs;
+			sourceTree = "<group>";
+		};
+		85CBA34429FFAB7C00A00251 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				859B35BA29F1C8B000D63031 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +499,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -544,6 +553,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -557,7 +567,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -570,7 +580,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -590,7 +600,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -603,7 +613,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
