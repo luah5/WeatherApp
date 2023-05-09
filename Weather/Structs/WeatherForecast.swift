@@ -42,8 +42,14 @@ struct WeatherForecast {
 
             if currentDay != lastDay {
                 if !(day == 0) && !otherDayHours.isEmpty {
-                    weatherDays.append(WeatherDay(weatherHours: otherDayHours))
+                    weatherDays.append(
+                        WeatherDay(
+                            weatherHours: otherDayHours,
+                            isConverted: weatherHours[index].converted
+                        )
+                    )
                 }
+
                 day += 1
                 lastDay = currentDay
                 otherDayHours = []
@@ -57,6 +63,9 @@ struct WeatherForecast {
         }
 
         /// Create the WeatherDay( ... ) object
-        self.today = WeatherDay(weatherHours: todayWeatherHours)
+        self.today = WeatherDay(
+            weatherHours: todayWeatherHours,
+            isConverted: false
+        )
     }
 }

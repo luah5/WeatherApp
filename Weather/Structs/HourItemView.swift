@@ -54,7 +54,14 @@ struct HourItemView: View {
                 Text("Visibility: **\(hour.visibility) km**")
                 Text("Feels Like: **\(hour.feelsLike.toInt())º**")
                 Text("Cloud coverage: **\(hour.clouds)%**")
-                Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+
+                if hour.converted {
+                    Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                    Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
+                } else {
+                    Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                }
+
                 Text("Chance of rain: **\(hour.chanceOfRain)%**")
             }
             .frame(width: 250, height: 300)

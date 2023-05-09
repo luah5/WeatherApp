@@ -11,7 +11,7 @@ import Foundation
 struct WeatherDay {
     var weatherHours: [WeatherHour], minTemp: Float, maxTemp: Float
 
-    init(weatherHours: [WeatherHour]) {
+    init(weatherHours: [WeatherHour], isConverted: Bool) {
         self.weatherHours = weatherHours
 
         self.minTemp = 100

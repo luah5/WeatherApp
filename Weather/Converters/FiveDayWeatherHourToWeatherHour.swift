@@ -38,7 +38,8 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
         var weatherHour: WeatherHour = try WeatherHour(
             json: JSON(
                 data: json.data(using: .ascii)!
-            )
+            ),
+            isConverted: true
         )
 
         weatherHour.chanceOfRain = fiveDayWeatherHour.chanceOfRain

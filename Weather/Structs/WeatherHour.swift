@@ -12,9 +12,11 @@ import SwiftyJSON
 struct WeatherHour {
     var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
-    var precipitation: Float, chanceOfRain: Int
+    var precipitation: Float, chanceOfRain: Int, converted: Bool
 
-    init(json: JSON) {
+    init(json: JSON, isConverted: Bool) {
+        converted = isConverted
+
         windGust = Float(json["wind_gust"].stringValue) ?? 0
         pressure = Int(json["pressure"].stringValue) ?? -100
         temp = Float(json["temp"].stringValue) ?? -100

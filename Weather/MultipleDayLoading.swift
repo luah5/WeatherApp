@@ -59,10 +59,20 @@ func getHourlyWeatherData() -> [WeatherHour] {
 
         let json: JSON = try JSON(data: contents)
 
-        hours.append(WeatherHour(json: json["current"]))
+        hours.append(
+            WeatherHour(
+                json: json["current"],
+                isConverted: false
+            )
+        )
 
         for index in 0...(json["hourly"].count - 1) {
-            hours.append(WeatherHour(json: json["hourly"][index]))
+            hours.append(
+                WeatherHour(
+                    json: json["hourly"][index],
+                    isConverted: false
+                )
+            )
         }
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
