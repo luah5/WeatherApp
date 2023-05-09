@@ -28,7 +28,7 @@ struct HourItemView: View {
             Text(split[split.count - 1])
                 .padding(.top)
             hour.weather.icon.image
-                .foregroundColor(hour.weather.icon.color)
+                // .foregroundColor(hour.weather.icon.color)
                 .scaledToFit()
                 .frame(width: 10, height: 10)
 

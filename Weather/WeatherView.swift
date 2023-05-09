@@ -10,6 +10,12 @@ import SwiftUI
 /// The main view for looking at all the weather
 struct WeatherView: View {
     let weatherForecast: WeatherForecast = .init()
+    let timer = Timer.publish(
+        every: 1,
+        on: .main,
+        in: .common
+    ).autoconnect()
+    @State private var reload: Bool = false
 
     var body: some View {
         NavigationSplitView {

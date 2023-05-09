@@ -10,10 +10,9 @@ import SwiftUI
 
 /// This struct is for storing an icon image for weather icons
 struct IconImage {
-    var image: Image, color: Color
+    var image: Image
 
-    init(image: Image, color: Color) {
+    init(image: Image) {
         self.image = image
-        self.color = color
     }
 }

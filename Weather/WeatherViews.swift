@@ -165,6 +165,26 @@ extension WeatherView {
         return markerPosition * width
     }
 
+    var sunPosition: some View {
+        Form {
+            VStack {
+                ZStack {
+                    SineLine()
+                        .stroke(lineWidth: 2)
+                        .foregroundColor(.secondary)
+                        .frame(width: 300, height: 200)
+
+                    Image(systemName: "sun.max.fill")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .offset(x: 20, y: -40)
+                        .foregroundColor(.yellow)
+                }
+            }
+        }
+        .formStyle(.grouped)
+    }
+
     var weatherDetailViews: some View {
         HStack(spacing: 10) {
             feelsLike
@@ -177,67 +197,12 @@ extension WeatherView {
     @ViewBuilder
     var days: some View {
         ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
-            let timestamp = day.weatherHours[1].time.toTimestamp().split(separator: " ")
-
             VStack {
-                HStack(spacing: 30) {
-                    Text(timestamp[0] + Int(timestamp[0])!.getProperDateWord())
-                        .font(.system(size: 14, weight: .semibold))
-
-                    day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
-                        .foregroundColor(day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.color)
-
-                    if day.weatherHours[
-                        Int(day.weatherHours.count) / 2
-                    ].chanceOfRain >= 10 {
-                        Text("""
-                            \(String(
-                            describing: day.weatherHours[Int(day.weatherHours.count) / 2].chanceOfRain
-                            ))%
-                            """
-                        )
-                        .foregroundColor(.blue)
-                        .bold()
-                    }
-
-                    Text("\(day.minTemp.toInt())º")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.secondary)
-
-                    GeometryReader { geometry in
-                        ZStack {
-                            LinearGradient(
-                                gradient: Gradient(
-                                    colors: [.blue, .green, .yellow, .orange, .red]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                            .cornerRadius(5)
-
-                            Capsule()
-                                .fill(Color.white)
-                                .offset(
-                                    x: self.markerOffset2(
-                                        for: CGFloat(day.minTemp),
-                                        in: geometry.size.width
-                                    )
-                                )
-                                .frame(
-                                    width: CGFloat(day.maxTemp - day.minTemp) * 2,
-                                    height: 5
-                                )
-                                .opacity(0.9)
-                        }
-                    }
-                    .frame(width: 200, height: 5)
-
-                    Text("\(day.maxTemp.toInt())º")
-                        .font(.system(size: 14, weight: .semibold))
-                        .padding(.trailing)
-                        .frame(alignment: .trailing)
-
-                }
-                .frame(alignment: .center)
+                dayInfo(
+                    day: day,
+                    timestamp: day.weatherHours[1].time.toTimestamp()
+                        .split(separator: " ")
+                )
 
                 ScrollView(.horizontal) {
                     HStack {
@@ -249,5 +214,73 @@ extension WeatherView {
                 }
             }
         }
+    }
+
+    @ViewBuilder
+    func tempView(day: WeatherDay) -> some View {
+        GeometryReader { geometry in
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(
+                        colors: [.blue, .green, .yellow, .orange, .red]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .cornerRadius(5)
+
+                Capsule()
+                    .fill(Color.white)
+                    .offset(
+                        x: self.markerOffset2(
+                            for: CGFloat(day.minTemp),
+                            in: geometry.size.width
+                        )
+                    )
+                    .frame(
+                        width: CGFloat(day.maxTemp - day.minTemp) * 2,
+                        height: 5
+                    )
+                    .opacity(0.9)
+            }
+        }
+        .frame(width: 200, height: 5)
+    }
+
+    @ViewBuilder
+    func dayInfo(day: WeatherDay, timestamp: [String.SubSequence]) -> some View {
+        HStack(spacing: 30) {
+            Text(timestamp[0] + Int(timestamp[0])!.getProperDateWord())
+                .font(.system(size: 14, weight: .semibold))
+
+            day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
+
+            if day.weatherHours[
+                Int(day.weatherHours.count) / 2
+            ].chanceOfRain >= 10 {
+                Text("""
+\(String(
+describing: day.weatherHours[
+    Int(day.weatherHours.count) / 2
+].chanceOfRain
+))%
+"""
+                )
+                .foregroundColor(.blue)
+                .bold()
+            }
+
+            Text("\(day.minTemp.toInt())º")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.secondary)
+
+            tempView(day: day)
+
+            Text("\(day.maxTemp.toInt())º")
+                .font(.system(size: 14, weight: .semibold))
+                .padding(.trailing)
+                .frame(alignment: .trailing)
+
+        }
+        .frame(alignment: .center)
     }
 }

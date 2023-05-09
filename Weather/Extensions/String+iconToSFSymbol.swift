@@ -10,45 +10,31 @@ import SwiftUI
 
 /// Extends String so that an openweathermap.com icon can be converted to the apple-native SF Symbol.
 extension String {
-    // swiftlint:disable cyclomatic_complexity
     func iconToSFSymbol() -> IconImage {
-        var systemName: String = "exclamationmark.triangle.fill"
-        var color: Color = .red
-
-        if self.last == "d" {
-            color = .white
-        } else if self.last == "n" {
-            color = .gray
-        }
+        var name: String = "Snow"
 
         if self == "01d" {
-            systemName = "sun.max.fill"
-            color = .yellow
+            name = "sun.max.fill"
         } else if self == "01n" {
-            systemName = "moon.fill"
+            name = "moon.fill"
         } else if self == "02d" {
-            systemName = "cloud.sun.fill"
+            name = "cloud.sun.fill"
         } else if self == "02n" {
-            systemName = "cloud.moon.fill"
-        } else if self == "03d" || self == "04d" {
-            systemName = "cloud.fill"
-        } else if self == "03n" || self == "04n" {
-            systemName = "cloud.fill"
+            name = "cloud.moon.fill"
+        } else if self.hasPrefix("03") || self.hasPrefix("04") {
+            name = "cloud.fill"
         } else if self == "09d" || self == "09n" {
-            systemName = "cloud.rain.fill"
+            name = "cloud.rain.fill"
         } else if self == "10d" {
-            systemName = "cloud.sun.rain.fill"
+            name = "cloud.sun.rain.fill"
         } else if self == "10n" {
-            systemName = "cloud.moon.rain.fill"
+            name = "cloud.moon.rain.fill"
         } else if self == "13d" || self == "13n" {
-            systemName = "snowflake"
-            color = .black
+            name = "snowflake"
         } else if self == "50d" || self == "50n" {
-            systemName = "cloud.fog.fill"
-            color = .white
+            name = "cloud.fog.fill"
         }
 
-        return IconImage(image: Image(systemName: systemName), color: color)
+        return IconImage(image: Image(systemName: name).symbolRenderingMode(.palette))
     }
 }
-// swiftlint:enable cyclomatic_complexity

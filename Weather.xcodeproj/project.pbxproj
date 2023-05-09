@@ -36,6 +36,7 @@
 		85C9E64829F871600025BD42 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9E64729F871600025BD42 /* IconImage.swift */; };
 		85D6D3B029F514E10080FB54 /* WeatherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6D3AF29F514E10080FB54 /* WeatherViews.swift */; };
 		85D6D3B229F51B5B0080FB54 /* Float+toInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */; };
+		85E7420B2A0806C20026C647 /* SineLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7420A2A0806C20026C647 /* SineLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		85C9E64729F871600025BD42 /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		85D6D3AF29F514E10080FB54 /* WeatherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViews.swift; sourceTree = "<group>"; };
 		85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+toInt.swift"; sourceTree = "<group>"; };
+		85E7420A2A0806C20026C647 /* SineLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */,
 				858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */,
 				854B1D2D29FF909500AA0299 /* AddCityView.swift */,
+				85E7420A2A0806C20026C647 /* SineLine.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				85C9E64829F871600025BD42 /* IconImage.swift in Sources */,
 				858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */,
 				858EA0C929FADFDA0021EAAC /* FiveDayWeatherHourToWeatherHour.swift in Sources */,
+				85E7420B2A0806C20026C647 /* SineLine.swift in Sources */,
 				85C9E60D29F83F460025BD42 /* Output.swift in Sources */,
 				854B1D2E29FF909500AA0299 /* AddCityView.swift in Sources */,
 				85C8A8A529F6E2CB002258E7 /* String+iconToSFSymbol.swift in Sources */,
@@ -493,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -548,7 +552,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -702,7 +706,7 @@
 				859ABA0229ED43E9004246A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		859ABA0329ED43E9004246A3 /* Build configuration list for PBXNativeTarget "Weather" */ = {
 			isa = XCConfigurationList;
@@ -711,7 +715,7 @@
 				859ABA0529ED43E9004246A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		859ABA0629ED43E9004246A3 /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -720,7 +724,7 @@
 				859ABA0829ED43E9004246A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		859ABA0929ED43E9004246A3 /* Build configuration list for PBXNativeTarget "WeatherUITests" */ = {
 			isa = XCConfigurationList;
@@ -729,7 +733,7 @@
 				859ABA0B29ED43E9004246A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

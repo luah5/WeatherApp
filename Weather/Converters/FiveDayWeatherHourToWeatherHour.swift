@@ -33,6 +33,7 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
     "pop": "\(fiveDayWeatherHour.chanceOfRain)"
 }
 """
+
     do {
         var weatherHour: WeatherHour = try WeatherHour(
             json: JSON(

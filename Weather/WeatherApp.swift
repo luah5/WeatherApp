@@ -12,7 +12,11 @@ struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             WeatherView()
-                .presentedWindowToolbarStyle(.unifiedCompact(showsTitle: false))
+                .presentedWindowToolbarStyle(
+                    .unifiedCompact(
+                        showsTitle: false
+                    )
+                )
             /*
                 .background(
                     Image("Clouds")
