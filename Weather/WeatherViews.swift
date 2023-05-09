@@ -13,16 +13,22 @@ extension WeatherView {
         VStack(spacing: 0) {
             AddCityView()
                 .padding(.trailing)
+                .help("Add city, town or village.")
+
             Text(getCurrentCity())
                 .font(.system(.title))
             Text("\(Int(weatherForecast.current.temp))º")
                 .font(.system(size: 56, weight: .thin))
             Text("\(weatherForecast.current.weather.mainDescription)")
                 .font(.system(.headline, weight: .semibold))
+
             Text(getTime())
                 .font(.system(.headline, weight: .semibold))
+                .help("The time the data was taken.")
+
             Text("Low: \(weatherForecast.today.minTemp.toInt())º High: \(weatherForecast.today.maxTemp.toInt())º")
                 .font(.system(.headline, weight: .semibold))
+                .help("The low and high temperature for today.")
         }
     }
 
@@ -188,9 +194,13 @@ extension WeatherView {
     var weatherDetailViews: some View {
         HStack(spacing: 10) {
             feelsLike
+                .help("Shows what the current temperature feels like.")
             humidity
+                .help("Shows the current humidity.")
             visibility
+                .help("Shows the current visibility (in km).")
             uvi
+                .help("A gradient that shows the UV Index for this hour.")
         }
     }
 
@@ -244,6 +254,7 @@ extension WeatherView {
             }
         }
         .frame(width: 200, height: 5)
+        .help("A gradient that shows the temperature.")
     }
 
     @ViewBuilder
@@ -251,6 +262,7 @@ extension WeatherView {
         HStack(spacing: 30) {
             Text(timestamp[0] + Int(timestamp[0])!.getProperDateWord())
                 .font(.system(size: 14, weight: .semibold))
+                .help("The day of the forecast.")
 
             day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
 
