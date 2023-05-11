@@ -55,6 +55,16 @@ extension WeatherView {
     }
 
     @ViewBuilder
+    var minutelyPrecipitation: some View {
+        Form {
+            Text("Possible rain in the next hour")
+                .font(.system(.largeTitle))
+
+            
+        }
+    }
+
+    @ViewBuilder
     var hourlyForecast: some View {
         HStack {
             Image(systemName: "calendar")

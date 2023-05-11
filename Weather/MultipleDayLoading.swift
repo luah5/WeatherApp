@@ -14,11 +14,10 @@ import SwiftyJSON
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
 let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
-let exclude: String = "&exclude=minutely"
 
 /// Constructs the URL for getting weather data.
 func constructURL(baseURL: String) -> String {
-    return baseURL + location + apiKey + units + exclude
+    return baseURL + location + apiKey + units
 }
 
 /// Throws an NSAlert with specified text and severity.
@@ -45,8 +44,7 @@ func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
 }
 
 /// Gets the hourly weather data for 2 days.
-func getHourlyWeatherData() -> [WeatherHour] {
-    var hours: [WeatherHour] = []
+func getHourlyWeatherData() -> WeatherData {
     let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
 
     guard let url = URL(string: constructURL(baseURL: url)) else {
@@ -57,29 +55,15 @@ func getHourlyWeatherData() -> [WeatherHour] {
     do {
         let contents: Data = try String(contentsOf: url, encoding: .ascii).data(using: .ascii)!
 
-        let json: JSON = try JSON(data: contents)
-
-        hours.append(
-            WeatherHour(
-                json: json["current"],
-                isConverted: false
-            )
-        )
-
-        for index in 0...(json["hourly"].count - 1) {
-            hours.append(
-                WeatherHour(
-                    json: json["hourly"][index],
-                    isConverted: false
-                )
-            )
-        }
+        return .init(json: try JSON(data: contents))
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError()
     }
 
-    return hours
+    // Even though this throws a warning
+    // Removing the following code causes the build to fail
+    return .init(json: .null)
 }
 
 /// Gets the 5 day weather data every 3 hours.

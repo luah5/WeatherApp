@@ -9,11 +9,15 @@ import Foundation
 
 /// A struct for getting the weather forecast see [#10](https://github.com/luah5/WeatherApp/issues/10)
 struct WeatherForecast {
-    var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay]
+    var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay], weatherMinutes: [WeatherMinute]
+    var weatherData: WeatherData
 
     init() {
         /// Get the weather data
-        var weatherHours: [WeatherHour] = getHourlyWeatherData()
+        weatherData = getHourlyWeatherData()
+        var weatherHours: [WeatherHour] = weatherData.hours
+        weatherMinutes = weatherData.minutes
+
         let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData()
 
         /// Loops through the FiveDayWeatherHours and appends it to the weatherHours array by converting
