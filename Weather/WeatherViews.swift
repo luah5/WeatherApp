@@ -215,6 +215,30 @@ extension WeatherView {
         .formStyle(.grouped)
     }
 
+    private var rainfall: some View {
+        Form {
+            HStack(spacing: 5) {
+                Image(systemName: "drop.fill")
+                    .controlSize(.small)
+                    .foregroundColor(.secondary)
+                Text("RAINFALL")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
+
+            Text("""
+\(weatherForecast.current.precipitation.removeZeros()) mm in the next hour
+""")
+                .font(.system(.title2))
+
+            Text("""
+\(weatherForecast.precipitationInNext24H.removeZeros()) mm expected in the next 24h
+""")
+            .font(.system(.footnote))
+        }
+        .formStyle(.grouped)
+    }
+
     var weatherDetailViews: some View {
         HStack(spacing: 10) {
             feelsLike
@@ -225,6 +249,10 @@ extension WeatherView {
                 .help("Shows the current visibility (in km).")
             uvi
                 .help("A gradient that shows the UV Index for this hour.")
+            if weatherForecast.current.precipitation != 0 {
+                rainfall
+                    .help("Shows the rainfall.")
+            }
         }
     }
 

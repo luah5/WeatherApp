@@ -10,7 +10,7 @@ import Foundation
 /// A struct for getting the weather forecast see [#10](https://github.com/luah5/WeatherApp/issues/10)
 struct WeatherForecast {
     var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay], weatherMinutes: [WeatherMinute]
-    var weatherData: WeatherData
+    var weatherData: WeatherData, precipitationInNext24H: Float
 
     init() {
         /// Get the weather data
@@ -32,6 +32,7 @@ struct WeatherForecast {
 
         /// Intialize the WeatherHour arrays
         var otherDayHours: [WeatherHour] = [], todayWeatherHours: [WeatherHour] = []
+        precipitationInNext24H = 0
 
         /// For some reason swift will throw "Return from initializer without initializing all stored properties"
         /// The following code is to fix it
@@ -40,8 +41,9 @@ struct WeatherForecast {
 
         /// Loop through the weather hours (excluding the first one)
         for index in 1...weatherHours.count - 1 {
+            let currentHour = weatherHours[index]
             let currentDay: Int = Int(
-                weatherHours[index].time.toTimestamp()
+                currentHour.time.toTimestamp()
                     .split(separator: " ")[0])!
 
             if currentDay != lastDay {
@@ -49,7 +51,7 @@ struct WeatherForecast {
                     weatherDays.append(
                         WeatherDay(
                             weatherHours: otherDayHours,
-                            isConverted: weatherHours[index].converted
+                            isConverted: currentHour.converted
                         )
                     )
                 }
@@ -61,6 +63,9 @@ struct WeatherForecast {
 
             if day == 0 {
                 todayWeatherHours.append(weatherHours[index])
+                precipitationInNext24H += Float(
+                    currentHour.precipitation * Float((currentHour.chanceOfRain / 100))
+                )
             } else {
                 otherDayHours.append(weatherHours[index])
             }

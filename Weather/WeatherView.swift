@@ -34,7 +34,7 @@ struct WeatherView: View {
         NavigationSplitView {
             Text("Location")
         } detail: {
-            Spacer()
+            Spacer(minLength: 100)
             topView
 
             Form {
