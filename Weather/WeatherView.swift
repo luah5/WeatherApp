@@ -38,6 +38,10 @@ struct WeatherView: View {
             topView
 
             Form {
+                if !weatherForecast.weatherData.alerts.isEmpty {
+                    weatherAlerts
+                }
+
                 if weatherForecast.weatherData.precipitationInNextHour {
                     minutelyPrecipitation
                 }

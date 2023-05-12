@@ -11,6 +11,7 @@ import MapKit
 
 /// Extends WeatherView and adds the main body
 extension WeatherView {
+    // MARK: - Views
     var topView: some View {
         VStack(spacing: 0) {
             Text(getCurrentCity())
@@ -93,6 +94,34 @@ extension WeatherView {
         }
     }
 
+    var weatherAlerts: some View {
+        ForEach(weatherForecast.weatherData.alerts, id: \.description) { alert in
+            Form {
+                Group {
+                    HStack(spacing: 5) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.red)
+                            .frame(width: 50, height: 50)
+                        Text("**Severe weather: \(alert.event)**")
+                            .font(.system(.title))
+                    }
+
+                    Text("""
+Starting: \(alert.startTime.toTimestamp2())
+Ending: \(alert.endTime.toTimestamp2())
+\(alert.description)
+""")
+                    Text("Alert from \(alert.senderName)")
+                        .font(.system(.footnote))
+                }
+            }
+            .formStyle(.grouped)
+        }
+    }
+
+    // MARK: - Function Views
     @ViewBuilder
     func tempView(day: WeatherDay) -> some View {
         GeometryReader { geometry in

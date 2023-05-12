@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		850B7C022A0ED22000CEEBAA /* WeatherDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B7C012A0ED22000CEEBAA /* WeatherDetailViews.swift */; };
+		850B7C042A0ED74C00CEEBAA /* WeatherAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B7C032A0ED74C00CEEBAA /* WeatherAlert.swift */; };
 		85730EA829EEFFF7001DB918 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85730EA729EEFFF7001DB918 /* README.md */; };
 		85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA929EF360A001DB918 /* MultipleDayLoading.swift */; };
 		8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+ToTimestamp.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		850B7C012A0ED22000CEEBAA /* WeatherDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViews.swift; sourceTree = "<group>"; };
+		850B7C032A0ED74C00CEEBAA /* WeatherAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlert.swift; sourceTree = "<group>"; };
 		85730EA729EEFFF7001DB918 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85730EA929EF360A001DB918 /* MultipleDayLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayLoading.swift; sourceTree = "<group>"; };
 		8574129229F5859600CFC20F /* Int+ToTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ToTimestamp.swift"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				85E7420A2A0806C20026C647 /* SineLine.swift */,
 				85D8F2E42A0ADB0600DA179C /* WeatherMinute.swift */,
 				85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */,
+				850B7C032A0ED74C00CEEBAA /* WeatherAlert.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				85D6D3B229F51B5B0080FB54 /* Float+toInt.swift in Sources */,
 				85D6D3B029F514E10080FB54 /* WeatherViews.swift in Sources */,
 				859ABA0D29ED49F8004246A3 /* Helpers.swift in Sources */,
+				850B7C042A0ED74C00CEEBAA /* WeatherAlert.swift in Sources */,
 				85FE6B602A0C17F3003F7F1C /* WeatherData.swift in Sources */,
 				859B35C329F3C24B00D63031 /* WeatherHour.swift in Sources */,
 				858EA0C629FADDB80021EAAC /* Float+removeZeros.swift in Sources */,
