@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 /// The main view for looking at all the weather
 struct WeatherView: View {
@@ -16,6 +18,17 @@ struct WeatherView: View {
         in: .common
     ).autoconnect()
     @State private var reload: Bool = false
+    @State var sheetIsPresented: Bool = false
+    @State var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(
+            latitude: 37.789467,
+            longitude: -122.416772
+        ),
+        span: MKCoordinateSpan(
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.5
+        )
+    )
 
     var body: some View {
         NavigationSplitView {
@@ -46,6 +59,40 @@ struct WeatherView: View {
             .formStyle(.grouped)
 
             weatherDetailViews
+        }
+        .toolbar {
+            Button {
+                sheetIsPresented.toggle()
+            } label: {
+                Image(systemName: "plus.app")
+                    .foregroundColor(.secondary)
+            }
+            .sheet(isPresented: $sheetIsPresented) {
+                ZStack {
+                    Map(coordinateRegion: $region)
+
+                    Button {
+                        print(region.center)
+                        sheetIsPresented.toggle()
+                    } label: {
+                        Image(systemName: "mappin")
+                            .scaledToFill()
+                            .foregroundColor(.red)
+                    }
+                    .buttonStyle(.plain)
+                    .frame(width: 50, height: 50)
+                }
+                .frame(
+                    minWidth: 100,
+                    idealWidth: 750,
+                    maxWidth: .greatestFiniteMagnitude,
+                    minHeight: 100,
+                    idealHeight: 750,
+                    maxHeight: .greatestFiniteMagnitude
+                )
+            }
+            .help("Add city, town or village.")
+            .buttonStyle(.bordered)
         }
     }
 }

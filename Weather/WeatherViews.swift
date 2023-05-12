@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 /// Extends WeatherView and adds the main body
 extension WeatherView {
     var topView: some View {
         VStack(spacing: 0) {
-            AddCityView()
-                .padding(.trailing)
-                .help("Add city, town or village.")
-
             Text(getCurrentCity())
                 .font(.system(.title))
             Text("\(Int(weatherForecast.current.temp))º")
