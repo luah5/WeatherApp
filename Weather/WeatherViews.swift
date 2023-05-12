@@ -122,7 +122,7 @@ extension WeatherView {
                         .font(.system(.footnote))
                         .foregroundColor(.secondary)
                 }
-                Text("\(Int(weatherForecast.current.visibility / 1000)) km")
+                Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.title))
             }
             .formStyle(.grouped)
