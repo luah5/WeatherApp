@@ -25,6 +25,10 @@ struct WeatherView: View {
             topView
 
             Form {
+                if weatherForecast.weatherData.precipitationInNextHour {
+                    minutelyPrecipitation
+                }
+
                 Section {
                     hourlyForecast
                 }
@@ -35,6 +39,7 @@ struct WeatherView: View {
                         Text("4 DAY WEATHER")
                             .foregroundColor(.secondary)
                     }
+
                     days
                 }
             }

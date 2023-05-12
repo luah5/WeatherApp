@@ -57,10 +57,26 @@ extension WeatherView {
     @ViewBuilder
     var minutelyPrecipitation: some View {
         Form {
-            Text("Possible rain in the next hour")
-                .font(.system(.largeTitle))
+            Text("Rain forecast")
+                .font(.system(.title2))
 
-            
+            Text("")
+
+            HStack {
+                ForEach(weatherForecast.weatherMinutes, id: \.time) { minute in
+                    VStack {
+                        GeometryReader { _ in
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue, .blue, .white]),
+                                startPoint: .bottom,
+                                endPoint: .top
+                            )
+                            .cornerRadius(5)
+                        }
+                        .frame(width: 5, height: CGFloat(minute.precipitation * 250))
+                    }
+                }
+            }
         }
     }
 
