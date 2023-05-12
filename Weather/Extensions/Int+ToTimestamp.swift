@@ -17,4 +17,14 @@ extension Int {
 
         return utcDateFormatter.string(from: date as Date)
     }
+
+    func toTimestamp2() -> String {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self))
+        let utcDateFormatter = DateFormatter()
+        utcDateFormatter.dateStyle = .full
+        utcDateFormatter.timeStyle = .full
+        print(utcDateFormatter.string(from: date as Date))
+
+        return utcDateFormatter.string(from: date as Date)
+    }
 }

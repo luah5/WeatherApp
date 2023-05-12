@@ -262,8 +262,8 @@ extension WeatherView {
             VStack {
                 dayInfo(
                     day: day,
-                    timestamp: day.weatherHours[1].time.toTimestamp()
-                        .split(separator: " ")
+                    timestamp: day.weatherHours[1].time.toTimestamp2()
+                        .split(separator: ",")
                 )
 
                 ScrollView(.horizontal) {
@@ -312,7 +312,7 @@ extension WeatherView {
     @ViewBuilder
     func dayInfo(day: WeatherDay, timestamp: [String.SubSequence]) -> some View {
         HStack(spacing: 30) {
-            Text(timestamp[0] + Int(timestamp[0])!.getProperDateWord())
+            Text(timestamp[0])
                 .font(.system(size: 14, weight: .semibold))
                 .help("The day of the forecast.")
 

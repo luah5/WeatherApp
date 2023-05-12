@@ -62,7 +62,9 @@ struct HourItemView: View {
                     Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
                 }
 
-                Text("Chance of rain: **\(hour.chanceOfRain)%**")
+                if hour.chanceOfRain < 10 {
+                    Text("Chance of rain: **\(hour.chanceOfRain)%**")
+                }
             }
             .frame(width: 250, height: 300)
             .formStyle(.grouped)
