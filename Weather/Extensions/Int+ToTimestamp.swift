@@ -23,7 +23,6 @@ extension Int {
         let utcDateFormatter = DateFormatter()
         utcDateFormatter.dateStyle = .full
         utcDateFormatter.timeStyle = .full
-        print(utcDateFormatter.string(from: date as Date))
 
         return utcDateFormatter.string(from: date as Date)
     }

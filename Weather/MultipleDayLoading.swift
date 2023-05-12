@@ -60,10 +60,6 @@ func getHourlyWeatherData() -> WeatherData {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError()
     }
-
-    // Even though this throws a warning
-    // Removing the following code causes the build to fail
-    return .init(json: .null)
 }
 
 /// Gets the 5 day weather data every 3 hours.

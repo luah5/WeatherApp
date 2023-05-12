@@ -49,6 +49,7 @@ struct HourItemView: View {
         })
         .popover(isPresented: $presented) {
             Form {
+                Text("\(hour.weather.description.capitalized)")
                 Text("Air pressure: **\(hour.pressure)**")
                 Text("Humidity: **\(hour.humidity)%**")
                 Text("Visibility: **\(hour.visibility) km**")
