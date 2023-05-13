@@ -98,6 +98,7 @@
 		85D8F2E42A0ADB0600DA179C /* WeatherMinute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMinute.swift; sourceTree = "<group>"; };
 		85D90D982A0F5D0200B9674A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		85D90D9A2A0F5FC400B9674A /* WeatherMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMainView.swift; sourceTree = "<group>"; };
+		85D90D9C2A0F80EB00B9674A /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		85E7420A2A0806C20026C647 /* SineLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineLine.swift; sourceTree = "<group>"; };
 		85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +153,7 @@
 		859AB9D529ED43E7004246A3 = {
 			isa = PBXGroup;
 			children = (
+				85D90D9C2A0F80EB00B9674A /* LICENSE.md */,
 				85730EA729EEFFF7001DB918 /* README.md */,
 				859AB9E029ED43E8004246A3 /* Weather */,
 				859AB9F229ED43E9004246A3 /* WeatherTests */,
@@ -604,7 +606,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -637,7 +639,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
