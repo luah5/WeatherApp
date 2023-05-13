@@ -28,8 +28,8 @@ func getAddressFromCoordinates(location: Location) -> String {
     }
 
     do {
-        let contents: Data = try String(contentsOf: url, encoding: .utf8).data(using: .utf8)!
-        let address = try JSON(data: contents)["address"]
+        let contents: String = try String(contentsOf: url)
+        let address = JSON(parseJSON: contents)["address"]
 
         if address["city"].exists() {
             return address["city"].stringValue

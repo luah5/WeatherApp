@@ -14,11 +14,7 @@ extension WeatherMainView {
     // MARK: - Views
     var topView: some View {
         VStack(spacing: 0) {
-            Text(
-                getAddressFromCoordinates(
-                    location: coordLocation
-                )
-            )
+            Text(weatherForecast.address)
                 .font(.system(.title))
             Text("\(Int(weatherForecast.current.temp))º")
                 .font(.system(size: 56, weight: .thin))

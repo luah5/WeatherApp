@@ -6,37 +6,43 @@
 //
 
 import SwiftUI
+import Foundation
 import CoreLocation
 import MapKit
 
 /// The main view for viewing the weather
 struct WeatherView: View {
-    let timer = Timer.publish(
-        every: 1,
-        on: .main,
-        in: .common
-    ).autoconnect()
-    @State private var reload: Bool = false
     @State var sheetIsPresented: Bool = false
     @State var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 37.789467,
-            longitude: -122.416772
+            latitude: 51.49883962676684,
+            longitude: -0.25169226373882936
         ),
         span: MKCoordinateSpan(
-            latitudeDelta: 0.5,
-            longitudeDelta: 0.5
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005
         )
     )
-    @State private var locations: [WeatherMainView] = [
-        WeatherMainView(
-            location: Location(
-                lat: 51.49883962676684,
-                lon: -0.25169226373882936
-            )
+    @State private var coordinateLocations: [Location] = [
+        Location(
+            lat: 51.49883962676684,
+            lon: -0.25169226373882936
         )
     ]
+    @State private var locations: [WeatherMainView] = []
     @State private var selection: Int = 0
+
+    init() {
+        locations = []
+
+        for coordinate in coordinateLocations {
+            locations.append(
+                WeatherMainView(
+                    location: coordinate
+                )
+            )
+        }
+    }
 
     var body: some View {
         NavigationSplitView {
@@ -54,8 +60,7 @@ struct WeatherView: View {
                         }
                     } label: {
                         HStack(spacing: 25) {
-                            Text(location.weatherForecast.weatherData.location)
-                                .help(location.weatherForecast.weatherData.location)
+                            Text(location.weatherForecast.address)
                             Text("\(String(location.weatherForecast.current.temp))º")
                         }
                         .frame(width: 125, height: 25)
@@ -71,10 +76,18 @@ struct WeatherView: View {
             .padding(.top)
         } detail: {
             Button("Set User default") {
-                print(UserDefaults.standard.value(forKey: "Units"))
-                UserDefaults.standard.set("Metric", forKey: "Units")
+                UserDefaults.standard.set(locations, forKey: "Units")
             }
-            locations[selection]
+
+            if locations.isEmpty {
+                Text("Loading...")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                ProgressView()
+            } else {
+                locations[selection]
+            }
         }
         .toolbar {
             Button {
@@ -126,7 +139,6 @@ struct WeatherView: View {
 
             Button {
                 locations.remove(at: selection)
-                print(locations.count, "amount")
 
                 selection = locations.count - 1
             } label: {
