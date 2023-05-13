@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import CoreLocation
+import SwiftyJSON
 
 /// Returns the current time.
 func getTime() -> String {
@@ -17,61 +17,24 @@ func getTime() -> String {
     return formatter.string(from: Date())
 }
 
-/// An enum for the current pollen level
-enum PollenLevel: String {
-    case low = "Low"
-    case medium = "Medium"
-    case high = "High"
-    case veryHigh = "Very High"
-}
+func getAddressFromCoordinates(location: Location) -> String {
+    let lat: Double = location.lat
+    let lon: Double = location.lon
 
-/// Gets the current city at latitude 37.7749 and longitude: -122.4194
-func getCurrentCity() -> String {
-    // Create a CLLocation object from the latitude and longitude coordinates
-    let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
+    let url: String = "https://geocode.maps.co/reverse?lat=\(lat)&lon=\(lon)"
 
-    // Create a CLGeocoder object
-    let geocoder = CLGeocoder()
-
-    var returnText: String = "London"
-
-    // Use the geocoder to get the nearest placemark
-    geocoder.reverseGeocodeLocation(location) { placemarks, error in
-        guard error == nil else {
-            returnText = "London"
-            return
-        }
-
-        // Get the first placemark
-        guard let placemark = placemarks?.first else {
-            returnText = "London"
-            return
-        }
-
-        // Get the city from the placemark
-        if let city = placemark.locality {
-            returnText = city.replacingOccurrences(of: " ", with: "%20").lowercased()
-        } else {
-            returnText = "London"
-            return
-        }
+    guard let url = URL(string: url) else {
+        fatalError()
     }
 
-    return returnText
-}
+    do {
+        let contents: Data = try String(contentsOf: url, encoding: .utf8).data(using: .utf8)!
 
-func convertAddressToPlacemark(_ address: String) -> [CLPlacemark] {
-    var placemarks: [CLPlacemark] = []
+        let address: JSON = try JSON(data: contents)["address"]
+        let start = address["road"].stringValue + ", " + address["city"].stringValue
 
-    CLGeocoder().geocodeAddressString(address) { CLPlacemarks, _ in
-        if (CLPlacemarks?.count ?? 0) >= 1 {
-            placemarks = CLPlacemarks!
-        }
-
-        let lat = CLPlacemarks?.first?.location?.coordinate.latitude
-        let lon = CLPlacemarks?.first?.location?.coordinate.longitude
-        print("Lat: \(String(describing: lat)), Lon: \(String(describing: lon))")
+        return start + ", " + address["state"].stringValue
+    } catch {
+        fatalError()
     }
-
-    return placemarks
 }

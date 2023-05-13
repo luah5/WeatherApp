@@ -65,6 +65,7 @@ struct WeatherView: View {
                             ).foregroundColor(Color.white)
                         )
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.top)

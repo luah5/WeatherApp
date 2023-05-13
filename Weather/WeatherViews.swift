@@ -14,7 +14,11 @@ extension WeatherMainView {
     // MARK: - Views
     var topView: some View {
         VStack(spacing: 0) {
-            Text(getCurrentCity())
+            Text(
+                getAddressFromCoordinates(
+                    location: coordLocation
+                )
+            )
                 .font(.system(.title))
             Text("\(Int(weatherForecast.current.temp))º")
                 .font(.system(size: 56, weight: .thin))
@@ -104,17 +108,19 @@ extension WeatherMainView {
                             .scaledToFit()
                             .foregroundColor(.red)
                             .frame(width: 50, height: 50)
-                        Text("**Severe weather: \(alert.event)**")
+                        Text("**\(alert.event)**")
                             .font(.system(.title))
                     }
 
                     Text("""
 Starting: \(alert.startTime.toTimestamp2())
 Ending: \(alert.endTime.toTimestamp2())
-\(alert.description)
 """)
-                    Text("Alert from \(alert.senderName)")
+                    Text(alert.description)
+
+                    Text("\(alert.senderName)")
                         .font(.system(.footnote))
+                        .foregroundColor(.secondary)
                 }
             }
             .formStyle(.grouped)

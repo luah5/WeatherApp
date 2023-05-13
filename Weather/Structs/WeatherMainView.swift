@@ -20,26 +20,16 @@ struct WeatherMainView: View {
         )
     }
     @State private var sheetIsPresented: Bool = false
-    @State var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(
-            latitude: 0,
-            longitude: 0
-        ),
-        span: MKCoordinateSpan(
-            latitudeDelta: 50,
-            longitudeDelta: 50
-        )
-    )
 
     var body: some View {
         Spacer()
         topView
 
-        Form {
-            if !weatherForecast.weatherData.alerts.isEmpty {
-                weatherAlerts
-            }
+        if !weatherForecast.weatherData.alerts.isEmpty {
+            weatherAlerts
+        }
 
+        Form {
             if weatherForecast.weatherData.precipitationInNextHour {
                 minutelyPrecipitation
             }
