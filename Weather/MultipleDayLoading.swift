@@ -43,6 +43,7 @@ func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
     return coordinate
 }
 
+@discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location) -> WeatherData {
     let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
@@ -54,15 +55,16 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
     }
 
     do {
-        let contents: Data = try String(contentsOf: url, encoding: .ascii).data(using: .ascii)!
+        let contents: String = try String(contentsOf: url, encoding: .ascii)
 
-        return WeatherData(json: try JSON(data: contents))
+        return WeatherData(json: JSON(parseJSON: contents))
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError()
     }
 }
 
+@discardableResult
 /// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
@@ -75,17 +77,17 @@ func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
     }
 
     do {
-        let contents: Data = try String(contentsOf: URL, encoding: .ascii).data(using: .ascii)!
+        let contents: String = try String(contentsOf: URL, encoding: .ascii)
 
-        let json: JSON = try JSON(data: contents)
+        let json: JSON = JSON(parseJSON: contents)
 
         for index in 16...(json["list"].count - 1) {
             hours.append(FiveDayWeatherHour(json: json["list"][index]))
         }
+
+        return hours
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError("Failed to gather weather data")
     }
-
-    return hours
 }

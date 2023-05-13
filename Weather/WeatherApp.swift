@@ -28,6 +28,10 @@ struct WeatherApp: App {
         Settings {
             SettingsView()
                 .frame(width: 600, height: 600)
+                .presentedWindowToolbarStyle(.unifiedCompact(
+                        showsTitle: false
+                    )
+                )
         }
     }
 }
