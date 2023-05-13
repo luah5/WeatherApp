@@ -37,6 +37,12 @@ func getAddressFromCoordinates(location: Location) -> String {
             return address["state"].stringValue
         } else if address["state_district"].exists() {
             return address["state_district"].stringValue
+        } else if address["postcode"].exists() {
+            return address["postcode"].stringValue
+        } else if address["road"].exists() {
+            return address["road"].stringValue
+        } else if address["country"].exists() {
+            return address["country"].stringValue
         }
     } catch {
         fatalError()

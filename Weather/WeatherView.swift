@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
-/// The main view for looking at all the weather
+/// The main view for viewing the weather
 struct WeatherView: View {
     let timer = Timer.publish(
         every: 1,
@@ -82,6 +82,7 @@ struct WeatherView: View {
                     Text("Add Location")
                 }
             }
+            .keyboardShortcut("n", modifiers: [.command, .option])
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
                     Map(coordinateRegion: $region)

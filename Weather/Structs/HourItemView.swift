@@ -55,6 +55,12 @@ struct HourItemView: View {
                 Text("Visibility: **\(hour.visibility) km**")
                 Text("Feels Like: **\(hour.feelsLike.toInt())º**")
                 Text("Cloud coverage: **\(hour.clouds)%**")
+                Text("""
+Wind speed: **\(hour.windSpeed.removeZeros()) km/h**
+""")
+                Text("""
+Wind gust: **\(hour.windGust.removeZeros()) km/h**
+""")
 
                 if hour.converted {
                     Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
@@ -67,7 +73,7 @@ struct HourItemView: View {
                     Text("Chance of rain: **\(hour.chanceOfRain)%**")
                 }
             }
-            .frame(width: 250, height: 300)
+            .frame(width: 250, height: 375)
             .formStyle(.grouped)
         }
         .frame(width: 50, height: 60)
