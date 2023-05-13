@@ -70,6 +70,10 @@ struct WeatherView: View {
             }
             .padding(.top)
         } detail: {
+            Button("Set User default") {
+                print(UserDefaults.standard.value(forKey: "Units"))
+                UserDefaults.standard.set("Metric", forKey: "Units")
+            }
             locations[selection]
         }
         .toolbar {
@@ -82,6 +86,7 @@ struct WeatherView: View {
                     Text("Add Location")
                 }
             }
+            .disabled(locations.count >= 10)
             .keyboardShortcut("n", modifiers: [.command, .option])
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
@@ -97,6 +102,8 @@ struct WeatherView: View {
                                 )
                             )
                         )
+
+                        selection += 1
                     } label: {
                         Image(systemName: "mappin")
                             .scaledToFill()
@@ -116,6 +123,21 @@ struct WeatherView: View {
             }
             .help("Add city, town or village.")
             .buttonStyle(.bordered)
+
+            Button {
+                locations.remove(at: selection)
+                print(locations.count, "amount")
+
+                selection = locations.count - 1
+            } label: {
+                HStack {
+                    Image(systemName: "trash")
+                    Text("Remove Location")
+                }
+            }
+            .help("Remove selected location")
+            .buttonStyle(.bordered)
+            .disabled(locations.count == 1)
         }
         .navigationSplitViewColumnWidth(min: 125, ideal: 125, max: 125)
     }

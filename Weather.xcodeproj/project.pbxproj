@@ -36,6 +36,7 @@
 		85C8A8A529F6E2CB002258E7 /* String+iconToSFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */; };
 		85C9E60D29F83F460025BD42 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9E60C29F83F460025BD42 /* Output.swift */; };
 		85C9E64829F871600025BD42 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9E64729F871600025BD42 /* IconImage.swift */; };
+		85CD0C512A0FF82E00E531FD /* Collections+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD0C502A0FF82E00E531FD /* Collections+safe.swift */; };
 		85D6D3B029F514E10080FB54 /* WeatherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6D3AF29F514E10080FB54 /* WeatherViews.swift */; };
 		85D6D3B229F51B5B0080FB54 /* Float+toInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */; };
 		85D8F2E52A0ADB0600DA179C /* WeatherMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D8F2E42A0ADB0600DA179C /* WeatherMinute.swift */; };
@@ -95,6 +96,7 @@
 		85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iconToSFSymbol.swift"; sourceTree = "<group>"; };
 		85C9E60C29F83F460025BD42 /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		85C9E64729F871600025BD42 /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
+		85CD0C502A0FF82E00E531FD /* Collections+safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+safe.swift"; sourceTree = "<group>"; };
 		85D6D3AF29F514E10080FB54 /* WeatherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViews.swift; sourceTree = "<group>"; };
 		85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+toInt.swift"; sourceTree = "<group>"; };
 		85D8F2E42A0ADB0600DA179C /* WeatherMinute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMinute.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */,
 				858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */,
 				858EA0CC29FC35130021EAAC /* Int+getProperDateWord.swift */,
+				85CD0C502A0FF82E00E531FD /* Collections+safe.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				858EA0C029F9B0FE0021EAAC /* HourItemView.swift in Sources */,
 				85C9E64829F871600025BD42 /* IconImage.swift in Sources */,
 				85D90D992A0F5D0200B9674A /* Location.swift in Sources */,
+				85CD0C512A0FF82E00E531FD /* Collections+safe.swift in Sources */,
 				858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */,
 				858EA0C929FADFDA0021EAAC /* FiveDayWeatherHourToWeatherHour.swift in Sources */,
 				85E7420B2A0806C20026C647 /* SineLine.swift in Sources */,

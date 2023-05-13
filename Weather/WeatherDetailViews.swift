@@ -251,6 +251,7 @@ extension WeatherMainView {
     }
 
     // MARK: - The weather detail Views
+    @ViewBuilder
     var weatherDetailViews: some View {
         HStack(spacing: 10) {
             feelsLike
@@ -268,5 +269,8 @@ extension WeatherMainView {
 
             moonPhase
         }
+
+        Text("Weather for \(getAddressFromCoordinates(location: coordLocation))")
+            .font(.system(.footnote))
     }
 }
