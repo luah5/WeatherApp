@@ -25,11 +25,11 @@ struct WeatherMainView: View {
         Spacer()
         topView
 
-        if !weatherForecast.weatherData.alerts.isEmpty {
-            weatherAlerts
-        }
-
         Form {
+            if !weatherForecast.weatherData.alerts.isEmpty {
+                weatherAlerts
+            }
+
             if weatherForecast.weatherData.precipitationInNextHour {
                 minutelyPrecipitation
             }
