@@ -16,7 +16,7 @@ let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
 
 /// Constructs the URL for getting weather data.
-func constructURL(baseURL: String) -> String {
+func constructURL(_ baseURL: String, _ location: String) -> String {
     return baseURL + location + apiKey + units
 }
 
@@ -44,18 +44,19 @@ func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
 }
 
 /// Gets the hourly weather data for 2 days.
-func getHourlyWeatherData() -> WeatherData {
+func getHourlyWeatherData(location: Location) -> WeatherData {
     let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
+    let latAndLon: String = location.urlVersion
 
-    guard let url = URL(string: constructURL(baseURL: url)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
+    guard let url = URL(string: constructURL(url, latAndLon)) else {
+        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
         fatalError()
     }
 
     do {
         let contents: Data = try String(contentsOf: url, encoding: .ascii).data(using: .ascii)!
 
-        return .init(json: try JSON(data: contents))
+        return WeatherData(json: try JSON(data: contents))
     } catch {
         throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError()
@@ -63,12 +64,13 @@ func getHourlyWeatherData() -> WeatherData {
 }
 
 /// Gets the 5 day weather data every 3 hours.
-func getThreeHourWeatherData() -> [FiveDayWeatherHour] {
+func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
     let url: String = "https://api.openweathermap.org/data/2.5/forecast?"
+    let latAndLon: String = location.urlVersion
 
-    guard let URL = URL(string: constructURL(baseURL: url)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(baseURL: url)) does not exist.", severity: .critical)
+    guard let URL = URL(string: constructURL(url, latAndLon)) else {
+        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
         fatalError()
     }
 

@@ -11,7 +11,6 @@ import MapKit
 
 /// The main view for looking at all the weather
 struct WeatherView: View {
-    let weatherForecast: WeatherForecast = .init()
     let timer = Timer.publish(
         every: 1,
         on: .main,
@@ -29,55 +28,73 @@ struct WeatherView: View {
             longitudeDelta: 0.5
         )
     )
+    @State private var locations: [WeatherMainView] = [
+        WeatherMainView(
+            location: Location(
+                lat: 51.49883962676684,
+                lon: -0.25169226373882936
+            )
+        )
+    ]
+    @State private var selection: Int = 0
 
     var body: some View {
         NavigationSplitView {
-            Text("Location")
-        } detail: {
-            Spacer()
-            topView
+            VStack {
+                ForEach(locations, id: \.weatherForecast.current.time) { location in
+                    Button {
+                        var index: Int = 0
 
-            Form {
-                if !weatherForecast.weatherData.alerts.isEmpty {
-                    weatherAlerts
-                }
+                        for loc in locations {
+                            if loc.weatherForecast.current.time == location.weatherForecast.current.time {
+                                selection = index
+                            }
 
-                if weatherForecast.weatherData.precipitationInNextHour {
-                    minutelyPrecipitation
-                }
-
-                Section {
-                    hourlyForecast
-                }
-                Section {
-                    HStack {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.secondary)
-                        Text("4 DAY WEATHER")
-                            .foregroundColor(.secondary)
+                            index += 1
+                        }
+                    } label: {
+                        HStack(spacing: 25) {
+                            Text(location.weatherForecast.weatherData.location)
+                                .help(location.weatherForecast.weatherData.location)
+                            Text("\(String(location.weatherForecast.current.temp))º")
+                        }
+                        .frame(width: 125, height: 25)
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 5
+                            ).foregroundColor(Color.white)
+                        )
                     }
-
-                    days
                 }
             }
-            .formStyle(.grouped)
-
-            weatherDetailViews
+            .padding(.top)
+        } detail: {
+            locations[selection]
         }
         .toolbar {
             Button {
                 sheetIsPresented.toggle()
             } label: {
-                Image(systemName: "plus.app")
-                    .foregroundColor(.secondary)
+                HStack {
+                    Image(systemName: "plus.app")
+                        .foregroundColor(.secondary)
+                    Text("Add Location")
+                }
             }
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
                     Map(coordinateRegion: $region)
 
                     Button {
-                        print(region.center)
                         sheetIsPresented.toggle()
+
+                        locations.append(
+                            WeatherMainView(
+                                location: Location(
+                                    location: region.center
+                                )
+                            )
+                        )
                     } label: {
                         Image(systemName: "mappin")
                             .scaledToFill()

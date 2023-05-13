@@ -12,13 +12,13 @@ struct WeatherForecast {
     var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay], weatherMinutes: [WeatherMinute]
     var weatherData: WeatherData, precipitationInNext24H: Float
 
-    init() {
+    init(coordinateLocation: Location) {
         /// Get the weather data
-        weatherData = getHourlyWeatherData()
+        weatherData = getHourlyWeatherData(location: coordinateLocation)
         var weatherHours: [WeatherHour] = weatherData.hours
         weatherMinutes = weatherData.minutes
 
-        let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData()
+        let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData(location: coordinateLocation)
 
         /// Loops through the FiveDayWeatherHours and appends it to the weatherHours array by converting
         for hour in fiveDayWeatherHours {

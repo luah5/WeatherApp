@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension WeatherView {
+extension WeatherMainView {
     // MARK: - Marker offsets
     func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
         let markerPosition = (value - 8) / 15

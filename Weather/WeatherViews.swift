@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 /// Extends WeatherView and adds the main body
-extension WeatherView {
+extension WeatherMainView {
     // MARK: - Views
     var topView: some View {
         VStack(spacing: 0) {
