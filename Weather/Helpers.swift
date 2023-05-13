@@ -29,12 +29,18 @@ func getAddressFromCoordinates(location: Location) -> String {
 
     do {
         let contents: Data = try String(contentsOf: url, encoding: .utf8).data(using: .utf8)!
+        let address = try JSON(data: contents)["address"]
 
-        let address: JSON = try JSON(data: contents)["address"]
-        let start = address["road"].stringValue + ", " + address["city"].stringValue
-
-        return start + ", " + address["state"].stringValue
+        if address["city"].exists() {
+            return address["city"].stringValue
+        } else if address["state"].exists() {
+            return address["state"].stringValue
+        } else if address["state_district"].exists() {
+            return address["state_district"].stringValue
+        }
     } catch {
         fatalError()
     }
+
+    return "Error"
 }

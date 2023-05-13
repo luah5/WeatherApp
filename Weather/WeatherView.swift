@@ -116,5 +116,6 @@ struct WeatherView: View {
             .help("Add city, town or village.")
             .buttonStyle(.bordered)
         }
+        .navigationSplitViewColumnWidth(min: 125, ideal: 125, max: 125)
     }
 }

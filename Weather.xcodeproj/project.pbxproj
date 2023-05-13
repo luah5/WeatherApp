@@ -396,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nswiftlint\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nswiftlint --strict\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

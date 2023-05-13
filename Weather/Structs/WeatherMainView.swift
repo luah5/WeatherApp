@@ -27,7 +27,9 @@ struct WeatherMainView: View {
 
         Form {
             if !weatherForecast.weatherData.alerts.isEmpty {
-                weatherAlerts
+                Section {
+                    weatherAlerts
+                }
             }
 
             if weatherForecast.weatherData.precipitationInNextHour {
