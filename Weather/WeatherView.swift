@@ -23,26 +23,9 @@ struct WeatherView: View {
             longitudeDelta: 0.005
         )
     )
-    @State private var coordinateLocations: [Location] = [
-        Location(
-            lat: 51.49883962676684,
-            lon: -0.25169226373882936
-        )
-    ]
-    @State private var locations: [WeatherMainView] = []
+    @State private var coordinateLocations: [Location] = DataSave().coordinateLocations
+    @State private var locations: [WeatherMainView] = DataSave().weatherMainViews
     @State private var selection: Int = 0
-
-    init() {
-        locations = []
-
-        for coordinate in coordinateLocations {
-            locations.append(
-                WeatherMainView(
-                    location: coordinate
-                )
-            )
-        }
-    }
 
     var body: some View {
         NavigationSplitView {
@@ -76,7 +59,7 @@ struct WeatherView: View {
             .padding(.top)
         } detail: {
             Button("Set User default") {
-                UserDefaults.standard.set(locations, forKey: "Units")
+                UserDefaults.standard.set(coordinateLocations, forKey: "locations")
             }
 
             if locations.isEmpty {
@@ -116,6 +99,14 @@ struct WeatherView: View {
                             )
                         )
 
+                        coordinateLocations.append(
+                            Location(
+                                location: region.center
+                            )
+                        )
+
+                        // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
+
                         selection += 1
                     } label: {
                         Image(systemName: "mappin")
@@ -139,6 +130,7 @@ struct WeatherView: View {
 
             Button {
                 locations.remove(at: selection)
+                // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
 
                 selection = locations.count - 1
             } label: {
