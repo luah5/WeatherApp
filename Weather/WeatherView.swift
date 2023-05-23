@@ -6,36 +6,25 @@
 //
 
 import SwiftUI
+import Foundation
 import CoreLocation
 import MapKit
 
 /// The main view for viewing the weather
 struct WeatherView: View {
-    let timer = Timer.publish(
-        every: 1,
-        on: .main,
-        in: .common
-    ).autoconnect()
-    @State private var reload: Bool = false
     @State var sheetIsPresented: Bool = false
     @State var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 37.789467,
-            longitude: -122.416772
+            latitude: 51.49883962676684,
+            longitude: -0.25169226373882936
         ),
         span: MKCoordinateSpan(
-            latitudeDelta: 0.5,
-            longitudeDelta: 0.5
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005
         )
     )
-    @State private var locations: [WeatherMainView] = [
-        WeatherMainView(
-            location: Location(
-                lat: 51.49883962676684,
-                lon: -0.25169226373882936
-            )
-        )
-    ]
+    @State private var coordinateLocations: [Location] = DataSave().coordinateLocations
+    @State private var locations: [WeatherMainView] = DataSave().weatherMainViews
     @State private var selection: Int = 0
 
     var body: some View {
@@ -53,16 +42,33 @@ struct WeatherView: View {
                             index += 1
                         }
                     } label: {
-                        HStack(spacing: 25) {
-                            Text(location.weatherForecast.weatherData.location)
-                                .help(location.weatherForecast.weatherData.location)
-                            Text("\(String(location.weatherForecast.current.temp))º")
+                        VStack(spacing: 25) {
+                            HStack {
+                                VStack {
+                                    Text(location.weatherForecast.address)
+                                        .fontWeight(.medium)
+                                        .font(.system(.title))
+                                    Text(
+                                        String(
+                                            location.weatherForecast.current.time.toTimestamp3()
+                                        )
+                                    )
+                                }
+                                Spacer()
+                                VStack {
+                                    Text("\(String(location.weatherForecast.current.temp))º")
+                                        .font(.system(.title))
+                                    Text("""
+H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weatherForecast.today.maxTemp))º
+""")
+                                }
+                            }
                         }
-                        .frame(width: 125, height: 25)
+                        .frame(width: 250, height: 50)
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 5
-                            ).foregroundColor(Color.white)
+                            ).foregroundColor(Color.primary)
                         )
                     }
                     .buttonStyle(.plain)
@@ -71,10 +77,18 @@ struct WeatherView: View {
             .padding(.top)
         } detail: {
             Button("Set User default") {
-                print(UserDefaults.standard.value(forKey: "Units"))
-                UserDefaults.standard.set("Metric", forKey: "Units")
+                UserDefaults.standard.set(coordinateLocations, forKey: "locations")
             }
-            locations[selection]
+
+            if locations.isEmpty {
+                Text("Loading...")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                ProgressView()
+            } else {
+                locations[selection]
+            }
         }
         .toolbar {
             Button {
@@ -103,6 +117,14 @@ struct WeatherView: View {
                             )
                         )
 
+                        coordinateLocations.append(
+                            Location(
+                                location: region.center
+                            )
+                        )
+
+                        // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
+
                         selection += 1
                     } label: {
                         Image(systemName: "mappin")
@@ -126,7 +148,7 @@ struct WeatherView: View {
 
             Button {
                 locations.remove(at: selection)
-                print(locations.count, "amount")
+                // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
 
                 selection = locations.count - 1
             } label: {

@@ -253,24 +253,26 @@ extension WeatherMainView {
     // MARK: - The weather detail Views
     @ViewBuilder
     var weatherDetailViews: some View {
-        HStack(spacing: 10) {
-            feelsLike
-                .help("Shows what the current temperature feels like.")
-            humidity
-                .help("Shows the current humidity.")
-            visibility
-                .help("Shows the current visibility (in km).")
-            uvi
-                .help("A gradient that shows the UV Index for this hour.")
-            if weatherForecast.current.precipitation != 0 {
-                rainfall
-                    .help("Shows the rainfall.")
+        VStack {
+            HStack(spacing: 10) {
+                feelsLike
+                    .help("Shows what the current temperature feels like.")
+                humidity
+                    .help("Shows the current humidity.")
+                visibility
+                    .help("Shows the current visibility (in km).")
+                uvi
+                    .help("A gradient that shows the UV Index for this hour.")
+                if weatherForecast.current.precipitation != 0 {
+                    rainfall
+                        .help("Shows the rainfall.")
+                }
+
+                moonPhase
             }
 
-            moonPhase
+            Text("Weather for \(weatherForecast.address)")
+                .font(.system(.footnote))
         }
-
-        Text("Weather for \(getAddressFromCoordinates(location: coordLocation))")
-            .font(.system(.footnote))
     }
 }

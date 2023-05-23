@@ -26,4 +26,13 @@ extension Int {
 
         return utcDateFormatter.string(from: date as Date)
     }
+
+    func toTimestamp3() -> String {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self))
+        let utcDateFormatter = DateFormatter()
+        utcDateFormatter.dateStyle = .none
+        utcDateFormatter.timeStyle = .short
+
+        return utcDateFormatter.string(from: date as Date)
+    }
 }
