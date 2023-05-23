@@ -146,7 +146,10 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
 
             Button {
                 locations.remove(at: selection)
-                // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
+                coordinateLocations.remove(at: selection)
+                coordinateLocation.coordinates = coordinateLocations
+
+                UserDefaults.standard.setValue(coordinateLocation.encode(), forKey: "locations")
 
                 selection = locations.count - 1
             } label: {
