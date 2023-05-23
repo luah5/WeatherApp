@@ -68,7 +68,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 5
-                            ).foregroundColor(Color.primary)
+                            ).foregroundColor(Color.secondary)
                         )
                     }
                     .buttonStyle(.plain)
