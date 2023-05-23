@@ -42,15 +42,33 @@ struct WeatherView: View {
                             index += 1
                         }
                     } label: {
-                        HStack(spacing: 25) {
-                            Text(location.weatherForecast.address)
-                            Text("\(String(location.weatherForecast.current.temp))º")
+                        VStack(spacing: 25) {
+                            HStack {
+                                VStack {
+                                    Text(location.weatherForecast.address)
+                                        .fontWeight(.medium)
+                                        .font(.system(.title))
+                                    Text(
+                                        String(
+                                            location.weatherForecast.current.time.toTimestamp3()
+                                        )
+                                    )
+                                }
+                                Spacer()
+                                VStack {
+                                    Text("\(String(location.weatherForecast.current.temp))º")
+                                        .font(.system(.title))
+                                    Text("""
+H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weatherForecast.today.maxTemp))º
+""")
+                                }
+                            }
                         }
-                        .frame(width: 125, height: 25)
+                        .frame(width: 250, height: 50)
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 5
-                            ).foregroundColor(Color.white)
+                            ).foregroundColor(Color.primary)
                         )
                     }
                     .buttonStyle(.plain)

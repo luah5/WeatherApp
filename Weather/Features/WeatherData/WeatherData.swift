@@ -11,7 +11,7 @@ import SwiftyJSON
 /// A structure for handling weather data
 struct WeatherData {
     var hours: [WeatherHour], minutes: [WeatherMinute], precipitationInNextHour: Bool, alerts: [WeatherAlert]
-    var location: String
+    var location: String, timezoneOffset: Int
 
     init(json: JSON) {
         precipitationInNextHour = false
@@ -19,6 +19,7 @@ struct WeatherData {
         minutes = []
         alerts = []
 
+        timezoneOffset = Int(json["timezone_offset"].stringValue) ?? 0
         location = String(
             json["timezone"]
                 .stringValue

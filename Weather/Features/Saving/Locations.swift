@@ -15,7 +15,7 @@ struct Locations {
     }
 
     init(fromString: String) {
-        var splitted: [Substring] = fromString.split(separator: "|")
+        let splitted: [Substring] = fromString.split(separator: "|")
         coordinates = []
 
         for split in splitted {

@@ -140,10 +140,10 @@
 		85730EA029ED97EA001DB918 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */,
 				859B35BF29F2FC9900D63031 /* String+remove.swift */,
 				85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */,
 				8574129229F5859600CFC20F /* Int+ToTimestamp.swift */,
-				85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */,
 				858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */,
 				858EA0CC29FC35130021EAAC /* Int+getProperDateWord.swift */,
 				85CD0C502A0FF82E00E531FD /* Collections+safe.swift */,

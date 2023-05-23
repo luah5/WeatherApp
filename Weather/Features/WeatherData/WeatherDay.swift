@@ -14,13 +14,14 @@ struct WeatherDay {
     init(weatherHours: [WeatherHour], isConverted: Bool) {
         self.weatherHours = weatherHours
 
-        self.minTemp = 100
-        self.maxTemp = -100
+        self.minTemp = weatherHours.first?.temp ?? -100
+        self.maxTemp = weatherHours.first?.temp ?? -100
 
         for hour in weatherHours {
             if hour.temp > self.maxTemp {
                 self.maxTemp = hour.temp
-            } else if hour.temp < self.minTemp {
+            }
+            if hour.temp < self.minTemp {
                 self.minTemp = hour.temp
             }
         }

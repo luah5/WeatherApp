@@ -26,7 +26,7 @@ struct WeatherHour {
     var precipitation: Float, chanceOfRain: Int, converted: Bool, moonPhase: MoonPhase
     var windDegInt: Int
 
-    init(json: JSON, isConverted: Bool) {
+    init(json: JSON, isConverted: Bool, timezoneOffset: Int = 0) {
         converted = isConverted
 
         windGust = Float(json["wind_gust"].stringValue) ?? 0
@@ -35,7 +35,7 @@ struct WeatherHour {
         clouds = Int(json["clouds"].stringValue) ?? -100
         dewPoint = Float(json["dew_point"].stringValue) ?? -100
         visibility = Int((Float(String(json["visibility"].stringValue)) ?? -100) / 100)
-        time = Int(json["dt"].stringValue) ?? 1000
+        time = (Int(json["dt"].stringValue) ?? 1000) + timezoneOffset
 
         humidity = Int(json["humidity"].stringValue) ?? -100
         feelsLike = Float(json["feels_like"].stringValue) ?? -100
