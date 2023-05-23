@@ -8,22 +8,15 @@
 import Foundation
 
 struct DataSave {
-    var coordinateLocations: [Location] = []
-    var weatherMainViews: [WeatherMainView] = []
+    var coordinateLocations: Locations
+    var weatherMainViews: [WeatherMainView]
 
     init() {
-        coordinateLocations = [
-            Location(
-                lat: 51.49883962676684,
-                lon: -0.25169226373882936
-            ),
-            Location(
-                lat: 51.49883962676684,
-                lon: -0.25169226373882936
-            )
-        ]
+        weatherMainViews = []
+        print(UserDefaults.standard.string(forKey: "locations"))
+        coordinateLocations = .init(fromString: UserDefaults.standard.string(forKey: "locations")!)
 
-        for location in coordinateLocations {
+        for location in coordinateLocations.coordinates {
             weatherMainViews.append(
                 WeatherMainView(
                     location: location

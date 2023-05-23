@@ -12,7 +12,7 @@
 		85391EAC2A0FA638005A0F5C /* DegreesToCompassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85391EAB2A0FA638005A0F5C /* DegreesToCompassName.swift */; };
 		85730EA829EEFFF7001DB918 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85730EA729EEFFF7001DB918 /* README.md */; };
 		85730EAA29EF360A001DB918 /* MultipleDayLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85730EA929EF360A001DB918 /* MultipleDayLoading.swift */; };
-		8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+ToTimestamp.swift */; };
+		8574129329F5859600CFC20F /* Int+toTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574129229F5859600CFC20F /* Int+toTimestamp.swift */; };
 		858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */; };
 		858EA0C029F9B0FE0021EAAC /* HourItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */; };
 		858EA0C629FADDB80021EAAC /* Float+removeZeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */; };
@@ -71,7 +71,7 @@
 		85391EAB2A0FA638005A0F5C /* DegreesToCompassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesToCompassName.swift; sourceTree = "<group>"; };
 		85730EA729EEFFF7001DB918 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85730EA929EF360A001DB918 /* MultipleDayLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayLoading.swift; sourceTree = "<group>"; };
-		8574129229F5859600CFC20F /* Int+ToTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ToTimestamp.swift"; sourceTree = "<group>"; };
+		8574129229F5859600CFC20F /* Int+toTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+toTimestamp.swift"; sourceTree = "<group>"; };
 		858EA0B229F8F1BF0021EAAC /* FiveDayWeatherHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherHour.swift; sourceTree = "<group>"; };
 		858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourItemView.swift; sourceTree = "<group>"; };
 		858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+removeZeros.swift"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				85C8A8A429F6E2CB002258E7 /* String+iconToSFSymbol.swift */,
 				859B35BF29F2FC9900D63031 /* String+remove.swift */,
 				85D6D3B129F51B5B0080FB54 /* Float+toInt.swift */,
-				8574129229F5859600CFC20F /* Int+ToTimestamp.swift */,
+				8574129229F5859600CFC20F /* Int+toTimestamp.swift */,
 				858EA0C529FADDB80021EAAC /* Float+removeZeros.swift */,
 				858EA0CC29FC35130021EAAC /* Int+getProperDateWord.swift */,
 				85CD0C502A0FF82E00E531FD /* Collections+safe.swift */,
@@ -469,7 +469,7 @@
 				859AB9E429ED43E8004246A3 /* WeatherView.swift in Sources */,
 				85C8A8A229F59E16002258E7 /* WeatherForecast.swift in Sources */,
 				85CD0C582A10305B00E531FD /* Save.swift in Sources */,
-				8574129329F5859600CFC20F /* Int+ToTimestamp.swift in Sources */,
+				8574129329F5859600CFC20F /* Int+toTimestamp.swift in Sources */,
 				85D90D9B2A0F5FC400B9674A /* WeatherMainView.swift in Sources */,
 				85D6D3B229F51B5B0080FB54 /* Float+toInt.swift in Sources */,
 				85D6D3B029F514E10080FB54 /* WeatherViews.swift in Sources */,
@@ -657,7 +657,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -670,8 +670,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.5;
-				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
+				MARKETING_VERSION = 0.8;
+				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WorldWideWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
@@ -690,7 +690,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -703,8 +703,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.5;
-				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.Weather;
+				MARKETING_VERSION = 0.8;
+				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WorldWideWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;

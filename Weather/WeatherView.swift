@@ -23,7 +23,8 @@ struct WeatherView: View {
             longitudeDelta: 0.005
         )
     )
-    @State private var coordinateLocations: [Location] = DataSave().coordinateLocations
+    @State private var coordinateLocation: Locations = DataSave().coordinateLocations
+    @State private var coordinateLocations: [Location] = DataSave().coordinateLocations.coordinates
     @State private var locations: [WeatherMainView] = DataSave().weatherMainViews
     @State private var selection: Int = 0
 
@@ -76,10 +77,6 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             }
             .padding(.top)
         } detail: {
-            Button("Set User default") {
-                UserDefaults.standard.set(coordinateLocations, forKey: "locations")
-            }
-
             if locations.isEmpty {
                 Text("Loading...")
                     .font(.title)
@@ -122,8 +119,9 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                                 location: region.center
                             )
                         )
+                        coordinateLocation.coordinates = coordinateLocations
 
-                        // UserDefaults.standard.set(coordinateLocations, forKey: "locations")
+                        UserDefaults.standard.setValue(coordinateLocation.encode(), forKey: "locations")
 
                         selection += 1
                     } label: {

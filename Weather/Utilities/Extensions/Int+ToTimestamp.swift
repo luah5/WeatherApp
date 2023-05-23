@@ -1,5 +1,5 @@
 //
-//  Int+ToTimestamp.swift
+//  Int+toTimestamp.swift
 //  Weather
 //
 //  Created by Raymond Vleeshouwer on 23/04/23.
@@ -32,6 +32,15 @@ extension Int {
         let utcDateFormatter = DateFormatter()
         utcDateFormatter.dateStyle = .none
         utcDateFormatter.timeStyle = .short
+
+        return utcDateFormatter.string(from: date as Date)
+    }
+
+    func toTimestampWith(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self))
+        let utcDateFormatter = DateFormatter()
+        utcDateFormatter.dateStyle = dateStyle
+        utcDateFormatter.timeStyle = timeStyle
 
         return utcDateFormatter.string(from: date as Date)
     }
