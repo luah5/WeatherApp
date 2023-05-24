@@ -9,18 +9,18 @@ import SwiftUI
 
 extension WeatherMainView {
     // MARK: - Marker offsets
-    func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
+    private func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
         let markerPosition = (value - 8) / 15
         return markerPosition * width
     }
 
-    func markerOffset2(for value: CGFloat, in width: CGFloat) -> CGFloat {
+    private func markerOffset2(for value: CGFloat, in width: CGFloat) -> CGFloat {
         let markerPosition = (value - 20) / 60
         return markerPosition * width
     }
 
     // MARK: - Humidity View
-    var humidity: some View {
+    private var humidity: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -43,7 +43,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Feels Like View
-    var feelsLike: some View {
+    private var feelsLike: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -62,7 +62,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Visibility View
-    var visibility: some View {
+    private var visibility: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -81,7 +81,7 @@ extension WeatherMainView {
     }
 
     // MARK: - UV Index View
-    var uvi: some View {
+    private var uvi: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -138,7 +138,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Sun Position View
-    var sunPosition: some View {
+    private var sunPosition: some View {
         Form {
             VStack {
                 ZStack {
@@ -252,7 +252,7 @@ extension WeatherMainView {
 
     // MARK: - The weather detail Views
     @ViewBuilder
-    var weatherDetailViews: some View {
+    private var weatherDetailViews: some View {
         VStack {
             HStack(spacing: 10) {
                 feelsLike

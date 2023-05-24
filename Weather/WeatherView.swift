@@ -12,18 +12,18 @@ import MapKit
 
 /// The main view for viewing the weather
 struct WeatherView: View {
-    @State var sheetIsPresented: Bool = false
-    @State var region = MKCoordinateRegion(
+    @State private var sheetIsPresented: Bool = false
+    @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 51.49883962676684,
-            longitude: -0.25169226373882936
+            latitude: 51.5,
+            longitude: -0.2
         ),
         span: MKCoordinateSpan(
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05
         )
     )
-    @State private var dataSave: DataSave = .init()
+    @State private var dataSave: DataSave = DataSave()
 
     var body: some View {
         NavigationSplitView {
@@ -52,7 +52,9 @@ struct WeatherView: View {
                                         )
                                     )
                                 }
+
                                 Spacer()
+
                                 VStack {
                                     Text("\(String(location.weatherForecast.current.temp))º")
                                         .font(.system(.title))

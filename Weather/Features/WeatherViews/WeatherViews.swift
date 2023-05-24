@@ -12,7 +12,7 @@ import MapKit
 /// Extends WeatherView and adds the main body
 extension WeatherMainView {
     // MARK: - Views
-    var topView: some View {
+    private var topView: some View {
         VStack(spacing: 0) {
             Text(weatherForecast.address)
                 .font(.system(.title))
@@ -32,7 +32,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    var minutelyPrecipitation: some View {
+    private var minutelyPrecipitation: some View {
         Form {
             Text("Rain forecast")
                 .font(.system(.title2))
@@ -58,7 +58,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    var hourlyForecast: some View {
+    private var hourlyForecast: some View {
         HStack {
             Image(systemName: "calendar")
                 .foregroundColor(.secondary)
@@ -73,7 +73,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    var days: some View {
+    private var days: some View {
         ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
             VStack {
                 dayInfo(
@@ -94,7 +94,7 @@ extension WeatherMainView {
         }
     }
 
-    var weatherAlerts: some View {
+    private var weatherAlerts: some View {
         ForEach(weatherForecast.weatherData.alerts, id: \.description) { alert in
             Form {
                 Group {
@@ -125,7 +125,7 @@ Ending: \(alert.endTime.toTimestamp2())
 
     // MARK: - Function Views
     @ViewBuilder
-    func tempView(day: WeatherDay) -> some View {
+    private func tempView(day: WeatherDay) -> some View {
         GeometryReader { geometry in
             ZStack {
                 LinearGradient(
@@ -156,7 +156,7 @@ Ending: \(alert.endTime.toTimestamp2())
     }
 
     @ViewBuilder
-    func dayInfo(day: WeatherDay, timestamp: [String.SubSequence]) -> some View {
+    private func dayInfo(day: WeatherDay, timestamp: [String.SubSequence]) -> some View {
         HStack(spacing: 30) {
             Text(timestamp[0])
                 .font(.system(size: 14, weight: .semibold))
