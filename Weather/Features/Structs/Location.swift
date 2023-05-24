@@ -10,17 +10,19 @@ import CoreLocation
 import MapKit
 
 struct Location {
-    var lat: Double, lon: Double, urlVersion: String
+    var lat: Double, lon: Double, urlVersion: String, locationString: String
 
-    init(lat: Double, lon: Double) {
+    init(lat: Double, lon: Double, location: String) {
         self.lat = lat
         self.lon = lon
         self.urlVersion = "lat=\(lat)&lon=\(lon)"
+        self.locationString = location
     }
 
-    init(location: CLLocationCoordinate2D) {
+    init(location: CLLocationCoordinate2D, location2: String) {
         self.lat = location.latitude
         self.lon = location.longitude
         self.urlVersion = "lat=\(lat)&lon=\(lon)"
+        self.locationString = location2
     }
 }

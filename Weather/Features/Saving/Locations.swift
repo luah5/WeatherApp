@@ -23,7 +23,8 @@ struct Locations {
             coordinates.append(
                 Location(
                     lat: Double(furtherSplit[0]) ?? 0,
-                    lon: Double(furtherSplit[1]) ?? 0
+                    lon: Double(furtherSplit[1]) ?? 0,
+                    location: String(furtherSplit[2])
                 )
             )
         }
@@ -33,7 +34,7 @@ struct Locations {
         var output: String = ""
 
         for coordinate in coordinates {
-            output += "\(coordinate.lat),\(coordinate.lon)|"
+            output += "\(coordinate.lat),\(coordinate.lon),\(coordinate.locationString)|"
         }
 
         return output

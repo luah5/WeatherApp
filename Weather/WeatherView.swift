@@ -78,11 +78,10 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .padding(.top)
         } detail: {
             if locations.isEmpty {
-                Text("Loading...")
+                Text("No Locations")
                     .font(.title)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
-                ProgressView()
             } else {
                 locations[selection]
             }
@@ -97,7 +96,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Text("Add Location")
                 }
             }
-            .disabled(locations.count >= 10)
+            .disabled(locations.count >= 50)
             .keyboardShortcut("n", modifiers: [.command, .option])
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
@@ -106,20 +105,24 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Button {
                         sheetIsPresented.toggle()
 
-                        locations.append(
-                            WeatherMainView(
-                                location: Location(
-                                    location: region.center
+                        coordinateLocations.append(
+                            Location(
+                                location: region.center,
+                                location2: getAddressFromCoordinates(
+                                    location: Location(
+                                        location: region.center,
+                                        location2: "nil"
+                                    )
                                 )
                             )
                         )
+                        coordinateLocation.coordinates = coordinateLocations
 
-                        coordinateLocations.append(
-                            Location(
-                                location: region.center
+                        locations.append(
+                            WeatherMainView(
+                                location: coordinateLocations.last!
                             )
                         )
-                        coordinateLocation.coordinates = coordinateLocations
 
                         UserDefaults.standard.setValue(coordinateLocation.encode(), forKey: "locations")
 

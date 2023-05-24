@@ -13,7 +13,19 @@ struct DataSave {
 
     init() {
         weatherMainViews = []
-        print(UserDefaults.standard.string(forKey: "locations"))
+        coordinateLocations = .init(fromString: "")
+
+        if UserDefaults.standard.string(forKey: "locations") == nil {
+            coordinateLocations.coordinates = [
+                Location(
+                    lat: 51.511533,
+                    lon: -0.125112,
+                    location: "Covent Garden"
+                )
+            ]
+            UserDefaults.standard.set(coordinateLocations.encode(), forKey: "locations")
+        }
+
         coordinateLocations = .init(fromString: UserDefaults.standard.string(forKey: "locations")!)
 
         for location in coordinateLocations.coordinates {

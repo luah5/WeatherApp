@@ -15,8 +15,9 @@ struct WeatherMainView: View {
 
     init(location: Location) {
         coordLocation = location
+
         weatherForecast = WeatherForecast(
-            coordinateLocation: coordLocation
+            coordinateLocation: location
         )
     }
     @State private var sheetIsPresented: Bool = false

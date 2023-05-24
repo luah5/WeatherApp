@@ -15,9 +15,7 @@ struct WeatherForecast {
     init(coordinateLocation: Location) {
         /// Get the weather data
         weatherData = getHourlyWeatherData(location: coordinateLocation)
-        address = getAddressFromCoordinates(
-            location: coordinateLocation
-        )
+        address = coordinateLocation.locationString
         weatherMinutes = weatherData.minutes
 
         var weatherHours: [WeatherHour] = weatherData.hours
