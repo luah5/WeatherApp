@@ -30,7 +30,7 @@ struct WeatherView: View {
 
     var body: some View {
         NavigationSplitView {
-            VStack {
+            ScrollView(.vertical) {
                 ForEach(locations, id: \.weatherForecast.current.time) { location in
                     Button {
                         var index: Int = 0
@@ -73,6 +73,8 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                         )
                     }
                     .buttonStyle(.plain)
+
+                    Divider()
                 }
             }
             .padding(.top)
@@ -96,8 +98,8 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Text("Add Location")
                 }
             }
-            .disabled(locations.count >= 50)
-            .keyboardShortcut("n", modifiers: [.command, .option])
+            .disabled(locations.count >= 10)
+            .keyboardShortcut("n")
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
                     Map(coordinateRegion: $region)
@@ -165,6 +167,6 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .buttonStyle(.bordered)
             .disabled(locations.count == 1)
         }
-        .navigationSplitViewColumnWidth(min: 125, ideal: 125, max: 125)
+        .navigationSplitViewColumnWidth(215)
     }
 }
