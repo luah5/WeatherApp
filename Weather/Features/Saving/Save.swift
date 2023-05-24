@@ -8,8 +8,7 @@
 import Foundation
 
 struct DataSave {
-    var coordinateLocations: Locations
-    var weatherMainViews: [WeatherMainView]
+    var coordinateLocations: Locations, weatherMainViews: [WeatherMainView], selection: Int
 
     init() {
         weatherMainViews = []
@@ -24,6 +23,13 @@ struct DataSave {
                 )
             ]
             UserDefaults.standard.set(coordinateLocations.encode(), forKey: "locations")
+        }
+
+        selection = 0
+        if UserDefaults.standard.string(forKey: "location_selection") == nil {
+            UserDefaults.standard.set(0, forKey: "location_selection")
+        } else {
+            selection = Int(UserDefaults.standard.string(forKey: "location_selection")!) ?? 0
         }
 
         coordinateLocations = .init(fromString: UserDefaults.standard.string(forKey: "locations")!)

@@ -23,21 +23,18 @@ struct WeatherView: View {
             longitudeDelta: 0.005
         )
     )
-    @State private var coordinateLocation: Locations = DataSave().coordinateLocations
-    @State private var coordinateLocations: [Location] = DataSave().coordinateLocations.coordinates
-    @State private var locations: [WeatherMainView] = DataSave().weatherMainViews
-    @State private var selection: Int = 0
+    @State private var dataSave: DataSave = .init()
 
     var body: some View {
         NavigationSplitView {
             ScrollView(.vertical) {
-                ForEach(locations, id: \.weatherForecast.current.time) { location in
+                ForEach(dataSave.weatherMainViews, id: \.weatherForecast.current.time) { location in
                     Button {
                         var index: Int = 0
 
-                        for loc in locations {
+                        for loc in dataSave.weatherMainViews {
                             if loc.weatherForecast.current.time == location.weatherForecast.current.time {
-                                selection = index
+                                dataSave.selection = index
                             }
 
                             index += 1
@@ -79,13 +76,13 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             }
             .padding(.top)
         } detail: {
-            if locations.isEmpty {
-                Text("No Locations")
+            if dataSave.weatherMainViews.isEmpty {
+                Text("No dataSave.weatherMainViews")
                     .font(.title)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
             } else {
-                locations[selection]
+                dataSave.weatherMainViews[dataSave.selection]
             }
         }
         .toolbar {
@@ -98,7 +95,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Text("Add Location")
                 }
             }
-            .disabled(locations.count >= 10)
+            .disabled(dataSave.weatherMainViews.count >= 10)
             .keyboardShortcut("n")
             .sheet(isPresented: $sheetIsPresented) {
                 ZStack {
@@ -107,7 +104,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Button {
                         sheetIsPresented.toggle()
 
-                        coordinateLocations.append(
+                        dataSave.coordinateLocations.coordinates.append(
                             Location(
                                 location: region.center,
                                 location2: getAddressFromCoordinates(
@@ -118,17 +115,19 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                                 )
                             )
                         )
-                        coordinateLocation.coordinates = coordinateLocations
 
-                        locations.append(
+                        dataSave.weatherMainViews.append(
                             WeatherMainView(
-                                location: coordinateLocations.last!
+                                location: dataSave.coordinateLocations.coordinates.last!
                             )
                         )
 
-                        UserDefaults.standard.setValue(coordinateLocation.encode(), forKey: "locations")
+                        UserDefaults.standard.setValue(
+                            dataSave.coordinateLocations.encode(),
+                            forKey: "locations"
+                        )
 
-                        selection += 1
+                        dataSave.selection += 1
                     } label: {
                         Image(systemName: "mappin")
                             .scaledToFill()
@@ -150,13 +149,12 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .buttonStyle(.bordered)
 
             Button {
-                locations.remove(at: selection)
-                coordinateLocations.remove(at: selection)
-                coordinateLocation.coordinates = coordinateLocations
+                dataSave.weatherMainViews.remove(at: dataSave.selection)
+                dataSave.coordinateLocations.coordinates.remove(at: dataSave.selection)
 
-                UserDefaults.standard.setValue(coordinateLocation.encode(), forKey: "locations")
+                UserDefaults.standard.setValue(dataSave.coordinateLocations.encode(), forKey: "locations")
 
-                selection = locations.count - 1
+                dataSave.selection = dataSave.weatherMainViews.count - 1
             } label: {
                 HStack {
                     Image(systemName: "trash")
@@ -165,7 +163,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             }
             .help("Remove selected location")
             .buttonStyle(.bordered)
-            .disabled(locations.count == 1)
+            .disabled(dataSave.weatherMainViews.count == 1)
         }
         .navigationSplitViewColumnWidth(215)
     }
