@@ -24,29 +24,36 @@ struct HourItemView: View {
         let split: [String.SubSequence] = hour.time.toTimestamp().split(separator: " ")
 
         Divider()
-        VStack {
-            Text(split[split.count - 1])
-                .padding(.top)
-            hour.weather.icon.image
-                // .foregroundColor(hour.weather.icon.color)
-                .scaledToFit()
-                .frame(width: 10, height: 10)
+        Button {
+            presented.toggle()
+        } label: {
+            ZStack {
+                Rectangle()
+                    .frame(width: 50, height: 60)
+                    .opacity(0.000001)
+                VStack {
+                    Text(split[split.count - 1])
+                        .padding(.top)
+                    hour.weather.icon.image
+                    // .foregroundColor(hour.weather.icon.color)
+                        .scaledToFit()
+                        .frame(width: 10, height: 10)
 
-            Spacer()
+                    Spacer()
 
-            if hour.chanceOfRain >= 10 {
-                Text("\(hour.chanceOfRain)%")
-                    .foregroundColor(.blue)
-                    .padding(.bottom)
-                    .bold()
-            } else {
-                Text("\(hour.temp.toInt())º")
-                    .padding(.bottom)
+                    if hour.chanceOfRain >= 10 {
+                        Text("\(hour.chanceOfRain)%")
+                            .foregroundColor(.blue)
+                            .padding(.bottom)
+                            .bold()
+                    } else {
+                        Text("\(hour.temp.toInt())º")
+                            .padding(.bottom)
+                    }
+                }
             }
         }
-        .onHover(perform: {hovering in
-            presented = hovering
-        })
+        .buttonStyle(.plain)
         .popover(isPresented: $presented) {
             Form {
                 Text("\(hour.weather.description.capitalized)")
@@ -73,8 +80,8 @@ Wind gust: **\(hour.windGust.removeZeros()) km/h**
                     Text("Chance of rain: **\(hour.chanceOfRain)%**")
                 }
             }
-            .frame(width: 250, height: 375)
             .formStyle(.grouped)
+            .frame(width: 250, height: 400)
         }
         .frame(width: 50, height: 60)
     }
