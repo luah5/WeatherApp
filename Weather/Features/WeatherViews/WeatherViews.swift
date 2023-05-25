@@ -12,7 +12,7 @@ import MapKit
 /// Extends WeatherView and adds the main body
 extension WeatherMainView {
     // MARK: - Views
-    private var topView: some View {
+    var topView: some View {
         VStack(spacing: 0) {
             Text(weatherForecast.address)
                 .font(.system(.title))
@@ -32,7 +32,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    private var minutelyPrecipitation: some View {
+    var minutelyPrecipitation: some View {
         Form {
             Text("Rain forecast")
                 .font(.system(.title2))
@@ -58,7 +58,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    private var hourlyForecast: some View {
+    var hourlyForecast: some View {
         HStack {
             Image(systemName: "calendar")
                 .foregroundColor(.secondary)
@@ -73,7 +73,7 @@ extension WeatherMainView {
     }
 
     @ViewBuilder
-    private var days: some View {
+    var days: some View {
         ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
             VStack {
                 dayInfo(
@@ -94,7 +94,7 @@ extension WeatherMainView {
         }
     }
 
-    private var weatherAlerts: some View {
+    var weatherAlerts: some View {
         ForEach(weatherForecast.weatherData.alerts, id: \.description) { alert in
             Form {
                 Group {

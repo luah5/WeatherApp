@@ -9,12 +9,12 @@ import SwiftUI
 
 extension WeatherMainView {
     // MARK: - Marker offsets
-    private func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
+    func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
         let markerPosition = (value - 8) / 15
         return markerPosition * width
     }
 
-    private func markerOffset2(for value: CGFloat, in width: CGFloat) -> CGFloat {
+    func markerOffset2(for value: CGFloat, in width: CGFloat) -> CGFloat {
         let markerPosition = (value - 20) / 60
         return markerPosition * width
     }
@@ -252,7 +252,7 @@ extension WeatherMainView {
 
     // MARK: - The weather detail Views
     @ViewBuilder
-    private var weatherDetailViews: some View {
+    var weatherDetailViews: some View {
         VStack {
             HStack(spacing: 10) {
                 feelsLike
