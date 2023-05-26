@@ -64,7 +64,12 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                                 }
                             }
                         }
-                        .frame(width: 250, height: 50)
+                        .frame(
+                            minWidth: 215,
+                            maxWidth: .infinity,
+                            minHeight: 50,
+                            maxHeight: 50
+                        )
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 5
@@ -79,12 +84,12 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .padding(.top)
         } detail: {
             if dataSave.weatherMainViews.isEmpty {
-                Text("No dataSave.weatherMainViews")
+                Text("dataSave.weatherMainViews.empty = TRUE")
                     .font(.title)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
             } else {
-                dataSave.weatherMainViews[dataSave.selection]
+                dataSave.weatherMainViews[safe: dataSave.selection]
             }
         }
         .toolbar {

@@ -60,7 +60,7 @@ extension WeatherMainView {
     @ViewBuilder
     var hourlyForecast: some View {
         HStack {
-            Image(systemName: "calendar")
+            Image(systemName: "clock")
                 .foregroundColor(.secondary)
             Text("HOURLY FORECAST")
                 .foregroundColor(.secondary)
@@ -74,6 +74,12 @@ extension WeatherMainView {
 
     @ViewBuilder
     var days: some View {
+        HStack {
+            Image(systemName: "calendar")
+                .foregroundColor(.secondary)
+            Text("4-DAY FORECAST")
+                .foregroundColor(.secondary)
+        }
         ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
             VStack {
                 dayInfo(
@@ -163,6 +169,8 @@ Ending: \(alert.endTime.toTimestamp2())
                 .help("The day of the forecast.")
 
             day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
+                .scaledToFit()
+                .frame(width: 20, height: 20)
 
             if day.weatherHours[
                 Int(day.weatherHours.count) / 2

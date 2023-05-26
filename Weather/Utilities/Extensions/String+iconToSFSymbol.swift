@@ -14,27 +14,27 @@ extension String {
         var name: String = "Snow"
 
         if self == "01d" {
-            name = "sun.max.fill"
+            name = "Sun"
         } else if self == "01n" {
-            name = "moon.fill"
+            name = "Moon"
         } else if self == "02d" {
-            name = "cloud.sun.fill"
+            name = "Sun and cloud"
         } else if self == "02n" {
-            name = "cloud.moon.fill"
+            name = "Moon and cloud"
         } else if self.hasPrefix("03") || self.hasPrefix("04") {
-            name = "cloud.fill"
+            name = "Cloud"
         } else if self == "09d" || self == "09n" {
-            name = "cloud.rain.fill"
+            name = "Cloud and rain"
         } else if self == "10d" {
             name = "cloud.sun.rain.fill"
         } else if self == "10n" {
             name = "cloud.moon.rain.fill"
         } else if self == "13d" || self == "13n" {
-            name = "snowflake"
+            name = "Snow"
         } else if self == "50d" || self == "50n" {
             name = "cloud.fog.fill"
         }
 
-        return IconImage(image: Image(systemName: name).symbolRenderingMode(.palette))
+        return IconImage(image: Image(name).resizable())
     }
 }

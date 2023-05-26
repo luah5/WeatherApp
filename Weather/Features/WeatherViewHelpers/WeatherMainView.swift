@@ -20,39 +20,39 @@ struct WeatherMainView: View {
             coordinateLocation: location
         )
     }
-    @State private var sheetIsPresented: Bool = false
 
     var body: some View {
         Spacer()
         topView
 
-        Form {
-            if !weatherForecast.weatherData.alerts.isEmpty {
-                Section {
+        ScrollView(.vertical) {
+            Form {
+                if !weatherForecast.weatherData.alerts.isEmpty {
                     weatherAlerts
                 }
-            }
-
-            if weatherForecast.weatherData.precipitationInNextHour {
-                minutelyPrecipitation
-            }
-
-            Section {
-                hourlyForecast
-            }
-            Section {
-                HStack {
-                    Image(systemName: "calendar")
-                        .foregroundColor(.secondary)
-                    Text("4 DAY WEATHER")
-                        .foregroundColor(.secondary)
+                if weatherForecast.weatherData.precipitationInNextHour {
+                    minutelyPrecipitation
                 }
-
-                days
             }
-        }
-        .formStyle(.grouped)
+            .formStyle(.grouped)
 
-        weatherDetailViews
+            VStack(spacing: 0) {
+                Form {
+                    hourlyForecast
+                }
+                .formStyle(.grouped)
+                Form {
+                    days
+                }
+                .formStyle(.grouped)
+            }
+
+            Form {
+                locationMap
+            }
+            .formStyle(.grouped)
+
+            weatherDetailViews
+        }
     }
 }

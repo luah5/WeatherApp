@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 extension WeatherMainView {
     // MARK: - Marker offsets
@@ -20,7 +22,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Humidity View
-    private var humidity: some View {
+    var humidity: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -43,7 +45,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Feels Like View
-    private var feelsLike: some View {
+    var feelsLike: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -62,7 +64,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Visibility View
-    private var visibility: some View {
+    var visibility: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -81,7 +83,7 @@ extension WeatherMainView {
     }
 
     // MARK: - UV Index View
-    private var uvi: some View {
+    var uvi: some View {
         VStack {
             Form {
                 HStack(spacing: 5) {
@@ -138,7 +140,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Sun Position View
-    private var sunPosition: some View {
+    var sunPosition: some View {
         Form {
             VStack {
                 ZStack {
@@ -159,7 +161,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Rainfall View
-    private var rainfall: some View {
+    var rainfall: some View {
         Form {
             HStack(spacing: 5) {
                 Image(systemName: "drop.fill")
@@ -184,7 +186,7 @@ extension WeatherMainView {
     }
 
     // MARK: - Moon Phase View
-    private var moonPhase: some View {
+    var moonPhase: some View {
         Form {
             HStack(spacing: 5) {
                 Image(systemName: "moon.fill")
@@ -250,29 +252,64 @@ extension WeatherMainView {
         .formStyle(.grouped)
     }
 
+    // MARK: - Location Map
+    @ViewBuilder
+    var locationMap: some View {
+        @State var region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: coordLocation.lat,
+                longitude: coordLocation.lon
+            ),
+            span: MKCoordinateSpan(
+                latitudeDelta: 0.3,
+                longitudeDelta: 0.3
+            )
+        )
+
+        ZStack {
+            Map(coordinateRegion: $region)
+                .disabled(true)
+                .frame(minHeight: 500)
+            ZStack {
+                Circle()
+                    .foregroundColor(.blue)
+                Text(weatherForecast.current.temp.toInt().toString())
+                    .font(.system(size: 14))
+                    .foregroundColor(.white)
+                    .bold()
+            }
+            .frame(width: 30, height: 30)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .cornerRadius(5)
+    }
+
     // MARK: - The weather detail Views
     @ViewBuilder
     var weatherDetailViews: some View {
-        VStack {
-            HStack(spacing: 10) {
-                feelsLike
-                    .help("Shows what the current temperature feels like.")
-                humidity
-                    .help("Shows the current humidity.")
-                visibility
-                    .help("Shows the current visibility (in km).")
-                uvi
-                    .help("A gradient that shows the UV Index for this hour.")
-                if weatherForecast.current.precipitation != 0 {
-                    rainfall
-                        .help("Shows the rainfall.")
-                }
-
-                moonPhase
+        HStack(spacing: 0) {
+            feelsLike
+                .help("Shows what the current temperature feels like.")
+            Spacer()
+            humidity
+                .help("Shows the current humidity.")
+            Spacer()
+            visibility
+                .help("Shows the current visibility (in km).")
+            Spacer()
+            uvi
+                .help("A gradient that shows the UV Index for this hour.")
+            if weatherForecast.current.precipitation != 0 {
+                Spacer()
+                rainfall
+                    .help("Shows the rainfall.")
             }
-
-            Text("Weather for \(weatherForecast.address)")
-                .font(.system(.footnote))
+            Spacer()
+            moonPhase
+                .help("Current moon phase")
         }
+
+        Text("Weather for \(weatherForecast.address)")
+            .font(.system(.footnote))
     }
 }
