@@ -27,26 +27,25 @@ struct WeatherMainView: View {
         topView
 
         ScrollView(.vertical) {
+            if !weatherForecast.weatherData.alerts.isEmpty {
+                weatherAlerts
+            }
+
             Form {
-                if !weatherForecast.weatherData.alerts.isEmpty {
-                    weatherAlerts
-                }
                 if weatherForecast.weatherData.precipitationInNextHour {
                     minutelyPrecipitation
                 }
             }
             .formStyle(.grouped)
 
-            VStack(spacing: 0) {
-                Form {
-                    hourlyForecast
-                }
-                .formStyle(.grouped)
-                Form {
-                    days
-                }
-                .formStyle(.grouped)
+            Form {
+                hourlyForecast
             }
+            .formStyle(.grouped)
+            Form {
+                days
+            }
+            .formStyle(.grouped)
 
             Form {
                 locationMap
