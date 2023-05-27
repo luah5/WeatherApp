@@ -88,7 +88,7 @@ extension WeatherMainView {
                         .split(separator: ",")
                 )
 
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(day.weatherHours, id: \.time) { hour in
                             HourItemView(weatherHour: hour, first: false)

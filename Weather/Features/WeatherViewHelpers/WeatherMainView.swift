@@ -31,26 +31,23 @@ struct WeatherMainView: View {
                 weatherAlerts
             }
 
-            Form {
-                if weatherForecast.weatherData.precipitationInNextHour {
+            if weatherForecast.weatherData.precipitationInNextHour {
+                VForm {
                     minutelyPrecipitation
                 }
             }
-            .formStyle(.grouped)
 
-            Form {
+            VForm {
                 hourlyForecast
             }
-            .formStyle(.grouped)
-            Form {
+
+            VForm {
                 days
             }
-            .formStyle(.grouped)
 
-            Form {
+            VForm {
                 locationMap
             }
-            .formStyle(.grouped)
 
             weatherDetailViews
         }

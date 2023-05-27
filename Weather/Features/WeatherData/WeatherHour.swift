@@ -10,21 +10,9 @@ import SwiftyJSON
 
 /// A weather hour contained by a WeatherDay
 struct WeatherHour {
-    enum MoonPhase: String {
-        case new = "New Moon"
-        case waxingCrescent = "Waxing Crescent"
-        case firstQuarter = "First Quarter"
-        case waxingGibous = "Waxing Gibous"
-        case full = "Full Moon"
-        case waningGibous = "Waning Gibous"
-        case lastQuarter = "Last Quarter"
-        case waningCrescent = "Waning Crescent"
-    }
-
     var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
-    var precipitation: Float, chanceOfRain: Int, converted: Bool, moonPhase: MoonPhase
-    var windDegInt: Int
+    var precipitation: Float, chanceOfRain: Int, converted: Bool, windDegInt: Int
 
     init(json: JSON, isConverted: Bool, timezoneOffset: Int = 0) {
         converted = isConverted
@@ -50,25 +38,6 @@ struct WeatherHour {
         precipitation = 0
         if json["rain"].exists() {
             precipitation = Float(json["rain"]["1h"].stringValue) ?? 0
-        }
-
-        let moonPhaseNum: Float = Float(json["moon_phase"].stringValue) ?? 0
-        if moonPhaseNum == 0 || moonPhaseNum == 1 {
-            moonPhase = .new
-        } else if moonPhaseNum < 0.25 {
-            moonPhase = .waxingCrescent
-        } else if moonPhaseNum == 0.25 {
-            moonPhase = .firstQuarter
-        } else if moonPhaseNum < 0.5 {
-            moonPhase = .waningGibous
-        } else if moonPhaseNum == 0.5 {
-            moonPhase = .full
-        } else if moonPhaseNum < 0.75 {
-            moonPhase = .waningGibous
-        } else if moonPhaseNum == 0.75 {
-            moonPhase = .lastQuarter
-        } else {
-            moonPhase = .waningCrescent
         }
     }
 }

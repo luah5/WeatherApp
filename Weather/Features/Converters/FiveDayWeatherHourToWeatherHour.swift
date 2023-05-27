@@ -9,7 +9,7 @@ import Foundation
 import SwiftyJSON
 
 func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
-    var weatherHour: WeatherHour = try WeatherHour(
+    var weatherHour: WeatherHour = WeatherHour(
         json: JSON(
             parseJSON: """
 {

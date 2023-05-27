@@ -11,18 +11,16 @@ import SwiftUI
 struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherView.init()
+            WeatherView()
                 .presentedWindowToolbarStyle(
                     .unifiedCompact(
                         showsTitle: false
                     )
                 )
-            /*
                 .background(
                     Image("Clouds")
                         .scaledToFit()
                 )
-            */
         }
 
         Settings {

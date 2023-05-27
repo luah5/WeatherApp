@@ -73,7 +73,13 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 5
-                            ).foregroundColor(Color.secondary)
+                            )
+                            .foregroundColor(
+                                Color(
+                                    nsColor: NSColor.textColor
+                                )
+                            )
+                            .colorInvert()
                         )
                     }
                     .buttonStyle(.plain)

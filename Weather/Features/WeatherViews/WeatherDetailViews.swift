@@ -24,7 +24,7 @@ extension WeatherMainView {
     // MARK: - Humidity View
     var humidity: some View {
         VStack {
-            Form {
+            VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "humidity")
                         .controlSize(.small)
@@ -40,14 +40,13 @@ extension WeatherMainView {
                 Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
                     .font(.system(.footnote))
             }
-            .formStyle(.grouped)
         }
     }
 
     // MARK: - Feels Like View
     var feelsLike: some View {
         VStack {
-            Form {
+            VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "thermometer.medium")
                         .controlSize(.small)
@@ -59,14 +58,13 @@ extension WeatherMainView {
                 Text("\(weatherForecast.current.feelsLike.toInt())º")
                     .font(.system(.title))
             }
-            .formStyle(.grouped)
         }
     }
 
     // MARK: - Visibility View
     var visibility: some View {
         VStack {
-            Form {
+            VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "eye")
                         .controlSize(.small)
@@ -78,14 +76,13 @@ extension WeatherMainView {
                 Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.title))
             }
-            .formStyle(.grouped)
         }
     }
 
     // MARK: - UV Index View
     var uvi: some View {
         VStack {
-            Form {
+            VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "sun.max.fill")
                         .controlSize(.small)
@@ -135,13 +132,12 @@ extension WeatherMainView {
                 }
                 .frame(width: 200, height: 5)
             }
-            .formStyle(.grouped)
         }
     }
 
     // MARK: - Sun Position View
     var sunPosition: some View {
-        Form {
+        VForm {
             VStack {
                 ZStack {
                     SineLine()
@@ -157,12 +153,11 @@ extension WeatherMainView {
                 }
             }
         }
-        .formStyle(.grouped)
     }
 
     // MARK: - Rainfall View
     var rainfall: some View {
-        Form {
+        VForm {
             HStack(spacing: 5) {
                 Image(systemName: "drop.fill")
                     .controlSize(.small)
@@ -182,12 +177,11 @@ extension WeatherMainView {
 """)
             .font(.system(.footnote))
         }
-        .formStyle(.grouped)
     }
 
     // MARK: - Moon Phase View
     var moonPhase: some View {
-        Form {
+        VForm {
             HStack(spacing: 5) {
                 Image(systemName: "moon.fill")
                     .foregroundColor(.secondary)
@@ -249,7 +243,6 @@ extension WeatherMainView {
                     .font(.system(.footnote))
             }
         }
-        .formStyle(.grouped)
     }
 
     // MARK: - Location Map

@@ -13,7 +13,7 @@ struct DataSave {
 
     init() {
         weatherMainViews = []
-        coordinateLocations = .init(fromString: "")
+        coordinateLocations = Locations(fromString: "")
 
         if UserDefaults.standard.string(forKey: "locations") == nil {
             coordinateLocations.coordinates = [
@@ -33,7 +33,9 @@ struct DataSave {
             selection = Int(UserDefaults.standard.string(forKey: "location_selection")!) ?? 0
         }
 
-        coordinateLocations = .init(fromString: UserDefaults.standard.string(forKey: "locations")!)
+        coordinateLocations = Locations(
+            fromString: UserDefaults.standard.string(forKey: "locations")!
+        )
 
         for location in coordinateLocations.coordinates {
             weatherMainViews.append(
