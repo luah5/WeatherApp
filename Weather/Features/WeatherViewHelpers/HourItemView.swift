@@ -35,7 +35,8 @@ struct HourItemView: View {
                     Text(split[split.count - 1])
                         .padding(.top)
                     hour.weather.icon.image
-                        .scaledToFit()
+                        .scaledToFill()
+                        .controlSize(.large)
                         .frame(width: 15, height: 15)
 
                     Spacer()

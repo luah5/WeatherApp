@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "shot_5-removebg-preview.png",
+      "filename" : "rain.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "shot_5-removebg-preview 1.png",
+      "filename" : "rain 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "shot_5-removebg-preview 2.png",
+      "filename" : "rain 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

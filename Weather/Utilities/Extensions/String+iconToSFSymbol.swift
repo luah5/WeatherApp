@@ -26,13 +26,13 @@ extension String {
         } else if self == "09d" || self == "09n" {
             name = "Cloud and rain"
         } else if self == "10d" {
-            name = "cloud.sun.rain.fill"
+            name = "Rain cloud and Sun"
         } else if self == "10n" {
-            name = "cloud.moon.rain.fill"
+            name = "Rain cloud and Moon"
         } else if self == "13d" || self == "13n" {
             name = "Snow"
         } else if self == "50d" || self == "50n" {
-            name = "cloud.fog.fill"
+            name = "Cloud"
         }
 
         return IconImage(image: Image(name).resizable())

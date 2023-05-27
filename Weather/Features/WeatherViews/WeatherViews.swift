@@ -169,8 +169,9 @@ Ending: \(alert.endTime.toTimestamp2())
                 .help("The day of the forecast.")
 
             day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
-                .scaledToFit()
-                .frame(width: 20, height: 20)
+                .scaledToFill()
+                .controlSize(.large)
+                .frame(width: 25, height: 25)
 
             if day.weatherHours[
                 Int(day.weatherHours.count) / 2
