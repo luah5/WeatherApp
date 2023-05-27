@@ -12,8 +12,7 @@ struct HourItemView: View {
     var hour: WeatherHour
     var isFirst: Bool
 
-    @State
-    private var presented: Bool = false
+    @State private var presented: Bool = false
 
     init(weatherHour: WeatherHour, first: Bool) {
         hour = weatherHour
@@ -37,7 +36,7 @@ struct HourItemView: View {
                     hour.weather.icon.image
                         .scaledToFill()
                         .controlSize(.large)
-                        .frame(width: 15, height: 15)
+                        .frame(width: 20, height: 20)
 
                     Spacer()
 

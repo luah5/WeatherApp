@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A struct that holds an array of Locations, can load locations from an encoded string
 struct Locations {
     var coordinates: [Location]
 

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-/// Extends String so that an openweathermap.com icon can be converted to the apple-native SF Symbol.
+/// Extends String so that an openweathermap.com icon can be converted to a custom icon
 extension String {
     func iconToSFSymbol() -> IconImage {
         var name: String = "Snow"

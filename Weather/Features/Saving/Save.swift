@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A structure to save data between sessions
 struct DataSave {
     var coordinateLocations: Locations, weatherMainViews: [WeatherMainView], selection: Int
 

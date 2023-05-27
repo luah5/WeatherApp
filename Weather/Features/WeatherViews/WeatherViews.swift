@@ -94,7 +94,6 @@ extension WeatherMainView {
                             HourItemView(weatherHour: hour, first: false)
                         }
                     }
-                    .frame(alignment: .center)
                 }
             }
         }

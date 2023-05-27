@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// Creates a sine line
 struct SineLine: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()

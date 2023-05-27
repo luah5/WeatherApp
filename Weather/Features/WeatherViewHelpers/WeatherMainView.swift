@@ -9,6 +9,7 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
+/// The weather view that is shown in the main view
 struct WeatherMainView: View {
     var coordLocation: Location
     var weatherForecast: WeatherForecast
