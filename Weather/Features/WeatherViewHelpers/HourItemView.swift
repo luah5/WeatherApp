@@ -36,7 +36,7 @@ struct HourItemView: View {
                     hour.weather.icon.image
                         .scaledToFill()
                         .controlSize(.large)
-                        .frame(width: 20, height: 20)
+                        .frame(width: 30, height: 30)
 
                     Spacer()
 
@@ -82,6 +82,6 @@ Wind gust: **\(hour.windGust.removeZeros()) km/h**
             .formStyle(.grouped)
             .frame(width: 250, height: 400)
         }
-        .frame(width: 50, height: 60)
+        .frame(width: 50, height: 80)
     }
 }
