@@ -21,6 +21,7 @@ struct WeatherDayDaily {
     }
 
     var weather: WeatherDescription, dewPoint: Float, humidity: Int, chanceOfRain: Float
+    var temperatureDaily: TemperatureDaily, feelsLikeDaily: FeelsLikeDaily
     var windSpeed: Float, windGust: Float, windDirection: Int
     var moonPhase: MoonPhase, moonrise: Int, moonset: Int
     var sunrise: Int, sunset: Int
@@ -32,6 +33,9 @@ struct WeatherDayDaily {
         dewPoint = Float(json["dew_point"].stringValue) ?? 0
         humidity = Int(json["humidity"].stringValue) ?? 0
         chanceOfRain = Float(json["pop"].stringValue) ?? 0
+
+        temperatureDaily = TemperatureDaily(json: json["temp"])
+        feelsLikeDaily = FeelsLikeDaily(json: json["feels_like"])
 
         windSpeed = Float(json["wind_speed"].stringValue) ?? 0
         windGust = Float(json["wind_gust"].stringValue) ?? 0

@@ -197,47 +197,47 @@ extension WeatherMainView {
                     .foregroundColor(.secondary)
             }
 
-            Text(weatherForecast.current.moonPhase.rawValue)
+            Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
                 .font(.system(.title2))
 
-            if weatherForecast.current.moonPhase == .new {
+            if weatherForecast.today.weatherDayDaily.moonPhase == .new {
                 Image(systemName: "moonphase.new.moon")
                     .resizable()
                     .scaledToFit()
                     .imageScale(.small)
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .waxingCrescent {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
                 Image(systemName: "moonphase.waxing.crescent")
                     .resizable()
                     .scaledToFit()
                     .imageScale(.small)
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .firstQuarter {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .firstQuarter {
                 Image(systemName: "moonphase.first.quarter")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .waxingGibous {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingGibous {
                 Image(systemName: "moonphase.waxing.gibbous")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .full {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .full {
                 Image(systemName: "moonphase.full.moon")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .waningGibous {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningGibous {
                 Image(systemName: "moonphase.waning.gibbous")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .lastQuarter {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .lastQuarter {
                 Image(systemName: "moonphase.last.quarter")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.current.moonPhase == .waningCrescent {
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningCrescent {
                 Image(systemName: "moonphase.waning.crescent")
                     .resizable()
                     .scaledToFit()

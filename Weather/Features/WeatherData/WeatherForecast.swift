@@ -53,6 +53,7 @@ struct WeatherForecast {
                     weatherDays.append(
                         WeatherDay(
                             weatherHours: otherDayHours,
+                            weatherDay: weatherData.days[day],
                             isConverted: currentHour.converted
                         )
                     )
@@ -76,6 +77,7 @@ struct WeatherForecast {
         /// Create the WeatherDay( ... ) object
         self.today = WeatherDay(
             weatherHours: todayWeatherHours,
+            weatherDay: weatherData.days.first!,
             isConverted: false
         )
     }

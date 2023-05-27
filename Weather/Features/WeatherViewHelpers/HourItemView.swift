@@ -28,7 +28,7 @@ struct HourItemView: View {
         } label: {
             ZStack {
                 Rectangle()
-                    .frame(width: 50, height: 60)
+                    .frame(width: 50, height: 80)
                     .opacity(0.0000000000001)
                 VStack {
                     Text(split[split.count - 1])
@@ -68,19 +68,18 @@ Wind speed: **\(hour.windSpeed.removeZeros()) km/h**
 Wind gust: **\(hour.windGust.removeZeros()) km/h**
 """)
 
-                if hour.converted {
-                    Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
-                    Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
-                } else {
-                    Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                if hour.chanceOfRain < 10 && hour.chanceOfRain != 0 {
+                    Text("Chance of rain: **\(hour.chanceOfRain)%**")
                 }
 
-                if hour.chanceOfRain < 10 {
-                    Text("Chance of rain: **\(hour.chanceOfRain)%**")
+                if hour.converted && hour.precipitation != 0 {
+                    Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                    Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
+                } else if hour.precipitation != 0 {
+                    Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
                 }
             }
             .formStyle(.grouped)
-            .frame(width: 250, height: 400)
         }
         .frame(width: 50, height: 80)
     }
