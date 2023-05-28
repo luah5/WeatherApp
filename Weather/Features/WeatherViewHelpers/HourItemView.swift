@@ -22,7 +22,6 @@ struct HourItemView: View {
     var body: some View {
         let split: [String.SubSequence] = hour.time.toTimestamp().split(separator: " ")
 
-        Divider()
         Button {
             presented.toggle()
         } label: {
@@ -54,7 +53,7 @@ struct HourItemView: View {
         }
         .buttonStyle(.plain)
         .popover(isPresented: $presented) {
-            Form {
+            LazyVStack(alignment: .leading, spacing: 20) {
                 Text("\(hour.weather.description.capitalized)")
                 Text("Air pressure: **\(hour.pressure)**")
                 Text("Humidity: **\(hour.humidity)%**")
@@ -79,7 +78,7 @@ Wind gust: **\(hour.windGust.removeZeros()) km/h**
                     Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
                 }
             }
-            .formStyle(.grouped)
+            .frame(width: 200, height: 300)
         }
         .frame(width: 50, height: 80)
     }

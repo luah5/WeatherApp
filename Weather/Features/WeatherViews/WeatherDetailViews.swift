@@ -91,7 +91,7 @@ extension WeatherMainView {
                         .font(.system(.footnote))
                         .foregroundColor(.secondary)
                 }
-                VStack {
+                VStack(alignment: .leading) {
                     Text("\(weatherForecast.current.uvi)")
                         .font(.system(.title))
                         .padding(.trailing)

@@ -10,9 +10,8 @@ import SwiftUI
 /// The struct for viewing settings.
 struct SettingsView: View {
     var body: some View {
-        Form {
+        VForm {
             Text("Not implemented")
         }
-        .formStyle(.grouped)
     }
 }

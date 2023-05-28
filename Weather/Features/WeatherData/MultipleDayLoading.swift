@@ -12,7 +12,6 @@ import CoreLocation
 import SwiftyJSON
 
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
-let location: String = "lat=51.49900424070662&lon=-0.25151805030659496"
 let units: String = "&units=metric"
 
 /// Constructs the URL for getting weather data.
@@ -49,13 +48,13 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
     let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
     let latAndLon: String = location.urlVersion
 
-    guard let url = URL(string: constructURL(url, latAndLon)) else {
+    guard let URL = URL(string: constructURL(url, latAndLon)) else {
         throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
         fatalError()
     }
 
     do {
-        let contents: String = try String(contentsOf: url, encoding: .ascii)
+        let contents: String = try String(contentsOf: URL, encoding: .ascii)
 
         return WeatherData(json: JSON(parseJSON: contents))
     } catch {

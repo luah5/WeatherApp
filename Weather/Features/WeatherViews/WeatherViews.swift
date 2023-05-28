@@ -33,7 +33,7 @@ extension WeatherMainView {
 
     @ViewBuilder
     var minutelyPrecipitation: some View {
-        Form {
+        VForm {
             Text("Rain forecast")
                 .font(.system(.title2))
 
@@ -101,7 +101,7 @@ extension WeatherMainView {
 
     var weatherAlerts: some View {
         ForEach(weatherForecast.weatherData.alerts, id: \.description) { alert in
-            Form {
+            VForm {
                 Group {
                     HStack(spacing: 5) {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -124,7 +124,6 @@ Ending: \(alert.endTime.toTimestamp2())
                         .foregroundColor(.secondary)
                 }
             }
-            .formStyle(.grouped)
         }
     }
 

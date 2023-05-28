@@ -49,7 +49,7 @@ struct WeatherDayDaily {
         } else if moonPhaseNum == 0.25 {
             moonPhase = .firstQuarter
         } else if moonPhaseNum < 0.5 {
-            moonPhase = .waningGibous
+            moonPhase = .waxingGibous
         } else if moonPhaseNum == 0.5 {
             moonPhase = .full
         } else if moonPhaseNum < 0.75 {

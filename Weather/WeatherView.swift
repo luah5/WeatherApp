@@ -120,7 +120,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Map(coordinateRegion: $region)
 
                     Button {
-                        sheetIsPresented.toggle()
+                        sheetIsPresented = false
 
                         dataSave.coordinateLocations.coordinates.append(
                             Location(
@@ -134,18 +134,20 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                             )
                         )
 
-                        dataSave.weatherMainViews.append(
-                            WeatherMainView(
-                                location: dataSave.coordinateLocations.coordinates.last!
-                            )
-                        )
-
                         UserDefaults.standard.setValue(
                             dataSave.coordinateLocations.encode(),
                             forKey: "locations"
                         )
 
-                        dataSave.selection += 1
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            dataSave.weatherMainViews.append(
+                                WeatherMainView(
+                                    location: dataSave.coordinateLocations.coordinates.last!
+                                )
+                            )
+
+                            dataSave.selection += 1
+                        }
                     } label: {
                         Image(systemName: "mappin")
                             .scaledToFill()
@@ -184,5 +186,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .disabled(dataSave.weatherMainViews.count == 1)
         }
         .navigationSplitViewColumnWidth(215)
+        .navigationTitle("")
+        .toolbarBackground(.white.opacity(0), for: .automatic)
     }
 }
