@@ -14,12 +14,10 @@ struct WeatherForecast {
 
     init(coordinateLocation: Location) {
         /// Get the weather data
-        weatherData = getHourlyWeatherData(location: coordinateLocation)
-        address = coordinateLocation.locationString
+        weatherData = getHourlyWeatherData(location: coordinateLocation); address = coordinateLocation.locationString
         weatherMinutes = weatherData.minutes
 
         var weatherHours: [WeatherHour] = weatherData.hours
-
         let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData(location: coordinateLocation)
 
         /// Loops through the FiveDayWeatherHours and appends it to the weatherHours array by converting
@@ -27,12 +25,14 @@ struct WeatherForecast {
             weatherHours.append(toWeatherHour(fiveDayWeatherHour: hour))
         }
 
+        print(weatherHours[1].time
+            .toTimestamp())
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
-            .split(separator: " ")[0])!
+            .split(separator: " ")[1]) ?? 30
         var day: Int = 0
 
-        /// Intialize the WeatherHour arrays
+        /// Initialize the WeatherHour arrays
         var otherDayHours: [WeatherHour] = [], todayWeatherHours: [WeatherHour] = []
         precipitationInNext24H = 0
 
@@ -46,7 +46,7 @@ struct WeatherForecast {
             let currentHour = weatherHours[index]
             let currentDay: Int = Int(
                 currentHour.time.toTimestamp()
-                    .split(separator: " ")[0])!
+                    .split(separator: " ")[0]) ?? 26
 
             if currentDay != lastDay {
                 if !(day == 0) && !otherDayHours.isEmpty {

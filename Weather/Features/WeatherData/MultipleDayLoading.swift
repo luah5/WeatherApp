@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import AppKit
 import CoreLocation
 import SwiftyJSON
 
@@ -20,6 +19,7 @@ func constructURL(_ baseURL: String, _ location: String) -> String {
     return baseURL + location + apiKey + units
 }
 
+/*
 /// Throws an NSAlert with specified text and severity.
 func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     let alert: NSAlert = NSAlert()
@@ -28,6 +28,7 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.addButton(withTitle: "Ok")
     alert.runModal()
 }
+*/
 
 /// Gets coordinates from the specified address, if it doesn't exist, will return 0, 0.
 func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
@@ -50,7 +51,7 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
     let latAndLon: String = location.urlVersion
 
     guard let url = URL(string: constructURL(url, latAndLon)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
+        // throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
         fatalError()
     }
 
@@ -59,7 +60,7 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
 
         return WeatherData(json: JSON(parseJSON: contents))
     } catch {
-        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
+        // throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError()
     }
 }
@@ -72,7 +73,7 @@ func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
     let latAndLon: String = location.urlVersion
 
     guard let URL = URL(string: constructURL(url, latAndLon)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
+        // throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
         fatalError()
     }
 
@@ -87,7 +88,7 @@ func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
 
         return hours
     } catch {
-        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
+        // throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
         fatalError("Failed to gather weather data")
     }
 }

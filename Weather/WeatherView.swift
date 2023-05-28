@@ -74,11 +74,14 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                             RoundedRectangle(
                                 cornerRadius: 5
                             )
+                            /*
                             .foregroundColor(
                                 Color(
                                     nsColor: NSColor.textColor
                                 )
                             )
+                            */
+                                .foregroundColor(Color.white)
                             .colorInvert()
                         )
                     }
@@ -184,5 +187,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             .disabled(dataSave.weatherMainViews.count == 1)
         }
         .navigationSplitViewColumnWidth(215)
+        // .toolbarBackground(.white.opacity(0), for: .windowToolbar)
+        .navigationTitle("")
     }
 }

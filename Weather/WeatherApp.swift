@@ -12,19 +12,16 @@ struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             WeatherView()
+                /*
                 .presentedWindowToolbarStyle(
                     .unifiedCompact(
                         showsTitle: false
                     )
                 )
-            /*
-                .background(
-                    Image("Clouds")
-                        .scaledToFit()
-                )
-            */
+                */
         }
 
+        /*
         Settings {
             SettingsView()
                 .frame(width: 600, height: 600)
@@ -33,5 +30,6 @@ struct WeatherApp: App {
                     )
                 )
         }
+        */
     }
 }
