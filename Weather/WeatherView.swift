@@ -142,13 +142,11 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                                 )
                             }
 
-                            DispatchQueue.global(qos: .userInteractive).async {
-                                dataSave.weatherMainViews.append(
-                                    WeatherMainView(
-                                        location: dataSave.coordinateLocations.coordinates.last!
-                                    )
+                            dataSave.weatherMainViews.append(
+                                WeatherMainView(
+                                    location: dataSave.coordinateLocations.coordinates.last!
                                 )
-                            }
+                            )
 
                             dataSave.selection += 1
                         }
