@@ -39,7 +39,10 @@ extension WeatherMainView {
 
                 Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
                     .font(.system(.footnote))
+
+                Spacer()
             }
+            .frame(height: height)
         }
     }
 
@@ -57,7 +60,10 @@ extension WeatherMainView {
                 }
                 Text("\(weatherForecast.current.feelsLike.toInt())º")
                     .font(.system(.title))
+
+                Spacer()
             }
+            .frame(height: height)
         }
     }
 
@@ -75,7 +81,10 @@ extension WeatherMainView {
                 }
                 Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.title))
+
+                Spacer()
             }
+            .frame(height: height)
         }
     }
 
@@ -131,7 +140,9 @@ extension WeatherMainView {
                     }
                 }
                 .frame(width: 200, height: 5)
+                Spacer()
             }
+            .frame(height: height)
         }
     }
 
@@ -157,90 +168,94 @@ extension WeatherMainView {
 
     // MARK: - Rainfall View
     var rainfall: some View {
-        VForm {
-            HStack(spacing: 5) {
-                Image(systemName: "drop.fill")
-                    .controlSize(.small)
-                    .foregroundColor(.secondary)
-                Text("RAINFALL")
-                    .font(.system(.footnote))
-                    .foregroundColor(.secondary)
-            }
+        VStack {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "drop.fill")
+                        .controlSize(.small)
+                        .foregroundColor(.secondary)
+                    Text("RAINFALL")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
 
-            Text("""
+                Text("""
 \(weatherForecast.current.precipitation.removeZeros()) mm in the next hour
 """)
-            .font(.system(.title2))
+                .font(.system(.title2))
 
-            Text("""
+                Text("""
 \(weatherForecast.precipitationInNext24H.removeZeros()) mm expected in the next 24h
 """)
-            .font(.system(.footnote))
+                .font(.system(.footnote))
+            }
         }
     }
 
     // MARK: - Moon Phase View
     var moonPhase: some View {
-        VForm {
-            HStack(spacing: 5) {
-                Image(systemName: "moon.fill")
-                    .foregroundColor(.secondary)
+        VStack {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "moon.fill")
+                        .foregroundColor(.secondary)
 
-                Text("MOON PHASE")
-                    .font(.system(.footnote))
-                    .foregroundColor(.secondary)
-            }
+                    Text("MOON PHASE")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
 
-            Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
-                .font(.system(.title2))
+                Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
+                    .font(.system(.title2))
 
-            if weatherForecast.today.weatherDayDaily.moonPhase == .new {
-                Image(systemName: "moonphase.new.moon")
-                    .resizable()
-                    .scaledToFit()
-                    .imageScale(.small)
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
-                Image(systemName: "moonphase.waxing.crescent")
-                    .resizable()
-                    .scaledToFit()
-                    .imageScale(.small)
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .firstQuarter {
-                Image(systemName: "moonphase.first.quarter")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingGibous {
-                Image(systemName: "moonphase.waxing.gibbous")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .full {
-                Image(systemName: "moonphase.full.moon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningGibous {
-                Image(systemName: "moonphase.waning.gibbous")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .lastQuarter {
-                Image(systemName: "moonphase.last.quarter")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningCrescent {
-                Image(systemName: "moonphase.waning.crescent")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-            }
+                if weatherForecast.today.weatherDayDaily.moonPhase == .new {
+                    Image(systemName: "moonphase.new.moon")
+                        .resizable()
+                        .scaledToFit()
+                        .imageScale(.small)
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
+                    Image(systemName: "moonphase.waxing.crescent")
+                        .resizable()
+                        .scaledToFit()
+                        .imageScale(.small)
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .firstQuarter {
+                    Image(systemName: "moonphase.first.quarter")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingGibous {
+                    Image(systemName: "moonphase.waxing.gibbous")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .full {
+                    Image(systemName: "moonphase.full.moon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningGibous {
+                    Image(systemName: "moonphase.waning.gibbous")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .lastQuarter {
+                    Image(systemName: "moonphase.last.quarter")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningCrescent {
+                    Image(systemName: "moonphase.waning.crescent")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .center)
+                }
 
-            if weatherForecast.current.clouds >= 75 {
-                Text("The moon is currently obscured due to high cloud coverage.")
-                    .font(.system(.footnote))
+                if weatherForecast.current.clouds >= 75 {
+                    Text("The moon is currently obscured due to high cloud coverage.")
+                        .font(.system(.footnote))
+                }
             }
         }
     }
@@ -280,29 +295,31 @@ extension WeatherMainView {
     // MARK: - The weather detail Views
     @ViewBuilder
     var weatherDetailViews: some View {
-        HStack(spacing: 0) {
-            feelsLike
-                .help("Shows what the current temperature feels like.")
-            Spacer()
-            humidity
-                .help("Shows the current humidity.")
-            Spacer()
-            visibility
-                .help("Shows the current visibility (in km).")
-            Spacer()
-            uvi
-                .help("A gradient that shows the UV Index for this hour.")
-            if weatherForecast.current.precipitation != 0 {
+        VStack(spacing: 5) {
+            WeatherDetailHStack {
+                feelsLike
+                    .help("Shows what the current temperature feels like.")
                 Spacer()
-                rainfall
-                    .help("Shows the rainfall.")
+                humidity
+                    .help("Shows the current humidity.")
+                Spacer()
+                visibility
+                    .help("Shows the current visibility (in km).")
+                Spacer()
+                uvi
+                    .help("A gradient that shows the UV Index for this hour.")
+                if weatherForecast.current.precipitation != 0 {
+                    Spacer()
+                    rainfall
+                        .help("Shows the rainfall.")
+                }
+                Spacer()
+                moonPhase
+                    .help("Current moon phase")
             }
-            Spacer()
-            moonPhase
-                .help("Current moon phase")
-        }
 
-        Text("Weather for \(weatherForecast.address)")
-            .font(.system(.footnote))
+            Text("Weather for \(weatherForecast.address)")
+                .font(.system(.footnote))
+        }
     }
 }

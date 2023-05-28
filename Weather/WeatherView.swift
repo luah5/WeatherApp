@@ -107,7 +107,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
             Button {
                 sheetIsPresented.toggle()
             } label: {
-                HStack {
+                HStack(spacing: 5) {
                     Image(systemName: "plus.app")
                         .foregroundColor(.secondary)
                     Text("Add Location")
@@ -176,7 +176,7 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
 
                 dataSave.selection = dataSave.weatherMainViews.count - 1
             } label: {
-                HStack {
+                HStack(spacing: 5) {
                     Image(systemName: "trash")
                     Text("Remove Location")
                 }

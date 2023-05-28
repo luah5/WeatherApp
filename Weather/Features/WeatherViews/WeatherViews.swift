@@ -59,7 +59,7 @@ extension WeatherMainView {
 
     @ViewBuilder
     var hourlyForecast: some View {
-        HStack {
+        HStack(spacing: 5) {
             Image(systemName: "clock")
                 .foregroundColor(.secondary)
             Text("HOURLY FORECAST")
@@ -74,7 +74,7 @@ extension WeatherMainView {
 
     @ViewBuilder
     var days: some View {
-        HStack {
+        HStack(spacing: 5) {
             Image(systemName: "calendar")
                 .foregroundColor(.secondary)
             Text("4-DAY FORECAST")
@@ -152,7 +152,7 @@ Ending: \(alert.endTime.toTimestamp2())
                         width: CGFloat(day.maxTemp - day.minTemp) * 2,
                         height: 5
                     )
-                    .opacity(0.9)
+                    .opacity(0.8)
             }
         }
         .frame(width: 200, height: 5)

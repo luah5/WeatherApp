@@ -13,6 +13,7 @@ import MapKit
 struct WeatherMainView: View {
     var coordLocation: Location
     var weatherForecast: WeatherForecast
+    var height: CGFloat = 150
 
     init(location: Location) {
         coordLocation = location
