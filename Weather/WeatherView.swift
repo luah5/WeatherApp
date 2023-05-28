@@ -96,6 +96,11 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     .multilineTextAlignment(.center)
             } else {
                 dataSave.weatherMainViews[safe: dataSave.selection]
+                    .background(
+                        dataSave.weatherMainViews[
+                            safe: dataSave.selection]!.weatherForecast.current.weather.background.image
+                            .scaledToFill()
+                    )
             }
         }
         .toolbar {

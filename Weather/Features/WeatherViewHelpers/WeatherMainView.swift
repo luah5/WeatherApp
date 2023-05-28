@@ -23,10 +23,16 @@ struct WeatherMainView: View {
     }
 
     var body: some View {
-        Spacer()
-        topView
+        ScrollView(.vertical, showsIndicators: false) {
+            Spacer()
 
-        ScrollView(.vertical) {
+            HStack {
+                Spacer()
+                topView
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+
             if !weatherForecast.weatherData.alerts.isEmpty {
                 weatherAlerts
             }
@@ -51,5 +57,6 @@ struct WeatherMainView: View {
 
             weatherDetailViews
         }
+        .frame(maxWidth: .infinity)
     }
 }
