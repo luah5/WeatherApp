@@ -29,7 +29,7 @@ struct WeatherForecast {
 
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
-            .split(separator: " ")[0])!
+            .split(separator: " ").first!)!
         var day: Int = 0
 
         /// Intialize the WeatherHour arrays
@@ -38,7 +38,7 @@ struct WeatherForecast {
 
         /// For some reason swift will throw "Return from initializer without initializing all stored properties"
         /// The following code is to fix it
-        self.current = weatherHours[0]
+        self.current = weatherHours.first!
         weatherDays = []
 
         /// Loop through the weather hours (excluding the first one)
@@ -46,7 +46,7 @@ struct WeatherForecast {
             let currentHour = weatherHours[index]
             let currentDay: Int = Int(
                 currentHour.time.toTimestamp()
-                    .split(separator: " ")[0])!
+                    .split(separator: " ").first!)!
 
             if currentDay != lastDay {
                 if !(day == 0) && !otherDayHours.isEmpty {
@@ -67,7 +67,7 @@ struct WeatherForecast {
             if day == 0 {
                 todayWeatherHours.append(weatherHours[index])
                 precipitationInNext24H += Float(
-                    currentHour.precipitation * Float((currentHour.chanceOfRain / 100))
+                    currentHour.precipitation * Float(currentHour.chanceOfRain / 100)
                 )
             } else {
                 otherDayHours.append(weatherHours[index])

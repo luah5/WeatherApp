@@ -122,29 +122,33 @@ H: \(String(location.weatherForecast.today.maxTemp))º L: \(String(location.weat
                     Button {
                         sheetIsPresented = false
 
-                        dataSave.coordinateLocations.coordinates.append(
-                            Location(
-                                location: region.center,
-                                location2: getAddressFromCoordinates(
-                                    location: Location(
-                                        location: region.center,
-                                        location2: "nil"
+                        DispatchQueue.global(qos: .userInteractive).async {
+                            dataSave.coordinateLocations.coordinates.append(
+                                Location(
+                                    location: region.center,
+                                    location2: getAddressFromCoordinates(
+                                        location: Location(
+                                            location: region.center,
+                                            location2: "nil"
+                                        )
                                     )
                                 )
                             )
-                        )
 
-                        UserDefaults.standard.setValue(
-                            dataSave.coordinateLocations.encode(),
-                            forKey: "locations"
-                        )
-
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            dataSave.weatherMainViews.append(
-                                WeatherMainView(
-                                    location: dataSave.coordinateLocations.coordinates.last!
+                            DispatchQueue.global(qos: .utility).async {
+                                UserDefaults.standard.setValue(
+                                    dataSave.coordinateLocations.encode(),
+                                    forKey: "locations"
                                 )
-                            )
+                            }
+
+                            DispatchQueue.global(qos: .userInteractive).async {
+                                dataSave.weatherMainViews.append(
+                                    WeatherMainView(
+                                        location: dataSave.coordinateLocations.coordinates.last!
+                                    )
+                                )
+                            }
 
                             dataSave.selection += 1
                         }

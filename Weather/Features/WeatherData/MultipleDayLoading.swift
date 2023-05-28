@@ -28,20 +28,6 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.runModal()
 }
 
-/// Gets coordinates from the specified address, if it doesn't exist, will return 0, 0.
-func getCoordinateFrom(address: String) -> CLLocationCoordinate2D {
-    let geocoder = CLGeocoder()
-    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-
-    geocoder.geocodeAddressString(address) { placemarks, _ in
-        if placemarks?.first?.location?.coordinate != nil {
-            coordinate = placemarks!.first!.location!.coordinate
-        }
-    }
-
-    return coordinate
-}
-
 @discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location) -> WeatherData {

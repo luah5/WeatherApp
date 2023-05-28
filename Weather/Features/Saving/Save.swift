@@ -34,7 +34,7 @@ struct DataSave {
         }
 
         coordinateLocations = Locations(
-            fromString: UserDefaults.standard.string(forKey: "locations")!
+            fromString: UserDefaults.standard.string(forKey: "locations") ?? "50,50,error"
         )
 
         for location in coordinateLocations.coordinates {

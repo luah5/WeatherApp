@@ -162,7 +162,7 @@ Ending: \(alert.endTime.toTimestamp2())
     @ViewBuilder
     private func dayInfo(day: WeatherDay, timestamp: [String.SubSequence]) -> some View {
         HStack(spacing: 30) {
-            Text(timestamp[0])
+            Text(timestamp.first!)
                 .font(.system(size: 14, weight: .semibold))
                 .help("The day of the forecast.")
 

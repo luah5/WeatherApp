@@ -12,17 +12,14 @@ final class WeatherTests: XCTestCase {
     func testWeatherForecastPerformance() throws {
         let location = Location(
             lat: 51.62,
-            lon: -0.1
+            lon: -0.1,
+            location: "London"
         )
+
         self.measure {
-            /*
             let _: WeatherForecast = WeatherForecast(
                 coordinateLocation: location
             )
-            */
-
-            getThreeHourWeatherData(location: location)
-            getHourlyWeatherData(location: location)
         }
     }
 }
