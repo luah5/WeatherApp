@@ -39,10 +39,7 @@ extension WeatherMainView {
 
                 Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
                     .font(.system(.footnote))
-
-                Spacer()
             }
-            .frame(height: height)
         }
     }
 
@@ -60,10 +57,7 @@ extension WeatherMainView {
                 }
                 Text("\(weatherForecast.current.feelsLike.toInt())º")
                     .font(.system(.title))
-
-                Spacer()
             }
-            .frame(height: height)
         }
     }
 
@@ -81,10 +75,7 @@ extension WeatherMainView {
                 }
                 Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.title))
-
-                Spacer()
             }
-            .frame(height: height)
         }
     }
 
@@ -140,9 +131,7 @@ extension WeatherMainView {
                     }
                 }
                 .frame(width: 200, height: 5)
-                Spacer()
             }
-            .frame(height: height)
         }
     }
 
@@ -292,30 +281,76 @@ extension WeatherMainView {
         .cornerRadius(5)
     }
 
+    var moonForecast: some View {
+        VStack {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "moon.haze.fill")
+                        .foregroundColor(.secondary)
+                    Text("MOON")
+                }
+            }
+        }
+    }
+
+    var wind: some View {
+        VStack {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "wind")
+                        .foregroundColor(.secondary)
+
+                    Text("WIND")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(weatherForecast.current.windSpeed.toInt())km/h")
+                        .font(.system(.largeTitle))
+
+                    Text(degreesToCompassName(weatherForecast.current.windDegInt))
+                        .font(.system(.title2))
+                }
+
+                Text("Gust \(weatherForecast.today.weatherHours.first!.windGust.toInt()) km/h")
+                    .font(.system(.footnote))
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+
     // MARK: - The weather detail Views
     @ViewBuilder
     var weatherDetailViews: some View {
         VStack(spacing: 5) {
             WeatherDetailHStack {
-                feelsLike
-                    .help("Shows what the current temperature feels like.")
-                Spacer()
-                humidity
-                    .help("Shows the current humidity.")
-                Spacer()
-                visibility
-                    .help("Shows the current visibility (in km).")
-                Spacer()
-                uvi
-                    .help("A gradient that shows the UV Index for this hour.")
-                if weatherForecast.current.precipitation != 0 {
+                Group {
+                    feelsLike
+                        .help("Shows what the current temperature feels like.")
                     Spacer()
-                    rainfall
-                        .help("Shows the rainfall.")
+                    humidity
+                        .help("Shows the current humidity.")
+                    Spacer()
+                    visibility
+                        .help("Shows the current visibility (in km).")
+                    Spacer()
+                    uvi
+                        .help("A gradient that shows the UV Index for this hour.")
                 }
-                Spacer()
-                moonPhase
-                    .help("Current moon phase")
+                Group {
+                    if weatherForecast.current.precipitation != 0 {
+                        Spacer()
+                        rainfall
+                            .help("Shows the rainfall.")
+                    }
+                    Spacer()
+                    moonPhase
+                        .help("Current moon phase.")
+                    Spacer()
+                    wind
+                        .help("Current wind information.")
+                }
             }
 
             Text("Weather for \(weatherForecast.address)")

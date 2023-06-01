@@ -9,20 +9,16 @@ import Foundation
 
 let degreesCompass: [String] = [
     "N",
-    "NNE",
     "NE",
-    "ENE",
     "E",
-    "ESE",
     "SE",
-    "SSE",
     "S",
-    "SSW",
     "SW",
-    "WSW",
     "W",
-    "WNW",
     "NW",
-    "NNW",
     "N"
 ]
+
+func degreesToCompassName(_ degrees: Int) -> String {
+    return degreesCompass[degrees / 8]
+}
