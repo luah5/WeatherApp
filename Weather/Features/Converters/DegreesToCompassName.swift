@@ -8,17 +8,17 @@
 import Foundation
 
 let degreesCompass: [String] = [
-    "N",
-    "NE",
-    "E",
-    "SE",
-    "S",
-    "SW",
-    "W",
-    "NW",
-    "N"
+    "North",
+    "Northeast",
+    "East",
+    "Southeast",
+    "South",
+    "Southwest",
+    "West",
+    "Northwest",
+    "North"
 ]
 
 func degreesToCompassName(_ degrees: Int) -> String {
-    return degreesCompass[degrees / 8]
+    return degreesCompass[degrees / 45]
 }

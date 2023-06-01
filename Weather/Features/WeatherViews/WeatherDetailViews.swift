@@ -9,6 +9,7 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
+// swiftlint:disable file_length
 extension WeatherMainView {
     // MARK: - Marker offsets
     func markerOffset(for value: CGFloat, in width: CGFloat) -> CGFloat {
@@ -288,7 +289,91 @@ extension WeatherMainView {
                     Image(systemName: "moon.haze.fill")
                         .foregroundColor(.secondary)
                     Text("MOON")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
                 }
+
+                HStack(spacing: -40) {
+                    VStack(spacing: -100) {
+                        Circle()
+                            .trim(from: 0.5, to: 0.75)
+                            .stroke(.black, lineWidth: 2)
+                            .frame(width: 100, height: 100)
+                        Circle()
+                            .fill(.blue)
+                            .frame(width: 10, height: 10)
+                            .offset(x: -50, y: 50)
+                        Text(weatherForecast.today.weatherDayDaily.moonrise.toTimestamp3())
+                            .offset(x: -50, y: 150)
+                            .bold()
+                    }
+
+                    Image(systemName: "moon.fill")
+                        .offset(y: -40)
+
+                    VStack(spacing: -100) {
+                        Circle()
+                            .trim(from: 0.75, to: 1.0)
+                            .stroke(.black, lineWidth: 2)
+                            .frame(width: 100, height: 100)
+                        Circle()
+                            .fill(.black)
+                            .frame(width: 10, height: 10)
+                            .offset(x: 50, y: 50)
+                        Text(weatherForecast.today.weatherDayDaily.moonset.toTimestamp3())
+                            .offset(x: 50, y: 150)
+                            .bold()
+                    }
+                }
+                .offset(x: 20)
+            }
+        }
+    }
+
+    var sunForecast: some View {
+        VStack {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "sun.max.fill")
+                        .foregroundColor(.secondary)
+                    Text("SUN")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+
+                HStack(spacing: -40) {
+                    VStack(spacing: -100) {
+                        Circle()
+                            .trim(from: 0.5, to: 0.75)
+                            .stroke(.black, lineWidth: 2)
+                            .frame(width: 100, height: 100)
+                        Circle()
+                            .fill(.blue)
+                            .frame(width: 10, height: 10)
+                            .offset(x: -50, y: 50)
+                        Text(weatherForecast.today.weatherDayDaily.sunrise.toTimestamp3())
+                            .offset(x: -50, y: 150)
+                            .bold()
+                    }
+
+                    Image(systemName: "sun.max.fill")
+                        .offset(y: -40)
+
+                    VStack(spacing: -100) {
+                        Circle()
+                            .trim(from: 0.75, to: 1.0)
+                            .stroke(.black, lineWidth: 2)
+                            .frame(width: 100, height: 100)
+                        Circle()
+                            .fill(.black)
+                            .frame(width: 10, height: 10)
+                            .offset(x: 50, y: 50)
+                        Text(weatherForecast.today.weatherDayDaily.sunset.toTimestamp3())
+                            .offset(x: 50, y: 150)
+                            .bold()
+                    }
+                }
+                .offset(x: 20)
             }
         }
     }
@@ -325,32 +410,37 @@ extension WeatherMainView {
     var weatherDetailViews: some View {
         VStack(spacing: 5) {
             WeatherDetailHStack {
-                Group {
-                    feelsLike
-                        .help("Shows what the current temperature feels like.")
+                feelsLike
+                    .help("Shows what the current temperature feels like.")
+                Spacer()
+                humidity
+                    .help("Shows the current humidity.")
+                Spacer()
+                visibility
+                    .help("Shows the current visibility (in km).")
+                Spacer()
+                uvi
+                    .help("A gradient that shows the UV Index for this hour.")
+            }
+
+            WeatherDetailHStack {
+                if weatherForecast.current.precipitation != 0 {
                     Spacer()
-                    humidity
-                        .help("Shows the current humidity.")
-                    Spacer()
-                    visibility
-                        .help("Shows the current visibility (in km).")
-                    Spacer()
-                    uvi
-                        .help("A gradient that shows the UV Index for this hour.")
+                    rainfall
+                        .help("Shows the rainfall.")
                 }
-                Group {
-                    if weatherForecast.current.precipitation != 0 {
-                        Spacer()
-                        rainfall
-                            .help("Shows the rainfall.")
-                    }
-                    Spacer()
-                    moonPhase
-                        .help("Current moon phase.")
-                    Spacer()
-                    wind
-                        .help("Current wind information.")
-                }
+                Spacer()
+                moonPhase
+                    .help("Current moon phase.")
+                Spacer()
+                wind
+                    .help("Current wind information.")
+                Spacer()
+                moonForecast
+                    .help("Moonrise and moonset.")
+                Spacer()
+                sunForecast
+                    .help("Sunrise and sunset.")
             }
 
             Text("Weather for \(weatherForecast.address)")
@@ -358,3 +448,4 @@ extension WeatherMainView {
         }
     }
 }
+// swiftlint:enable file_length
