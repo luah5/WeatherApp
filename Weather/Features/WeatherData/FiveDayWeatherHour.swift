@@ -13,6 +13,7 @@ struct FiveDayWeatherHour {
     var pressure: Int, temp: Float, minTemp: Float, maxTemp: Float, feelsLike: Float, humidity: Int
     var clouds: Int, weather: WeatherDescription, threeHourRain: Float, time: Int, icon: String, mainDesc: String
     var visibility: Int, windGust: Float, windDeg: Int, windSpeed: Float, chanceOfRain: Int, desc: String
+    var threeHourSnow: Float
 
     init(json: JSON) {
         let mainJSON = json["main"]
@@ -32,10 +33,14 @@ struct FiveDayWeatherHour {
         windSpeed = Float(json["wind"]["speed"].stringValue) ?? -100
         chanceOfRain = Int((Float(json["pop"].stringValue) ?? 0) * 100)
 
+        threeHourRain = 0
         if json["rain"].exists() {
             threeHourRain = Float(json["rain"]["3h"].stringValue) ?? -100
-        } else {
-            threeHourRain = 0
+        }
+
+        threeHourSnow = 0
+        if json["snow"].exists() {
+            threeHourSnow = Float(json["snow"]["3h"].stringValue) ?? -100
         }
 
         time = Int(json["dt"].stringValue) ?? 0

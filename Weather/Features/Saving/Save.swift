@@ -37,12 +37,15 @@ struct DataSave {
             fromString: UserDefaults.standard.string(forKey: "locations") ?? "50,50,error"
         )
 
+        var index: Int = 0
         for location in coordinateLocations.coordinates {
             weatherMainViews.append(
                 WeatherMainView(
-                    location: location
+                    location: location,
+                    id: index
                 )
             )
+            index += 1
         }
     }
 }

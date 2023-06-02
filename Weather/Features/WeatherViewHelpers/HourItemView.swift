@@ -10,13 +10,10 @@ import SwiftUI
 /// This view is for showing the hours of every WeatherDay
 struct HourItemView: View {
     var hour: WeatherHour
-    var isFirst: Bool
-
     @State private var presented: Bool = false
 
-    init(weatherHour: WeatherHour, first: Bool) {
+    init(weatherHour: WeatherHour) {
         hour = weatherHour
-        isFirst = first
     }
 
     var body: some View {
@@ -28,7 +25,7 @@ struct HourItemView: View {
             ZStack {
                 Rectangle()
                     .frame(width: 50, height: 80)
-                    .opacity(0.0000000000001)
+                    .opacity(0.00000000000000001)
                 VStack {
                     Text(split[split.count - 1])
                         .padding(.top)
@@ -55,29 +52,41 @@ struct HourItemView: View {
         .popover(isPresented: $presented) {
             ScrollView(.vertical) {
                 VStack(spacing: 20) {
-                    Text("\(hour.weather.description.capitalized)")
-                    Text("Air pressure: **\(hour.pressure)**")
-                    Text("Humidity: **\(hour.humidity)%**")
-                    Text("Visibility: **\(hour.visibility) km**")
-                    Text("Feels Like: **\(hour.feelsLike.toInt())º**")
-                    Text("Cloud coverage: **\(hour.clouds)%**")
-                    Text("""
+                    Text("")
+
+                    Group {
+                        Text("\(hour.weather.description.capitalized)")
+                        Text("Air pressure: **\(hour.pressure)**")
+                        Text("Humidity: **\(hour.humidity)%**")
+                        Text("Visibility: **\(hour.visibility) km**")
+                        Text("Feels Like: **\(hour.feelsLike.toInt())º**")
+                        Text("Cloud coverage: **\(hour.clouds)%**")
+                        Text("""
 Wind speed: **\(hour.windSpeed.removeZeros()) km/h**
 """)
-                    Text("""
+                        Text("""
 Wind gust: **\(hour.windGust.removeZeros()) km/h**
 """)
-
-                    if hour.chanceOfRain < 10 && hour.chanceOfRain != 0 {
-                        Text("Chance of rain: **\(hour.chanceOfRain)%**")
                     }
 
-                    if hour.converted && hour.precipitation != 0 {
-                        Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
-                        Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
-                    } else if hour.precipitation != 0 {
-                        Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                    Group {
+                        if hour.chanceOfRain < 10 && hour.chanceOfRain != 0 {
+                            Text("Chance of rain: **\(hour.chanceOfRain)%**")
+                        }
+
+                        if hour.converted && hour.precipitation != 0 {
+                            Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                            Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
+                        } else if hour.precipitation != 0 {
+                            Text("Precipitation: **\(hour.precipitation.removeZeros()) mm**")
+                        }
+
+                        if hour.snowPrecipitation > 0 {
+                            Text("Snow: **\(hour.snowPrecipitation.removeZeros()) mm**")
+                        }
                     }
+
+                    Text("")
                 }
             }
             .frame(width: 200, height: 300)

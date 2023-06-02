@@ -13,6 +13,8 @@ import MapKit
 /// The main view for viewing the weather
 struct WeatherView: View {
     @State var sheetIsPresented: Bool = false
+    @State var splits: Int = 1
+    @State var index: Int = -1
     @State var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
             latitude: 51.5,
@@ -29,45 +31,17 @@ struct WeatherView: View {
         NavigationSplitView {
             List(selection: $dataSave.selection) {
                 Section {
-                    ForEach(dataSave.weatherMainViews, id: \.id) { item in
-                        NavigationLink {
-                            item
-                                .background(
-                                    item.weatherForecast.current.weather.background.image
-                                        .scaledToFill()
-                                )
-                        } label: {
-                            VStack(spacing: 25) {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(item.weatherForecast.address)
-                                            .fontWeight(.medium)
-                                            .font(.system(.title))
-                                            .help(item.weatherForecast.address)
-                                        Text(item.weatherForecast.current.time.toTimestamp3())
-                                    }
-
-                                    Spacer()
-
-                                    VStack {
-                                        Text(String(item.weatherForecast.current.temp))
-                                            .font(.system(.title))
-                                        Text("""
-H: \(String(item.weatherForecast.today.maxTemp))º L: \(String(item.weatherForecast.today.maxTemp))º
-""")
-                                    }
-                                }
-                            }
-                        }
-                        Divider()
+                    ForEach(dataSave.weatherMainViews, id: \.index) { item in
+                        SidebarItemView(weatherItem: item)
                     }
                 }
             }
         } detail: {
             dataSave.weatherMainViews[dataSave.selection]
                 .background(
-                    dataSave.weatherMainViews[dataSave.selection].weatherForecast.current.weather.background.image
-                    .scaledToFill()
+                    dataSave.weatherMainViews[dataSave.selection]
+                        .weatherForecast.current.weather.background.image
+                        .scaledToFill()
                 )
         }
         .toolbar {

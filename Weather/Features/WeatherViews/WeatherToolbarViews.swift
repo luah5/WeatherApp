@@ -51,7 +51,8 @@ extension WeatherView {
 
                         dataSave.weatherMainViews.append(
                             WeatherMainView(
-                                location: dataSave.coordinateLocations.coordinates.last!
+                                location: dataSave.coordinateLocations.coordinates.last!,
+                                id: dataSave.weatherMainViews.count
                             )
                         )
 
@@ -93,5 +94,11 @@ extension WeatherView {
         .help("Remove selected location")
         .buttonStyle(.bordered)
         .disabled(dataSave.weatherMainViews.count == 1)
+
+        Button {
+            splits += 1
+        } label: {
+            Image(systemName: "square.split.2x1")
+        }
     }
 }

@@ -41,6 +41,7 @@ func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
 
     weatherHour.chanceOfRain = fiveDayWeatherHour.chanceOfRain
     weatherHour.precipitation = fiveDayWeatherHour.threeHourRain
+    weatherHour.snowPrecipitation = fiveDayWeatherHour.threeHourSnow
 
     return weatherHour
 }

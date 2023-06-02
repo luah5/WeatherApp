@@ -65,9 +65,10 @@ extension WeatherMainView {
             Text("HOURLY FORECAST")
                 .foregroundColor(.secondary)
         }
+
         HStack {
             ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
-                HourItemView(weatherHour: hour, first: false)
+                HourItemView(weatherHour: hour)
             }
         }
     }
@@ -80,7 +81,7 @@ extension WeatherMainView {
             Text("4-DAY FORECAST")
                 .foregroundColor(.secondary)
         }
-        ForEach(weatherForecast.weatherDays, id: \.minTemp) { day in
+        ForEach(weatherForecast.weatherDays, id: \.weatherHours.first!.time) { day in
             VStack {
                 dayInfo(
                     day: day,
@@ -90,7 +91,7 @@ extension WeatherMainView {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(day.weatherHours, id: \.time) { hour in
-                            HourItemView(weatherHour: hour, first: false)
+                            HourItemView(weatherHour: hour)
                         }
                     }
                 }

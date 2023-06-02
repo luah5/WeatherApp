@@ -11,17 +11,16 @@ import MapKit
 
 /// The weather view that is shown in the main view
 struct WeatherMainView: View {
-    var coordLocation: Location
-    var weatherForecast: WeatherForecast
+    var coordLocation: Location, index: Int, weatherForecast: WeatherForecast
     var height: CGFloat = 150
-    var id = UUID()
 
-    init(location: Location) {
+    init(location: Location, id: Int) {
         coordLocation = location
 
         weatherForecast = WeatherForecast(
             coordinateLocation: location
         )
+        index = id
     }
 
     var body: some View {

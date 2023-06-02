@@ -56,6 +56,7 @@
 		85E535BF2A22933E00C3093B /* VForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E535BE2A22933E00C3093B /* VForm.swift */; };
 		85E535C12A2318D300C3093B /* String+iconToBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E535C02A2318D300C3093B /* String+iconToBackground.swift */; };
 		85E7420B2A0806C20026C647 /* SineLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7420A2A0806C20026C647 /* SineLine.swift */; };
+		85EB22252A29F50100E7A926 /* SidebarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB22242A29F50100E7A926 /* SidebarItemView.swift */; };
 		85FE6B602A0C17F3003F7F1C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,7 @@
 		85E535BE2A22933E00C3093B /* VForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VForm.swift; sourceTree = "<group>"; };
 		85E535C02A2318D300C3093B /* String+iconToBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iconToBackground.swift"; sourceTree = "<group>"; };
 		85E7420A2A0806C20026C647 /* SineLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineLine.swift; sourceTree = "<group>"; };
+		85EB22242A29F50100E7A926 /* SidebarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItemView.swift; sourceTree = "<group>"; };
 		85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,8 +224,8 @@
 				85CD0C522A102FC800E531FD /* Features */,
 				859AB9E129ED43E8004246A3 /* WeatherApp.swift */,
 				859AB9E329ED43E8004246A3 /* WeatherView.swift */,
-				859AB9E529ED43E9004246A3 /* Assets.xcassets */,
 				859AB9EA29ED43E9004246A3 /* Weather.entitlements */,
+				859AB9E529ED43E9004246A3 /* Assets.xcassets */,
 				859AB9E729ED43E9004246A3 /* Preview Content */,
 				859ABA0C29ED49F8004246A3 /* Helpers.swift */,
 			);
@@ -309,6 +311,7 @@
 		85CD0C542A102FFB00E531FD /* WeatherViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				85EB22242A29F50100E7A926 /* SidebarItemView.swift */,
 				85E7420A2A0806C20026C647 /* SineLine.swift */,
 				85C9E64729F871600025BD42 /* IconImage.swift */,
 				858EA0BF29F9B0FE0021EAAC /* HourItemView.swift */,
@@ -534,6 +537,7 @@
 				854AB8282A23632000F70E8A /* WeatherDetailHStack.swift in Sources */,
 				859B35C329F3C24B00D63031 /* WeatherHour.swift in Sources */,
 				85E535C12A2318D300C3093B /* String+iconToBackground.swift in Sources */,
+				85EB22252A29F50100E7A926 /* SidebarItemView.swift in Sources */,
 				858EA0C629FADDB80021EAAC /* Float+removeZeros.swift in Sources */,
 				858EA0C029F9B0FE0021EAAC /* HourItemView.swift in Sources */,
 				853862D42A29BD9400F4C947 /* WeatherToolbarViews.swift in Sources */,
@@ -717,7 +721,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -730,7 +734,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WorldWideWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -750,7 +754,7 @@
 				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -763,7 +767,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WorldWideWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
