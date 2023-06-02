@@ -21,7 +21,7 @@ extension WeatherMainView {
             Text("\(weatherForecast.current.weather.mainDescription)")
                 .font(.system(.headline, weight: .semibold))
 
-            Text(getTime())
+            Text("\(weatherForecast.current.time.toTimestamp3())")
                 .font(.system(.headline, weight: .semibold))
                 .help("The time the data was taken.")
 

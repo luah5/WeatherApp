@@ -13,6 +13,7 @@ struct WeatherHour {
     var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
     var precipitation: Float, chanceOfRain: Int, converted: Bool, windDegInt: Int
+    var snowPrecipitation: Float
 
     init(json: JSON, isConverted: Bool, timezoneOffset: Int = 0) {
         converted = isConverted
@@ -38,6 +39,11 @@ struct WeatherHour {
         precipitation = 0
         if json["rain"].exists() {
             precipitation = Float(json["rain"]["1h"].stringValue) ?? 0
+        }
+
+        snowPrecipitation = 0
+        if json["snow"].exists() {
+            snowPrecipitation = Float(json["snow"]["1h"].stringValue) ?? 0
         }
     }
 }

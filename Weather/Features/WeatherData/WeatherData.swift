@@ -27,7 +27,8 @@ struct WeatherData {
         hours.append(
             WeatherHour(
                 json: json["current"],
-                isConverted: false
+                isConverted: false,
+                timezoneOffset: timezoneOffset
             )
         )
 
@@ -45,7 +46,8 @@ struct WeatherData {
             hours.append(
                 WeatherHour(
                     json: json["hourly"][index],
-                    isConverted: false
+                    isConverted: false,
+                    timezoneOffset: timezoneOffset
                 )
             )
         }
