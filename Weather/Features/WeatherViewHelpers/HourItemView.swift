@@ -67,11 +67,11 @@ Wind speed: **\(hour.windSpeed.removeZeros()) km/h**
                     Text("""
 Wind gust: **\(hour.windGust.removeZeros()) km/h**
 """)
-                    
+
                     if hour.chanceOfRain < 10 && hour.chanceOfRain != 0 {
                         Text("Chance of rain: **\(hour.chanceOfRain)%**")
                     }
-                    
+
                     if hour.converted && hour.precipitation != 0 {
                         Text("3 hour precipitation: **\(hour.precipitation.removeZeros()) mm**")
                         Text("1 hour precipitation: **\((hour.precipitation / 3).removeZeros()) mm**")
