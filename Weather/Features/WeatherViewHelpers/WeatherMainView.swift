@@ -14,6 +14,7 @@ struct WeatherMainView: View {
     var coordLocation: Location
     var weatherForecast: WeatherForecast
     var height: CGFloat = 150
+    var id = UUID()
 
     init(location: Location) {
         coordLocation = location
@@ -52,7 +53,7 @@ struct WeatherMainView: View {
                 days
             }
 
-            VForm {
+            MapForm {
                 locationMap
             }
 

@@ -17,12 +17,9 @@ struct WeatherApp: App {
                         showsTitle: false
                     )
                 )
-            /*
-                .background(
-                    Image("Clouds")
-                        .scaledToFit()
-                )
-            */
+        }
+        .commands {
+            WACommands()
         }
 
         Settings {

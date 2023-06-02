@@ -445,6 +445,7 @@ extension WeatherMainView {
 
             Text("Weather for \(weatherForecast.address)")
                 .font(.system(.footnote))
+                .bold()
         }
     }
 }

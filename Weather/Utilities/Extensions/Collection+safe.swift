@@ -1,5 +1,5 @@
 //
-//  Collections+safe.swift
+//  Collection+safe.swift
 //  Weather
 //
 //  Created by Raymond Vleeshouwer on 13/05/23.
