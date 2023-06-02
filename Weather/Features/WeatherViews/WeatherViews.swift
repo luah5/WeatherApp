@@ -84,7 +84,7 @@ extension WeatherMainView {
             VStack {
                 dayInfo(
                     day: day,
-                    timestamp: day.weatherHours[1].time.toTimestamp3()
+                    timestamp: day.weatherHours[1].time.toTimestamp4()
                 )
 
                 ScrollView(.horizontal, showsIndicators: false) {

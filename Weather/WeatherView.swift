@@ -64,13 +64,17 @@ H: \(String(item.weatherForecast.today.maxTemp))º L: \(String(item.weatherForec
                 }
             }
         } detail: {
-            Text("No Location")
+            dataSave.weatherMainViews[dataSave.selection]
+                .background(
+                    dataSave.weatherMainViews[dataSave.selection].weatherForecast.current.weather.background.image
+                    .scaledToFill()
+                )
         }
         .toolbar {
             toolbarViews
         }
-        .navigationSplitViewColumnWidth(215)
+        .navigationSplitViewColumnWidth(300)
         .navigationTitle("")
-        .toolbarBackground(.white.opacity(0), for: .automatic)
+        .toolbarBackground(Color.accentColor.opacity(0), for: .windowToolbar)
     }
 }
