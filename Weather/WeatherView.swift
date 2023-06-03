@@ -36,6 +36,14 @@ struct WeatherView: View {
                     }
                 }
             }
+            .background(
+                dataSave.weatherMainViews[dataSave.selection]
+                    .weatherForecast.current.weather.background.image
+                    .scaledToFill()
+                    .opacity(0.3)
+            )
+            .scrollDisabled(true)
+            .scrollDismissesKeyboard(.never)
         } detail: {
             dataSave.weatherMainViews[dataSave.selection]
                 .background(
@@ -46,9 +54,10 @@ struct WeatherView: View {
         }
         .toolbar {
             toolbarViews
+                .background(.opacity(0))
         }
         .navigationSplitViewColumnWidth(300)
         .navigationTitle("")
-        .toolbarBackground(Color.accentColor.opacity(0), for: .windowToolbar)
+        .toolbarBackground(Color.accentColor.opacity(0), for: .automatic)
     }
 }

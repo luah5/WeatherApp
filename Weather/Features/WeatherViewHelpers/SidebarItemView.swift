@@ -9,12 +9,13 @@ import Foundation
 import SwiftUI
 
 struct SidebarItemView: View {
-    var item: WeatherMainView, weatherForecast: WeatherForecast
+    var item: WeatherMainView, weatherForecast: WeatherForecast, weatherDay: WeatherDayDaily
     @State private var dataSave: DataSave = DataSave()
 
     init(weatherItem: WeatherMainView) {
         item = weatherItem
         weatherForecast = item.weatherForecast
+        weatherDay = weatherForecast.today.weatherDayDaily
     }
 
     var body: some View {
@@ -30,21 +31,25 @@ struct SidebarItemView: View {
                     VStack(alignment: .leading) {
                         Text(weatherForecast.address)
                             .fontWeight(.medium)
-                            .font(.system(.title))
+                            .font(.system(.title3))
                             .help(weatherForecast.address)
                         Text(weatherForecast.current.time.toTimestamp3())
+                        Text(weatherForecast.current.weather.description.capitalized)
                     }
 
                     Spacer()
 
                     VStack(alignment: .trailing) {
-                        Text("\(String(weatherForecast.current.temp))º")
-                            .font(.system(.title))
+                        Text("\(weatherForecast.current.temp.toInt().toString())º")
+                            .font(.system(size: 30))
+                            .fontWeight(.thin)
+                        Spacer()
                         Text("""
-H: \(String(weatherForecast.today.maxTemp))º L: \(String(weatherForecast.today.maxTemp))º
+H: \(String(weatherDay.temperatureDaily.max))º L: \(String(weatherDay.temperatureDaily.min))º
 """)
                     }
                 }
+                .frame(alignment: .top)
             }
         }
     }
