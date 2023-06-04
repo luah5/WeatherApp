@@ -175,13 +175,8 @@ Ending: \(alert.endTime.toTimestamp2())
                 Int(day.weatherHours.count) / 2
             ].chanceOfRain >= 10 {
                 Text("""
-\(String(
-describing: day.weatherHours[
-    Int(day.weatherHours.count) / 2
-].chanceOfRain
-))%
-"""
-                )
+\(day.weatherHours[Int(day.weatherHours.count) / 2].chanceOfRain.toString())%
+""")
                 .foregroundColor(.blue)
                 .bold()
             }

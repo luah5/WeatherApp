@@ -10,7 +10,7 @@ import Foundation
 /// Extends Int and returns the proper way to say a date.
 extension Int {
     func getProperDateWord() -> String {
-        let selfString: String = String(describing: self)
+        let selfString: String = self.toString()
         let end: String = String(describing: selfString.last ?? "4")
 
         if selfString.first == "1" {

@@ -12,3 +12,15 @@ extension Int {
         return String(describing: self)
     }
 }
+
+extension Float {
+    func toString() -> String {
+        return String(describing: self)
+    }
+}
+
+extension Substring {
+    func toString() -> String {
+        return String(describing: self)
+    }
+}

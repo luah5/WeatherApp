@@ -19,10 +19,7 @@ struct WeatherData {
         hours = []; minutes = []; alerts = []; days = []
 
         timezoneOffset = Int(json["timezone_offset"].stringValue) ?? 0
-        location = String(
-            json["timezone"]
-                .stringValue.split(separator: "/")[1]
-        )
+        location = json["timezone"].stringValue.split(separator: "/")[1].toString()
 
         hours.append(
             WeatherHour(

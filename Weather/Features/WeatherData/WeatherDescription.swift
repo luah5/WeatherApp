@@ -15,9 +15,9 @@ struct WeatherDescription {
 
     /// Default intializer, takes one argument: a JSON object.
     init(json: JSON) {
-        self.mainDescription = String(describing: json["main"])
-        self.description = String(describing: json["description"])
-        self.icon = String(describing: json["icon"]).iconToSFSymbol()
-        self.background = String(describing: json["icon"]).iconToBackground()
+        self.mainDescription = json["main"].stringValue
+        self.description = json["description"].stringValue
+        self.icon = json["icon"].stringValue.iconToSFSymbol()
+        self.background = json["icon"].stringValue.iconToBackground()
     }
 }

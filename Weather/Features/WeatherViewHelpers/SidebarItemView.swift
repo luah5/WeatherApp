@@ -46,7 +46,7 @@ struct SidebarItemView: View {
                             .fontWeight(.thin)
                         Spacer()
                         Text("""
-H: \(String(weatherDay.temperatureDaily.max))º L: \(String(weatherDay.temperatureDaily.min))º
+H: \(weatherDay.temperatureDaily.max.toString())º L: \(weatherDay.temperatureDaily.min.toString())º
 """)
                     }
                 }

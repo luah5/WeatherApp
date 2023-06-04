@@ -59,7 +59,30 @@ extension WeatherMainView {
                         .foregroundColor(.secondary)
                 }
                 Text("\(weatherForecast.current.feelsLike.toInt())º")
-                    .font(.system(.title))
+                    .font(.system(.largeTitle))
+
+                Spacer()
+
+                let tempDiff: Float = weatherForecast.current.feelsLike - weatherForecast.current.temp
+                let current: WeatherHour = weatherForecast.current
+                if tempDiff >= -2 && tempDiff <= 2 {
+                    Text("Similar to the real temperature.")
+                        .font(.system(.footnote))
+                } else if current.humidity >= 70 {
+                    if tempDiff > 2 {
+                        Text("Humidity is making it feel warmer.")
+                            .font(.system(.footnote))
+                    } else if tempDiff < -2 {
+                        Text("Humidity is making it feel cooler.")
+                            .font(.system(.footnote))
+                    }
+                } else if (current.windSpeed >= 5 || current.windGust >= 10) && tempDiff < -2 {
+                    Text("Wind is making it feel cooler.")
+                        .font(.system(.footnote))
+                } else if (current.windSpeed <= 2.5 || current.windGust <= 2.5) && tempDiff > 2 {
+                    Text("Wind is making it feel warmer.")
+                        .font(.system(.footnote))
+                }
             }
         }
     }
@@ -77,7 +100,7 @@ extension WeatherMainView {
                         .foregroundColor(.secondary)
                 }
                 Text("\(weatherForecast.current.visibility) km")
-                    .font(.system(.title))
+                    .font(.system(.largeTitle))
 
                 Spacer()
 
@@ -112,16 +135,16 @@ extension WeatherMainView {
                         .font(.system(.title))
                         .padding(.trailing)
 
-                    if weatherForecast.current.uvi < 5 {
+                    if weatherForecast.current.uvi < 2 {
                         Text("Low")
                             .font(.system(.title2))
-                    } else if weatherForecast.current.uvi >= 4 {
+                    } else if weatherForecast.current.uvi <= 5 {
                         Text("Moderate")
                             .font(.system(.title2))
-                    } else if weatherForecast.current.uvi >= 7 {
+                    } else if weatherForecast.current.uvi <= 8 {
                         Text("High")
                             .font(.system(.title2))
-                    } else if weatherForecast.current.uvi >= 10 {
+                    } else if weatherForecast.current.uvi > 10 {
                         Text("Extreme")
                             .font(.system(.title2))
                     }

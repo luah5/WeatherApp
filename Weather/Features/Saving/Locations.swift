@@ -25,7 +25,7 @@ struct Locations {
                 Location(
                     lat: Double(furtherSplit[0]) ?? 0,
                     lon: Double(furtherSplit[1]) ?? 0,
-                    location: String(furtherSplit[2])
+                    location: furtherSplit[2].toString()
                 )
             )
         }
