@@ -28,7 +28,9 @@ struct WeatherSave {
             reloadData(save: dataSave)
         }
 
-        UserDefaults.standard.set(currentTime, forKey: "lastSave")
+        DispatchQueue.global(qos: .background).async {
+            UserDefaults.standard.set(currentTime, forKey: "lastSave")
+        }
     }
 
     mutating func reloadData(save: DataSave) {
@@ -51,18 +53,20 @@ struct WeatherSave {
 
             do {
                 let contents: String = try String(contentsOf: URL, encoding: .ascii)
+                let unixEpoch: Int = Int(NSDate().timeIntervalSince1970)
 
                 lastSaveJSON = contents
-                UserDefaults.standard.set(
-                    contents,
-                    forKey: "weatherSave"
-                )
 
-                let unixEpoch: Int = Int(NSDate().timeIntervalSince1970)
-                UserDefaults.standard.set(
-                    unixEpoch,
-                    forKey: "lastSave"
-                )
+                DispatchQueue.global(qos: .background).async {
+                    UserDefaults.standard.set(
+                        contents,
+                        forKey: "weatherSave"
+                    )
+                    UserDefaults.standard.set(
+                        unixEpoch,
+                        forKey: "lastSave"
+                    )
+                }
 
                 lastSave = unixEpoch
             } catch {

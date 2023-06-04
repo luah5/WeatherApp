@@ -83,7 +83,9 @@ extension WeatherView {
             dataSave.weatherMainViews.remove(at: dataSave.selection)
             dataSave.coordinateLocations.coordinates.remove(at: dataSave.selection)
 
-            UserDefaults.standard.setValue(dataSave.coordinateLocations.encode(), forKey: "locations")
+            DispatchQueue.global(qos: .background) {
+                UserDefaults.standard.setValue(dataSave.coordinateLocations.encode(), forKey: "locations")
+            }
 
             dataSave.selection = dataSave.weatherMainViews.count - 1
         } label: {

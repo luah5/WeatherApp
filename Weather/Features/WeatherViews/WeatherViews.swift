@@ -16,7 +16,7 @@ extension WeatherMainView {
         VStack(spacing: 0) {
             Text(weatherForecast.address)
                 .font(.system(.title))
-            Text("\(Int(weatherForecast.current.temp))º")
+            Text("\(weatherForecast.current.temp.toInt())º")
                 .font(.system(size: 56, weight: .thin))
             Text("\(weatherForecast.current.weather.mainDescription)")
                 .font(.system(.headline, weight: .semibold))
