@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapForm<Content: View>: View {
     @ViewBuilder var content: Content
-    var opacity: Double = 0.5
+    let opacity: Double = 0.5
 
     var body: some View {
         VStack(alignment: .leading) {

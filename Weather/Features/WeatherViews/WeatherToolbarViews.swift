@@ -83,7 +83,7 @@ extension WeatherView {
             dataSave.weatherMainViews.remove(at: dataSave.selection)
             dataSave.coordinateLocations.coordinates.remove(at: dataSave.selection)
 
-            DispatchQueue.global(qos: .background) {
+            DispatchQueue.global(qos: .background).async {
                 UserDefaults.standard.setValue(dataSave.coordinateLocations.encode(), forKey: "locations")
             }
 
@@ -97,6 +97,7 @@ extension WeatherView {
         .help("Remove selected location")
         .buttonStyle(.bordered)
         .disabled(dataSave.weatherMainViews.count == 1)
+        .animation(.easeOut(duration: 1), value: 12)
 
         Button {
             splits += 1

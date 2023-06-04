@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VForm<Content: View>: View {
     @ViewBuilder var content: Content
-    var opacity: Double = 0.5
+    let opacity: Double = 0.5
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,7 +21,7 @@ struct VForm<Content: View>: View {
 
                 Spacer()
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(10)
         }
         .background(
@@ -29,7 +29,7 @@ struct VForm<Content: View>: View {
                 .foregroundColor(.white)
                 .opacity(opacity)
         )
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(20)
         .padding()
         .edgesIgnoringSafeArea(.all)

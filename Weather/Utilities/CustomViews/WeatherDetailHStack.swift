@@ -9,8 +9,6 @@ import SwiftUI
 
 struct WeatherDetailHStack<Content: View>: View {
     @ViewBuilder var content: Content
-    var detailViewWidth: CGFloat = 150
-    var detailViewHeight: CGFloat = 150
 
     var body: some View {
         HStack(spacing: 0) {

@@ -38,6 +38,8 @@ extension WeatherMainView {
                 Text("\(weatherForecast.current.humidity)%")
                     .font(.system(.title))
 
+                Spacer()
+
                 Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
                     .font(.system(.footnote))
             }
@@ -76,6 +78,19 @@ extension WeatherMainView {
                 }
                 Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.title))
+
+                Spacer()
+
+                if weatherForecast.current.visibility >= 15 {
+                    Text("It's perfectly clear")
+                        .font(.system(.footnote))
+                } else if weatherForecast.current.visibility < 30 && weatherForecast.current.clouds > 25 {
+                    Text("Clouds are lowering visibility")
+                        .font(.system(.footnote))
+                } else {
+                    Text("Pollution is lowering visbility")
+                        .font(.system(.footnote))
+                }
             }
         }
     }
@@ -111,6 +126,8 @@ extension WeatherMainView {
                             .font(.system(.title2))
                     }
                 }
+
+                Spacer()
 
                 GeometryReader { geometry in
                     ZStack {
@@ -202,7 +219,6 @@ extension WeatherMainView {
                     Image(systemName: "moonphase.new.moon")
                         .resizable()
                         .scaledToFit()
-                        .imageScale(.small)
                         .frame(width: 50, height: 50, alignment: .center)
                 } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
                     Image(systemName: "moonphase.waxing.crescent")
@@ -241,6 +257,8 @@ extension WeatherMainView {
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
                 }
+
+                Spacer()
 
                 if weatherForecast.current.clouds >= 75 {
                     Text("The moon is currently obscured due to high cloud coverage.")
@@ -398,6 +416,8 @@ extension WeatherMainView {
                         .font(.system(.title2))
                 }
 
+                Spacer()
+
                 Text("Gust \(weatherForecast.today.weatherHours.first!.windGust.toInt()) km/h")
                     .font(.system(.footnote))
                     .foregroundColor(.secondary)
@@ -412,15 +432,19 @@ extension WeatherMainView {
             WeatherDetailHStack {
                 feelsLike
                     .help("Shows what the current temperature feels like.")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 humidity
                     .help("Shows the current humidity.")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 visibility
                     .help("Shows the current visibility (in km).")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 uvi
                     .help("A gradient that shows the UV Index for this hour.")
+                    .frame(minWidth: 275, minHeight: 200)
             }
 
             WeatherDetailHStack {
@@ -428,19 +452,24 @@ extension WeatherMainView {
                     Spacer()
                     rainfall
                         .help("Shows the rainfall.")
+                        .frame(minWidth: 275, minHeight: 200)
                 }
                 Spacer()
                 moonPhase
                     .help("Current moon phase.")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 wind
                     .help("Current wind information.")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 moonForecast
                     .help("Moonrise and moonset.")
+                    .frame(minWidth: 275, minHeight: 200)
                 Spacer()
                 sunForecast
                     .help("Sunrise and sunset.")
+                    .frame(minWidth: 275, minHeight: 200)
             }
 
             Text("Weather for \(weatherForecast.address)")
