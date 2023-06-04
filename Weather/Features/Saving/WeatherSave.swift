@@ -10,62 +10,66 @@ import SwiftyJSON
 import SwiftUI
 
 struct WeatherSave {
-    var lastSave: Int, lastSaveJSON: JSONDecoder
+    var lastSave: Int, lastSaveJSON: String
 
     init(dataSave: DataSave) {
-        let data: String = UserDefaults.standard.string(forKey: "weatherSave") ?? "Error"
+        lastSaveJSON = UserDefaults.standard.string(
+            forKey: "weatherSave"
+        ) ?? "Error"
+        let currentTime: Int = Int(NSDate().timeIntervalSince1970)
 
-        UserDefaults.standard.set(NSDate().timeIntervalSince1970, forKey: "lastSave")
-
-        if data == "Error" {
-            for location in dataSave.coordinateLocations.coordinates {
-                let url: String = "https://api.openweathermap.org/data/2.5/forecast?"
-
-                guard let URL = URL(
-                    string: constructURL(
-                        url,
-                        location.locationString
-                    )
-                ) else {
-                    throwNSAlert(messageText: "URL: \(constructURL(url, location.locationString)) does not exist.", severity: .critical)
-                    fatalError()
-                }
-
-                do {
-                    UserDefaults.standard.set(
-                        try String(contentsOf: URL, encoding: .ascii),
-                        forKey: "weatherSave"
-                    )
-                } catch {
-                    throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
-                    fatalError("Failed to gather weather data")
-                }
+        if let date = UserDefaults.standard.value(forKey: "lastSave") {
+            lastSave = Int(String(describing: date)) ?? 743
+            if currentTime - lastSave >= 3600 || lastSaveJSON == "Error" {
+                reloadData(save: dataSave)
             }
+        } else {
+            lastSave = Int(NSDate().timeIntervalSince1970)
+            reloadData(save: dataSave)
         }
+
+        UserDefaults.standard.set(currentTime, forKey: "lastSave")
     }
 
-    func reloadData(save: DataSave) {
+    mutating func reloadData(save: DataSave) {
         for location in save.coordinateLocations.coordinates {
             let url: String = "https://api.openweathermap.org/data/2.5/forecast?"
 
             guard let URL = URL(
                 string: constructURL(
                     url,
-                    location.locationString
+                    location.urlVersion
                 )
             ) else {
-                throwNSAlert(messageText: "There was an error gathering weather data in the background", severity: .warning)
-                
+                throwNSAlert(
+                    messageText: "There was an error gathering weather data in the background.",
+                    severity: .warning
+                )
+
                 return
             }
 
             do {
+                let contents: String = try String(contentsOf: URL, encoding: .ascii)
+
+                lastSaveJSON = contents
                 UserDefaults.standard.set(
-                    try String(contentsOf: URL, encoding: .ascii),
+                    contents,
                     forKey: "weatherSave"
                 )
+
+                let unixEpoch: Int = Int(NSDate().timeIntervalSince1970)
+                UserDefaults.standard.set(
+                    unixEpoch,
+                    forKey: "lastSave"
+                )
+
+                lastSave = unixEpoch
             } catch {
-                throwNSAlert(messageText: "There was an error gathering weather data in the background.", severity: .warning)
+                throwNSAlert(
+                    messageText: "There was an error gathering weather data in the background.",
+                    severity: .warning
+                )
             }
         }
     }

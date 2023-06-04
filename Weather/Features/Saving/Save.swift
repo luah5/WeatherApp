@@ -42,7 +42,8 @@ struct DataSave {
             weatherMainViews.append(
                 WeatherMainView(
                     location: location,
-                    id: index
+                    id: index,
+                    save: self
                 )
             )
             index += 1

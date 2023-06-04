@@ -12,15 +12,18 @@ struct WeatherForecast {
     var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay], weatherMinutes: [WeatherMinute]
     var weatherData: WeatherData, precipitationInNext24H: Float, address: String
 
-    init(coordinateLocation: Location) {
+    init(coordinateLocation: Location, _ dataSave: DataSave) {
         /// Get the weather data
-        weatherData = getHourlyWeatherData(location: coordinateLocation)
-        address = coordinateLocation.locationString
+        weatherData = getHourlyWeatherData(location: coordinateLocation); address = coordinateLocation.locationString
         weatherMinutes = weatherData.minutes
 
         var weatherHours: [WeatherHour] = weatherData.hours
+        var todayWeatherHours: [WeatherHour] = [], otherDayHours: [WeatherHour] = []
 
-        let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData(location: coordinateLocation)
+        let fiveDayWeatherHours: [FiveDayWeatherHour] = getThreeHourWeatherData(
+            location: coordinateLocation,
+            save: dataSave
+        )
 
         /// Loops through the FiveDayWeatherHours and appends it to the weatherHours array by converting
         for hour in fiveDayWeatherHours {
@@ -29,11 +32,8 @@ struct WeatherForecast {
 
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
-            .split(separator: " ").first!)!
-        var day: Int = 0
+            .split(separator: " ").first!)!, day: Int = 0
 
-        /// Intialize the WeatherHour arrays
-        var otherDayHours: [WeatherHour] = [], todayWeatherHours: [WeatherHour] = []
         precipitationInNext24H = 0
 
         /// For some reason swift will throw "Return from initializer without initializing all stored properties"

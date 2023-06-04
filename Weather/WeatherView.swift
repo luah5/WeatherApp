@@ -32,7 +32,7 @@ struct WeatherView: View {
             List(selection: $dataSave.selection) {
                 Section {
                     ForEach(dataSave.weatherMainViews, id: \.index) { item in
-                        SidebarItemView(weatherItem: item)
+                        SidebarItemView(weatherItem: item, save: dataSave)
                     }
                 }
             }

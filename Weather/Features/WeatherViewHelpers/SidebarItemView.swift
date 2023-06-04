@@ -10,12 +10,13 @@ import SwiftUI
 
 struct SidebarItemView: View {
     var item: WeatherMainView, weatherForecast: WeatherForecast, weatherDay: WeatherDayDaily
-    @State private var dataSave: DataSave = DataSave()
+    @State var dataSave: DataSave
 
-    init(weatherItem: WeatherMainView) {
+    init(weatherItem: WeatherMainView, save: DataSave) {
         item = weatherItem
         weatherForecast = item.weatherForecast
         weatherDay = weatherForecast.today.weatherDayDaily
+        self.dataSave = save
     }
 
     var body: some View {

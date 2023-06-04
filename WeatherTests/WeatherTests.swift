@@ -18,7 +18,8 @@ final class WeatherTests: XCTestCase {
 
         self.measure {
             let _: WeatherForecast = WeatherForecast(
-                coordinateLocation: location
+                coordinateLocation: location,
+                DataSave()
             )
         }
     }

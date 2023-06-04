@@ -51,28 +51,15 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
 
 @discardableResult
 /// Gets the 5 day weather data every 3 hours.
-func getThreeHourWeatherData(location: Location) -> [FiveDayWeatherHour] {
+func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
-    let url: String = "https://api.openweathermap.org/data/2.5/forecast?"
-    let latAndLon: String = location.urlVersion
+    let json: JSON = JSON(
+        parseJSON: WeatherSave(dataSave: save).lastSaveJSON
+    )
 
-    guard let URL = URL(string: constructURL(url, latAndLon)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
-        fatalError()
+    for index in 16...(json["list"].count - 1) {
+        hours.append(FiveDayWeatherHour(json: json["list"][index]))
     }
 
-    do {
-        let contents: String = try String(contentsOf: URL, encoding: .ascii)
-
-        let json: JSON = JSON(parseJSON: contents)
-
-        for index in 16...(json["list"].count - 1) {
-            hours.append(FiveDayWeatherHour(json: json["list"][index]))
-        }
-
-        return hours
-    } catch {
-        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
-        fatalError("Failed to gather weather data")
-    }
+    return hours
 }

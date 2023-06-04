@@ -52,7 +52,8 @@ extension WeatherView {
                         dataSave.weatherMainViews.append(
                             WeatherMainView(
                                 location: dataSave.coordinateLocations.coordinates.last!,
-                                id: dataSave.weatherMainViews.count
+                                id: dataSave.weatherMainViews.count,
+                                save: dataSave
                             )
                         )
 

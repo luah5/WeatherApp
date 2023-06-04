@@ -14,13 +14,20 @@ struct WeatherMainView: View {
     var coordLocation: Location, index: Int, weatherForecast: WeatherForecast
     var height: CGFloat = 150
 
-    init(location: Location, id: Int) {
+    init(location: Location, id: Int, save: DataSave) {
         coordLocation = location
+        var weatherSave = WeatherSave(dataSave: save)
 
         weatherForecast = WeatherForecast(
-            coordinateLocation: location
+            coordinateLocation: location,
+            save
         )
+
         index = id
+        DispatchQueue.global(qos: .background).async {
+            sleep(600)
+            weatherSave.reloadData(save: save)
+        }
     }
 
     var body: some View {
