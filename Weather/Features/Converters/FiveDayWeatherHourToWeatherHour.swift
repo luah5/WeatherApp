@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 func toWeatherHour(fiveDayWeatherHour: FiveDayWeatherHour) -> WeatherHour {
     var weatherHour: WeatherHour = WeatherHour(

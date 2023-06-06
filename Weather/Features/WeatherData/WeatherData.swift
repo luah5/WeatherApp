@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// A structure for handling weather data
 struct WeatherData {

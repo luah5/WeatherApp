@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// A struct for a weather minute using OpenWeatherMap's onecall API
 struct WeatherMinute {

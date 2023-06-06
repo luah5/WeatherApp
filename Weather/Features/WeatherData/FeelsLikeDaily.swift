@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct FeelsLikeDaily {
     var morning: Float, day: Float, evening: Float, night: Float

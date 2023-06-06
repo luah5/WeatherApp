@@ -5,7 +5,7 @@
 //  Created by Raymond Vleeshouwer on 12/05/23.
 //
 
-import SwiftyJSON
+import Foundation
 
 struct WeatherAlert {
     var senderName: String, event: String, description: String, type: String

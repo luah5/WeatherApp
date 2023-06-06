@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import AppKit
 import CoreLocation
-import SwiftyJSON
 
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
 let units: String = "&units=metric"

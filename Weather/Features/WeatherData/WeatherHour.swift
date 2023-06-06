@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// A weather hour contained by a WeatherDay
 struct WeatherHour {

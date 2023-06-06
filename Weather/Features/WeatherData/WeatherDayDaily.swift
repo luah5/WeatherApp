@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct WeatherDayDaily {
     enum MoonPhase: String {

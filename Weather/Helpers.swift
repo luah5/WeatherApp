@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import SwiftyJSON
 
 /// Returns the current time.
 func getTime() -> String {

@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Foundation
+import AppKit
+import BackgroundTasks
 
 @main
 struct WeatherApp: App {
