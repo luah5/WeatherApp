@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "854157D62A2F9318002DA57B"
+               BlueprintIdentifier = "854158392A2FCE47002DA57B"
                BuildableName = "WorldWideWeatherWidgetExtension.appex"
                BlueprintName = "WorldWideWeatherWidgetExtension"
                ReferencedContainer = "container:Weather.xcodeproj">
