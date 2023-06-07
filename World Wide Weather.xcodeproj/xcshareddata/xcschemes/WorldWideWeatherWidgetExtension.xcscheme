@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8541581F2A2FA85E002DA57B"
-               BuildableName = "WorlExtension.appex"
-               BlueprintName = "WorlExtension"
-               ReferencedContainer = "container:Weather.xcodeproj">
+               BlueprintIdentifier = "854158392A2FCE47002DA57B"
+               BuildableName = "WorldWideWeatherWidgetExtension.appex"
+               BlueprintName = "WorldWideWeatherWidgetExtension"
+               ReferencedContainer = "container:World Wide Weather.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "859AB9DD29ED43E8004246A3"
                BuildableName = "World Wide Weather.app"
                BlueprintName = "World Wide Weather"
-               ReferencedContainer = "container:Weather.xcodeproj">
+               ReferencedContainer = "container:World Wide Weather.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -59,7 +59,14 @@
       <RemoteRunnable
          runnableDebuggingMode = "1"
          BundleIdentifier = "com.apple.widgetkit.simulator"
-         RemotePath = "/System/Library/CoreServices/WidgetKit Simulator.app">
+         RemotePath = "/System/Library/CoreServices/WidgetKit Simulator.app/Contents/MacOS/WidgetKit Simulator">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "854158392A2FCE47002DA57B"
+            BuildableName = "WorldWideWeatherWidgetExtension.appex"
+            BlueprintName = "WorldWideWeatherWidgetExtension"
+            ReferencedContainer = "container:World Wide Weather.xcodeproj">
+         </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
@@ -67,7 +74,7 @@
             BlueprintIdentifier = "859AB9DD29ED43E8004246A3"
             BuildableName = "World Wide Weather.app"
             BlueprintName = "World Wide Weather"
-            ReferencedContainer = "container:Weather.xcodeproj">
+            ReferencedContainer = "container:World Wide Weather.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -103,7 +110,7 @@
             BlueprintIdentifier = "859AB9DD29ED43E8004246A3"
             BuildableName = "World Wide Weather.app"
             BlueprintName = "World Wide Weather"
-            ReferencedContainer = "container:Weather.xcodeproj">
+            ReferencedContainer = "container:World Wide Weather.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -49,10 +49,9 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct WorldWideWeatherWidgetEntryView: View {
-    var entry: Provider.Entry
-
     var body: some View {
         WidgetView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -61,17 +60,18 @@ struct WorldWideWeatherWidget: Widget {
     let kind: String = "WorldWideWeatherWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            WorldWideWeatherWidgetEntryView(entry: entry)
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { _ in
+            WorldWideWeatherWidgetEntryView()
         }
-        .configurationDisplayName("Widget COOOL")
-        .description("This is an example widget.")
+        .configurationDisplayName("Weather forecast")
+        .description("Current weather forecast.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
 struct WorldWideWeatherWidget_Previews: PreviewProvider {
     static var previews: some View {
-        WorldWideWeatherWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        WorldWideWeatherWidgetEntryView()
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
