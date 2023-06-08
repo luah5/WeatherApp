@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocation
 import MapKit
 
 /// The weather view that is shown in the main view
@@ -25,8 +24,11 @@ struct WeatherMainView: View {
 
         index = id
         DispatchQueue.global(qos: .background).async {
-            sleep(600)
-            weatherSave.reloadData(save: save)
+            while true {
+                sleep(600)
+                weatherSave.reloadDataTwoDay(locations: save.coordinateLocations.coordinates)
+                weatherSave.reloadDataFiveDay(locations: save.coordinateLocations.coordinates)
+            }
         }
     }
 

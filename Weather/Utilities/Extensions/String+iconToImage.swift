@@ -5,7 +5,6 @@
 //  Created by Raymond Vleeshouwer on 24/04/23.
 //
 
-import Foundation
 import SwiftUI
 
 /// Extends String so that an openweathermap.com icon can be converted to a custom icon

@@ -6,10 +6,7 @@
 //
 
 import SwiftUI
-import Foundation
-import CoreLocation
 import MapKit
-import UserNotifications
 
 /// The main view for viewing the weather
 struct WeatherView: View {
@@ -38,13 +35,12 @@ struct WeatherView: View {
                 }
             }
             .background(
-                dataSave.weatherMainViews[dataSave.selection]
+                dataSave.weatherMainViews[safe: dataSave.selection]?
                     .weatherForecast.current.weather.background.image
                     .scaledToFill()
-                    .opacity(0.3)
+                    .opacity(0)
             )
             .scrollDisabled(true)
-            .scrollDismissesKeyboard(.never)
         } detail: {
             dataSave.weatherMainViews[dataSave.selection]
                 .background(

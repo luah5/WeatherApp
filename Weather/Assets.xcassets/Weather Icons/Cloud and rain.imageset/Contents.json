@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "rain 2.png",
+      "filename" : "rain.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "rain 1.png",
+      "filename" : "rain.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

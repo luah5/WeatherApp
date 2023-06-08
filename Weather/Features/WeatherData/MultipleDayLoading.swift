@@ -7,8 +7,6 @@
 
 import Foundation
 import SwiftUI
-import AppKit
-import CoreLocation
 
 let apiKey: String = "&appid=59b882df8e35c2c5eefe87e105b2d6df"
 let units: String = "&units=metric"
@@ -29,23 +27,8 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
 
 @discardableResult
 /// Gets the hourly weather data for 2 days.
-func getHourlyWeatherData(location: Location) -> WeatherData {
-    let url: String = "https://api.openweathermap.org/data/2.5/onecall?"
-    let latAndLon: String = location.urlVersion
-
-    guard let URL = URL(string: constructURL(url, latAndLon)) else {
-        throwNSAlert(messageText: "URL: \(constructURL(url, latAndLon)) does not exist.", severity: .critical)
-        fatalError()
-    }
-
-    do {
-        let contents: String = try String(contentsOf: URL, encoding: .ascii)
-
-        return WeatherData(json: JSON(parseJSON: contents))
-    } catch {
-        throwNSAlert(messageText: "Failed to gather weather data", severity: .critical)
-        fatalError()
-    }
+func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
+    return WeatherData(json: JSON(parseJSON: WeatherSave(dataSave: save).lastSaveJSON2Day))
 }
 
 @discardableResult
@@ -53,7 +36,7 @@ func getHourlyWeatherData(location: Location) -> WeatherData {
 func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
     let json: JSON = JSON(
-        parseJSON: WeatherSave(dataSave: save).lastSaveJSON
+        parseJSON: WeatherSave(dataSave: save).lastSaveJSON5Day
     )
 
     for index in 16...(json["list"].count - 1) {

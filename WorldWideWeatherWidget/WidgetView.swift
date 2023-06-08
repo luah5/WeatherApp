@@ -11,15 +11,7 @@ struct LazyDataSave {
     var data: WeatherData
 
     init() {
-        data = getHourlyWeatherData(
-            location: Locations(
-                fromString: UserDefaults.standard.string(
-                        forKey: "locations"
-                    ) ?? "51.511533,-0.125112,Covent"
-            )
-            .coordinates
-            .first!
-        )
+        data = WeatherData(json: JSON(parseJSON: WeatherSave().lastSaveJSON2Day))
     }
 }
 
@@ -62,11 +54,5 @@ struct WidgetView: View {
             data.hours.first!.weather.background.image
                 .scaledToFill()
         )
-    }
-}
-
-struct WidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        WidgetView()
     }
 }

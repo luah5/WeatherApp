@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
-import AppKit
 import BackgroundTasks
 
 @main
@@ -20,6 +18,12 @@ struct WeatherApp: App {
                         showsTitle: false
                     )
                 )
+                .onAppear {
+                    WeatherSave()
+                }
+                .onDisappear {
+                    WeatherSave()
+                }
         }
         .commands {
             WACommands()

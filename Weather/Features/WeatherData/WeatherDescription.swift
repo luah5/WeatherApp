@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 /// A struct for getting the weather description and icon
 struct WeatherDescription {

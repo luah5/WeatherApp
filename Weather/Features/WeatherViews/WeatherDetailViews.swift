@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocation
 import MapKit
 
 // swiftlint:disable file_length
