@@ -1,6 +1,6 @@
 //
 //  WeatherApp.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 17/04/23.
 //
@@ -13,11 +13,7 @@ struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             WeatherView()
-                .presentedWindowToolbarStyle(
-                    .unifiedCompact(
-                        showsTitle: false
-                    )
-                )
+                .presentedWindowToolbarStyle(.expanded)
                 .onAppear {
                     WeatherSave()
                 }

@@ -1,6 +1,6 @@
 //
 //  HourItemView.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 26/04/23.
 //

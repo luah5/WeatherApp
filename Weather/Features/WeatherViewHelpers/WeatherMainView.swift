@@ -1,6 +1,6 @@
 //
 //  WeatherMainView.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 13/05/23.
 //
@@ -15,7 +15,7 @@ struct WeatherMainView: View {
 
     init(location: Location, id: Int, save: DataSave) {
         coordLocation = location
-        var weatherSave = WeatherSave(dataSave: save)
+        var weatherSave = WeatherSave()
 
         weatherForecast = WeatherForecast(
             coordinateLocation: location,
@@ -26,8 +26,7 @@ struct WeatherMainView: View {
         DispatchQueue.global(qos: .background).async {
             while true {
                 sleep(600)
-                weatherSave.reloadDataTwoDay(locations: save.coordinateLocations.coordinates)
-                weatherSave.reloadDataFiveDay(locations: save.coordinateLocations.coordinates)
+                weatherSave.reloadAll()
             }
         }
     }

@@ -1,6 +1,6 @@
 //
 //  Int+getProperDateWord.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 28/04/23.
 //

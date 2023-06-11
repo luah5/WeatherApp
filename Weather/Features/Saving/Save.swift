@@ -1,6 +1,6 @@
 //
 //  Save.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 13/05/23.
 //
@@ -39,6 +39,7 @@ struct DataSave {
 
         var index: Int = 0
         for location in coordinateLocations.coordinates {
+            print("from datasave", location.urlVersion)
             weatherMainViews.append(
                 WeatherMainView(
                     location: location,

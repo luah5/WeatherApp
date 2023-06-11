@@ -1,6 +1,6 @@
 //
 //  WeatherDescription.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 22/04/23.
 //

@@ -1,6 +1,6 @@
 //
 //  Float+toInt.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 23/04/23.
 //

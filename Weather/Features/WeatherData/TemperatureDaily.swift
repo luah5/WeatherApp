@@ -1,6 +1,6 @@
 //
 //  TemperatureDaily.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 27/05/23.
 //

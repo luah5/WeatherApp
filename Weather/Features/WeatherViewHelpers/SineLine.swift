@@ -1,6 +1,6 @@
 //
 //  SineLine.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 07/05/23.
 //

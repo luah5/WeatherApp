@@ -11,7 +11,9 @@ struct LazyDataSave {
     var data: WeatherData
 
     init() {
-        data = WeatherData(json: JSON(parseJSON: WeatherSave().lastSaveJSON2Day))
+        data = WeatherData(
+            json: WeatherSave().twoDay.first!.json
+        )
     }
 }
 

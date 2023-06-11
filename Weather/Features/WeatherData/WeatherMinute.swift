@@ -1,6 +1,6 @@
 //
 //  WeatherMinute.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 09/05/23.
 //

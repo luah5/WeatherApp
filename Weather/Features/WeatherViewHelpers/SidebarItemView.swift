@@ -1,6 +1,6 @@
 //
 //  SidebarItemView.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 02/06/23.
 //
@@ -46,7 +46,7 @@ struct SidebarItemView: View {
                             .fontWeight(.thin)
                         Spacer()
                         Text("""
-H: \(weatherDay.temperatureDaily.max.toString())º L: \(weatherDay.temperatureDaily.min.toString())º
+H: \(weatherDay.temperatureDaily.max.toInt().toString())º L: \(weatherDay.temperatureDaily.min.toInt().toString())º
 """)
                     }
                 }

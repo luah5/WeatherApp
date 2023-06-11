@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 17/04/23.
 //
@@ -42,9 +42,9 @@ struct WeatherView: View {
             )
             .scrollDisabled(true)
         } detail: {
-            dataSave.weatherMainViews[dataSave.selection]
+            dataSave.weatherMainViews[safe: dataSave.selection]
                 .background(
-                    dataSave.weatherMainViews[dataSave.selection]
+                    dataSave.weatherMainViews[safe: dataSave.selection]?
                         .weatherForecast.current.weather.background.image
                         .scaledToFill()
                 )

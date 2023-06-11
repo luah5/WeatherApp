@@ -1,6 +1,6 @@
 //
 //  String+iconImage.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 24/04/23.
 //

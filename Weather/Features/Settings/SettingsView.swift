@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 20/04/23.
 //

@@ -1,6 +1,6 @@
 //
 //  WeatherForecast.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 23/04/23.
 //
@@ -14,6 +14,7 @@ struct WeatherForecast {
 
     init(coordinateLocation: Location, _ dataSave: DataSave) {
         /// Get the weather data
+        print("from weatherForecast", coordinateLocation.urlVersion)
         weatherData = getHourlyWeatherData(location: coordinateLocation, save: dataSave)
         address = coordinateLocation.locationString
         weatherMinutes = weatherData.minutes

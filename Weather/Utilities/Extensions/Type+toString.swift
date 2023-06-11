@@ -1,6 +1,6 @@
 //
 //  Int+toString.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 25/05/23.
 //

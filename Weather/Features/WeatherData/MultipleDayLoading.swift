@@ -1,6 +1,6 @@
 //
 //  MultipleDayLoading.swift
-//  Weather
+//  World Wide Weather
 //
 //  Created by Raymond Vleeshouwer on 18/04/23.
 //
@@ -28,20 +28,36 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
 @discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
-    return WeatherData(json: JSON(parseJSON: WeatherSave(dataSave: save).lastSaveJSON2Day))
+    let url: String = constructURL(
+        "https://api.openweathermap.org/data/2.5/onecall?",
+        location.urlVersion
+    )
+
+    for instance in WeatherSave().twoDay where instance.url == url {
+        return WeatherData(json: instance.json)
+    }
+
+    fatalError("Error gathering weather data in foreground.")
 }
 
 @discardableResult
 /// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
     var hours: [FiveDayWeatherHour] = []
-    let json: JSON = JSON(
-        parseJSON: WeatherSave(dataSave: save).lastSaveJSON5Day
+    let url: String = constructURL(
+        "https://api.openweathermap.org/data/2.5/forecast?",
+        location.urlVersion
     )
 
-    for index in 16...(json["list"].count - 1) {
-        hours.append(FiveDayWeatherHour(json: json["list"][index]))
+    for instance in WeatherSave().fiveDay where instance.url == url {
+        let json: JSON = instance.json
+
+        for index in 16...(json["list"].count - 1) {
+            hours.append(FiveDayWeatherHour(json: json["list"][index]))
+        }
+
+        return hours
     }
 
-    return hours
+    fatalError("Error gathering weather data in foreground.")
 }
