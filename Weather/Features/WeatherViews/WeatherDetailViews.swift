@@ -28,10 +28,10 @@ extension WeatherMainView {
                 HStack(spacing: 5) {
                     Image(systemName: "humidity")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("HUMIDITY")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 Text("\(weatherForecast.current.humidity)%")
@@ -52,10 +52,10 @@ extension WeatherMainView {
                 HStack(spacing: 5) {
                     Image(systemName: "thermometer.medium")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("FEELS LIKE")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 Text("\(weatherForecast.current.feelsLike.toInt())º")
                     .font(.system(.largeTitle))
@@ -93,10 +93,10 @@ extension WeatherMainView {
                 HStack(spacing: 5) {
                     Image(systemName: "eye")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("VISIBILITY")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 Text("\(weatherForecast.current.visibility) km")
                     .font(.system(.largeTitle))
@@ -124,10 +124,10 @@ extension WeatherMainView {
                 HStack(spacing: 5) {
                     Image(systemName: "sun.max.fill")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("UV INDEX")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 VStack(alignment: .leading) {
                     Text("\(weatherForecast.current.uvi)")
@@ -182,14 +182,14 @@ extension WeatherMainView {
                 ZStack {
                     SineLine()
                         .stroke(lineWidth: 2)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                         .frame(width: 300, height: 200)
 
                     Image(systemName: "sun.max.fill")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .offset(x: 20, y: -40)
-                        .foregroundColor(.yellow)
+                        .foregroundStyle(.yellow)
                 }
             }
         }
@@ -202,10 +202,10 @@ extension WeatherMainView {
                 HStack(spacing: 5) {
                     Image(systemName: "drop.fill")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("RAINFALL")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 Text("""
@@ -227,11 +227,11 @@ extension WeatherMainView {
             VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "moon.fill")
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     Text("MOON PHASE")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
@@ -310,10 +310,10 @@ extension WeatherMainView {
                 .frame(minHeight: 500)
             ZStack {
                 Circle()
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
                 Text(weatherForecast.current.temp.toInt().toString())
                     .font(.system(size: 14))
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .bold()
             }
             .frame(width: 30, height: 30)
@@ -327,10 +327,10 @@ extension WeatherMainView {
             VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "moon.haze.fill")
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("MOON")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 HStack(spacing: -40) {
@@ -375,10 +375,10 @@ extension WeatherMainView {
             VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "sun.max.fill")
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("SUN")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 HStack(spacing: -40) {
@@ -423,11 +423,11 @@ extension WeatherMainView {
             VForm {
                 HStack(spacing: 5) {
                     Image(systemName: "wind")
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     Text("WIND")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -442,7 +442,7 @@ extension WeatherMainView {
 
                 Text("Gust \(weatherForecast.today.weatherHours.first!.windGust.toInt()) km/h")
                     .font(.system(.footnote))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
     }

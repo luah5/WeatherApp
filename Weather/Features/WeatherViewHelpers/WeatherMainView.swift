@@ -11,7 +11,6 @@ import MapKit
 /// The weather view that is shown in the main view
 struct WeatherMainView: View, Identifiable {
     var coordLocation: Location, index: Int, weatherForecast: WeatherForecast
-    var height: CGFloat = 150
     var id: UUID = UUID()
 
     init(location: Location, id: Int, save: DataSave) {

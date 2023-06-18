@@ -28,7 +28,7 @@ struct MapForm<Content: View>: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
                 .opacity(opacity)
         )
         .frame(maxWidth: .infinity)

@@ -38,7 +38,7 @@ struct HourItemView: View {
 
                     if hour.chanceOfRain >= 10 {
                         Text("\(hour.chanceOfRain)%")
-                            .foregroundColor(.blue)
+                            .foregroundStyle(.blue)
                             .padding(.bottom)
                             .bold()
                     } else {

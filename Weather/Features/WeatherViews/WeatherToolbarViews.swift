@@ -16,7 +16,7 @@ extension WeatherView {
         } label: {
             HStack(spacing: 5) {
                 Image(systemName: "plus.app")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 Text("Add Location")
             }
         }
@@ -62,7 +62,7 @@ extension WeatherView {
                 } label: {
                     Image(systemName: "mappin")
                         .scaledToFill()
-                        .foregroundColor(.red)
+                        .foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
                 .frame(width: 50, height: 50)

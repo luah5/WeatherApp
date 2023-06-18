@@ -59,15 +59,21 @@ extension WeatherMainView {
 
     @ViewBuilder
     var hourlyForecast: some View {
+        @State var hours: Int = 0
+
         HStack(spacing: 5) {
             Image(systemName: "clock")
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             Text("HOURLY FORECAST")
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
 
         HStack {
             ForEach(weatherForecast.today.weatherHours) { hour in
+                HourItemView(weatherHour: hour)
+            }
+            Divider()
+            ForEach(weatherForecast.weatherDays[1].weatherHours) { hour in
                 HourItemView(weatherHour: hour)
             }
         }
@@ -77,9 +83,9 @@ extension WeatherMainView {
     var days: some View {
         HStack(spacing: 5) {
             Image(systemName: "calendar")
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             Text("4-DAY FORECAST")
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         ForEach(weatherForecast.weatherDays) { day in
             VStack {
@@ -107,7 +113,7 @@ extension WeatherMainView {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.red)
+                            .foregroundStyle(.red)
                             .frame(width: 50, height: 50)
                         Text("**\(alert.event)**")
                             .font(.system(.title))
@@ -121,7 +127,7 @@ Ending: \(alert.endTime.toTimestamp2())
 
                     Text("\(alert.senderName)")
                         .font(.system(.footnote))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
         }
@@ -177,13 +183,13 @@ Ending: \(alert.endTime.toTimestamp2())
                 Text("""
 \(day.weatherHours[Int(day.weatherHours.count) / 2].chanceOfRain.toString())%
 """)
-                .foregroundColor(.blue)
+                .foregroundStyle(.blue)
                 .bold()
             }
 
             Text("\(day.minTemp.toInt())º")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
 
             tempView(day: day)
 
