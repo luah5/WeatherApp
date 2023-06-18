@@ -28,12 +28,13 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
 @discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
+    let weatherSave: [WeatherSaveInstance] = WeatherSave().twoDay
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/onecall?",
         location.urlVersion
     )
 
-    for instance in WeatherSave().twoDay where instance.url == url {
+    for instance in weatherSave where instance.url == url {
         return WeatherData(json: instance.json)
     }
 

@@ -14,7 +14,6 @@ struct WeatherForecast {
 
     init(coordinateLocation: Location, _ dataSave: DataSave) {
         /// Get the weather data
-        print("from weatherForecast", coordinateLocation.urlVersion)
         weatherData = getHourlyWeatherData(location: coordinateLocation, save: dataSave)
         address = coordinateLocation.locationString
         weatherMinutes = weatherData.minutes

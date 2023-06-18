@@ -7,17 +7,18 @@
 
 import Foundation
 
-struct WeatherAlert {
-    var senderName: String, event: String, description: String, type: String
-    var startTime: Int, endTime: Int
+struct WeatherAlert: Identifiable {
+    let senderName: String, event: String, description: String, type: String
+    let startTime: Int, endTime: Int
+    let id: UUID = UUID()
 
     init(json: JSON) {
-        senderName = json["sender_name"].stringValue
-        event = json["event"].stringValue
-        description = json["description"].stringValue
-        type = json["type"].stringValue
+        self.senderName = json["sender_name"].stringValue
+        self.event = json["event"].stringValue
+        self.description = json["description"].stringValue
+        self.type = json["type"].stringValue
 
-        startTime = Int(json["start"].stringValue) ?? 100
-        endTime = Int(json["end"].stringValue) ?? 100
+        self.startTime = Int(json["start"].stringValue) ?? 100
+        self.endTime = Int(json["end"].stringValue) ?? 100
     }
 }

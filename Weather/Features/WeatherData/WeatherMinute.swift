@@ -8,8 +8,9 @@
 import Foundation
 
 /// A struct for a weather minute using OpenWeatherMap's onecall API
-struct WeatherMinute {
-    var time: Int, precipitation: Float
+struct WeatherMinute: Identifiable {
+    let time: Int, precipitation: Float
+    let id: UUID = UUID()
 
     init(json: JSON) {
         self.time = Int(json["dt"].stringValue) ?? 1000

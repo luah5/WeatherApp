@@ -29,7 +29,7 @@ struct WeatherView: View {
         NavigationSplitView {
             List(selection: $dataSave.selection) {
                 Section {
-                    ForEach(dataSave.weatherMainViews, id: \.index) { item in
+                    ForEach(dataSave.weatherMainViews) { item in
                         SidebarItemView(weatherItem: item, save: dataSave)
                     }
                 }

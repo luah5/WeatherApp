@@ -14,59 +14,60 @@ struct WeatherSave {
         twoDay = []; fiveDay = []
 
         reloadAll()
+        decodeFromUserDefaults()
     }
 
-    private mutating func decodeFromUserDefaults() -> [Int] {
-        var lowestTime2Day: Int = Int(Date().timeIntervalSince1970) + 1
-        var lowestTime5Day: Int = Int(Date().timeIntervalSince1970) + 1
+    private mutating func decodeFromUserDefaults() {
+        let maxTime2Day: Int = 300; let maxTime5Day: Int = 1800
+        let currentTime: Int = Int(Date().timeIntervalSince1970)
         let weatherSave2Day: String = UserDefaults.standard.string(
             forKey: "weatherSave2Day"
-        ) ?? "51.511533,-0.125112,Covent Garden|"
+        ) ?? "Error,Error,0|"
         let weatherSave5Day: String = UserDefaults.standard.string(
             forKey: "weatherSave5Day"
-        ) ?? "51.511533,-0.125112,Covent Garden|"
+        ) ?? "Error,Error,0|"
 
         for instance in weatherSave2Day.split(separator: "|") {
-            let splittedInstance = instance.toString().split(separator: ",")
-            let timeRep: Int = Int(splittedInstance[2].toString())!
+            let splittedInstance1 = instance.toString().split(separator: "'''")
+            let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
-            if timeRep < Int(lowestTime2Day) {
-                lowestTime2Day = Int(timeRep)
+            if currentTime - Int(splittedInstance2[1].toString())! >= maxTime2Day {
+                reloadURL(url: splittedInstance2[0].toString())
             }
 
             twoDay.append(
                 WeatherSaveInstance(
-                    jsonContent: splittedInstance[0].toString().replacingOccurrences(
+                    jsonContent: splittedInstance1[0].toString().replacingOccurrences(
                         of: "'''",
                         with: ""
                     ),
-                    urlContent: splittedInstance[1].toString()
+                    urlContent: splittedInstance2[0].toString()
                 )
             )
         }
 
         for instance2 in weatherSave5Day.split(separator: "|") {
-            let splittedInstance = instance2.toString().split(separator: ",")
-            let timeRep: Int = Int(splittedInstance[2].toString())!
+            let splittedInstance1 = instance2.toString().split(separator: "'''")
+            let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
-            if timeRep < Int(lowestTime5Day) {
-                lowestTime5Day = Int(timeRep)
+            if currentTime - Int(splittedInstance2[1].toString())! >= maxTime5Day {
+                reloadURL(url: splittedInstance2[0].toString())
             }
-            twoDay.append(
+
+            fiveDay.append(
                 WeatherSaveInstance(
-                    jsonContent: splittedInstance[0].toString().replacingOccurrences(
+                    jsonContent: splittedInstance1[0].toString().replacingOccurrences(
                         of: "'''",
                         with: ""
                     ),
-                    urlContent: splittedInstance[1].toString()
+                    urlContent: splittedInstance2[0].toString()
                 )
             )
         }
-
-        return [lowestTime2Day, lowestTime5Day]
     }
 
-    func encode(time: Int) {
+    func encode() {
+        let time: Int = Int(Date().timeIntervalSince1970)
         UserDefaults.standard.set(
             "",
             forKey: "weatherSave2Day"
@@ -78,11 +79,11 @@ struct WeatherSave {
         var twoDayString: String = "", fiveDayString: String = ""
 
         for hour in twoDay {
-            twoDayString += "'''\(hour.json)''',\(hour.url),\(time)"
+            twoDayString += "'''\(hour.json)''',\(hour.url),\(time)|"
         }
 
         for hour2 in fiveDay {
-            fiveDayString += "'''\(hour2.json)''',\(hour2.url),\(time)"
+            fiveDayString += "'''\(hour2.json)''',\(hour2.url),\(time)|"
         }
 
         UserDefaults.standard.set(
@@ -126,7 +127,7 @@ struct WeatherSave {
                     )
                 )
 
-                encode(time: Int(Date().timeIntervalSince1970))
+                encode()
             } catch {
                 throwNSAlert(
                     messageText: "There was an error gathering weather data in the background.",
@@ -159,7 +160,7 @@ struct WeatherSave {
                     )
                 )
 
-                encode(time: Int(Date().timeIntervalSince1970))
+                encode()
             } catch {
                 throwNSAlert(
                     messageText: "There was an error gathering weather data in the background.",
@@ -169,7 +170,45 @@ struct WeatherSave {
         }
     }
 
-    // TODO: Add support for reloading only one url
+    mutating func reloadURL(url: String) {
+        let weatherSave2Day: String = UserDefaults.standard.string(
+            forKey: "weatherSave2Day"
+        ) ?? "Error,Error,0|"
+        let weatherSave5Day: String = UserDefaults.standard.string(
+            forKey: "weatherSave5Day"
+        ) ?? "Error,Error,0|"
+
+        for instance in weatherSave2Day.split(separator: "|") where instance.split(separator: ",")[1] == url {
+            do {
+                twoDay.append(
+                    WeatherSaveInstance(
+                        jsonContent: try String(contentsOf: URL(string: url)!, encoding: .ascii),
+                        urlContent: url
+                    )
+                )
+                self.encode()
+
+                return
+            } catch {
+                throwNSAlert(messageText: "reloadURL(url: \(url)) failed.", severity: .warning)
+            }
+        }
+
+        for instance in weatherSave5Day.split(separator: "|") where instance.split(separator: ",")[1] == url {
+            do {
+                fiveDay.append(
+                    WeatherSaveInstance(
+                        jsonContent: try String(contentsOf: URL(string: url)!, encoding: .ascii),
+                        urlContent: url
+                    )
+                )
+                self.encode()
+            } catch {
+                throwNSAlert(messageText: "reloadURL(url: \(url)) failed.", severity: .warning)
+            }
+        }
+    }
+
     mutating func reloadAll() {
         reloadTwoDay()
         reloadFiveDay()

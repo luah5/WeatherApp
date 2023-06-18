@@ -39,7 +39,6 @@ struct DataSave {
 
         var index: Int = 0
         for location in coordinateLocations.coordinates {
-            print("from datasave", location.urlVersion)
             weatherMainViews.append(
                 WeatherMainView(
                     location: location,

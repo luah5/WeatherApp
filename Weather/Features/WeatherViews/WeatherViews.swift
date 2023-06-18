@@ -40,7 +40,7 @@ extension WeatherMainView {
             Text("")
 
             HStack {
-                ForEach(weatherForecast.weatherMinutes, id: \.time) { minute in
+                ForEach(weatherForecast.weatherMinutes) { minute in
                     VStack {
                         GeometryReader { _ in
                             LinearGradient(
@@ -67,7 +67,7 @@ extension WeatherMainView {
         }
 
         HStack {
-            ForEach(weatherForecast.today.weatherHours, id: \.time) { hour in
+            ForEach(weatherForecast.today.weatherHours) { hour in
                 HourItemView(weatherHour: hour)
             }
         }
@@ -81,7 +81,7 @@ extension WeatherMainView {
             Text("4-DAY FORECAST")
                 .foregroundColor(.secondary)
         }
-        ForEach(weatherForecast.weatherDays, id: \.weatherHours.first!.time) { day in
+        ForEach(weatherForecast.weatherDays) { day in
             VStack {
                 dayInfo(
                     day: day,
@@ -90,7 +90,7 @@ extension WeatherMainView {
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(day.weatherHours, id: \.time) { hour in
+                        ForEach(day.weatherHours) { hour in
                             HourItemView(weatherHour: hour)
                         }
                     }
@@ -100,7 +100,7 @@ extension WeatherMainView {
     }
 
     var weatherAlerts: some View {
-        ForEach(weatherForecast.weatherData.alerts, id: \.description) { alert in
+        ForEach(weatherForecast.weatherData.alerts) { alert in
             VForm {
                 Group {
                     HStack(spacing: 5) {

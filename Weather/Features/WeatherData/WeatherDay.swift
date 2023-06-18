@@ -8,8 +8,9 @@
 import Foundation
 
 /// A weather day with respective weather hours used by the WeatherForecast struct
-struct WeatherDay {
-    var weatherHours: [WeatherHour], minTemp: Float, maxTemp: Float, weatherDayDaily: WeatherDayDaily
+struct WeatherDay: Identifiable {
+    let weatherHours: [WeatherHour], minTemp: Float, maxTemp: Float, weatherDayDaily: WeatherDayDaily
+    let id: UUID = UUID()
 
     init(weatherHours: [WeatherHour], weatherDay: WeatherDayDaily, isConverted: Bool) {
         self.weatherHours = weatherHours

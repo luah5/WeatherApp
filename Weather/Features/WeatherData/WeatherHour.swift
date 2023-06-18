@@ -8,41 +8,41 @@
 import Foundation
 
 /// A weather hour contained by a WeatherDay
-struct WeatherHour {
-    var windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
-    var humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
-    var precipitation: Float, chanceOfRain: Int, converted: Bool, windDegInt: Int
-    var snowPrecipitation: Float
+struct WeatherHour: Identifiable {
+    let windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
+    let humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
+    var precipitation: Float, chanceOfRain: Int, converted: Bool, windDegInt: Int, snowPrecipitation: Float
+    let id: UUID = UUID()
 
     init(json: JSON, isConverted: Bool, timezoneOffset: Int = 0) {
-        converted = isConverted
+        self.converted = isConverted
 
-        windGust = Float(json["wind_gust"].stringValue) ?? 0
-        pressure = Int(json["pressure"].stringValue) ?? -100
-        temp = Float(json["temp"].stringValue) ?? -100
-        clouds = Int(json["clouds"].stringValue) ?? -100
-        dewPoint = Float(json["dew_point"].stringValue) ?? -100
-        visibility = Int((Float(String(json["visibility"].stringValue)) ?? -100) / 100)
-        time = (Int(json["dt"].stringValue) ?? 1000) + timezoneOffset
+        self.windGust = Float(json["wind_gust"].stringValue) ?? 0
+        self.pressure = Int(json["pressure"].stringValue) ?? -100
+        self.temp = Float(json["temp"].stringValue) ?? -100
+        self.clouds = Int(json["clouds"].stringValue) ?? -100
+        self.dewPoint = Float(json["dew_point"].stringValue) ?? -100
+        self.visibility = Int((Float(String(json["visibility"].stringValue)) ?? -100) / 100)
+        self.time = (Int(json["dt"].stringValue) ?? 1000) + timezoneOffset
 
-        humidity = Int(json["humidity"].stringValue) ?? -100
-        feelsLike = Float(json["feels_like"].stringValue) ?? -100
-        uvi = Float(json["uvi"].stringValue)?.toInt() ?? 0
-        windDeg = Float(json["wind_deg"].stringValue) ?? -100
-        windDegInt = windDeg.toInt()
-        windSpeed = Float(json["wind_speed"].stringValue) ?? -100
-        chanceOfRain = Int((Int(json["pop"].stringValue) ?? 0) * 100)
+        self.humidity = Int(json["humidity"].stringValue) ?? -100
+        self.feelsLike = Float(json["feels_like"].stringValue) ?? -100
+        self.uvi = Float(json["uvi"].stringValue)?.toInt() ?? 0
+        self.windDeg = Float(json["wind_deg"].stringValue) ?? -100
+        self.windDegInt = windDeg.toInt()
+        self.windSpeed = Float(json["wind_speed"].stringValue) ?? -100
+        self.chanceOfRain = Int((Int(json["pop"].stringValue) ?? 0) * 100)
 
-        weather = WeatherDescription(json: json["weather"][0])
+        self.weather = WeatherDescription(json: json["weather"][0])
 
-        precipitation = 0
+        self.precipitation = 0
         if json["rain"].exists() {
-            precipitation = Float(json["rain"]["1h"].stringValue) ?? 0
+            self.precipitation = Float(json["rain"]["1h"].stringValue) ?? 0
         }
 
-        snowPrecipitation = 0
+        self.snowPrecipitation = 0
         if json["snow"].exists() {
-            snowPrecipitation = Float(json["snow"]["1h"].stringValue) ?? 0
+            self.snowPrecipitation = Float(json["snow"]["1h"].stringValue) ?? 0
         }
     }
 }
