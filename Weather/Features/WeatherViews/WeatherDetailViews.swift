@@ -88,90 +88,86 @@ extension WeatherMainView {
 
     // MARK: - Visibility View
     var visibility: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "eye")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                    Text("VISIBILITY")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
-                Text("\(weatherForecast.current.visibility) km")
-                    .font(.system(.largeTitle))
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "eye")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
+                Text("VISIBILITY")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+            }
+            Text("\(weatherForecast.current.visibility) km")
+                .font(.system(.largeTitle))
 
-                Spacer()
+            Spacer()
 
-                if weatherForecast.current.visibility >= 15 {
-                    Text("It's perfectly clear")
-                        .font(.system(.footnote))
-                } else if weatherForecast.current.visibility < 30 && weatherForecast.current.clouds > 25 {
-                    Text("Clouds are lowering visibility")
-                        .font(.system(.footnote))
-                } else {
-                    Text("Pollution is lowering visbility")
-                        .font(.system(.footnote))
-                }
+            if weatherForecast.current.visibility >= 15 {
+                Text("It's perfectly clear")
+                    .font(.system(.footnote))
+            } else if weatherForecast.current.visibility < 30 && weatherForecast.current.clouds > 25 {
+                Text("Clouds are lowering visibility")
+                    .font(.system(.footnote))
+            } else {
+                Text("Pollution is lowering visbility")
+                    .font(.system(.footnote))
             }
         }
     }
 
     // MARK: - UV Index View
     var uvi: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "sun.max.fill")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                    Text("UV INDEX")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
-                VStack(alignment: .leading) {
-                    Text("\(weatherForecast.current.uvi)")
-                        .font(.system(.title))
-                        .padding(.trailing)
-
-                    if weatherForecast.current.uvi < 2 {
-                        Text("Low")
-                            .font(.system(.title2))
-                    } else if weatherForecast.current.uvi <= 5 {
-                        Text("Moderate")
-                            .font(.system(.title2))
-                    } else if weatherForecast.current.uvi <= 8 {
-                        Text("High")
-                            .font(.system(.title2))
-                    } else if weatherForecast.current.uvi > 10 {
-                        Text("Extreme")
-                            .font(.system(.title2))
-                    }
-                }
-
-                Spacer()
-
-                GeometryReader { geometry in
-                    ZStack {
-                        LinearGradient(
-                            gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                        .cornerRadius(5)
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 20, height: geometry.size.height)
-                            .offset(
-                                x: self.markerOffset(
-                                    for: CGFloat(weatherForecast.current.uvi) + 0.5,
-                                    in: geometry.size.width
-                                )
-                            )
-                    }
-                }
-                .frame(width: 200, height: 5)
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "sun.max.fill")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
+                Text("UV INDEX")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
             }
+            VStack(alignment: .leading) {
+                Text("\(weatherForecast.current.uvi)")
+                    .font(.system(.title))
+                    .padding(.trailing)
+
+                if weatherForecast.current.uvi < 2 {
+                    Text("Low")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi <= 5 {
+                    Text("Moderate")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi <= 8 {
+                    Text("High")
+                        .font(.system(.title2))
+                } else if weatherForecast.current.uvi > 10 {
+                    Text("Extreme")
+                        .font(.system(.title2))
+                }
+            }
+
+            Spacer()
+
+            GeometryReader { geometry in
+                ZStack {
+                    LinearGradient(
+                        gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                    .cornerRadius(5)
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 20, height: geometry.size.height)
+                        .offset(
+                            x: self.markerOffset(
+                                for: CGFloat(weatherForecast.current.uvi) + 0.5,
+                                in: geometry.size.width
+                            )
+                        )
+                }
+            }
+            .frame(width: 200, height: 5)
         }
     }
 
@@ -197,95 +193,91 @@ extension WeatherMainView {
 
     // MARK: - Rainfall View
     var rainfall: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "drop.fill")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                    Text("RAINFALL")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "drop.fill")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
+                Text("RAINFALL")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+            }
 
-                Text("""
+            Text("""
 \(weatherForecast.current.precipitation.removeZeros()) mm in the next hour
 """)
-                .font(.system(.title2))
+            .font(.system(.title2))
 
-                Text("""
+            Text("""
 \(weatherForecast.precipitationInNext24H.removeZeros()) mm expected in the next 24h
 """)
-                .font(.system(.footnote))
-            }
+            .font(.system(.footnote))
         }
     }
 
     // MARK: - Moon Phase View
     var moonPhase: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "moon.fill")
-                        .foregroundStyle(.secondary)
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "moon.fill")
+                    .foregroundStyle(.secondary)
 
-                    Text("MOON PHASE")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
+                Text("MOON PHASE")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+            }
 
-                Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
-                    .font(.system(.title2))
+            Text(weatherForecast.today.weatherDayDaily.moonPhase.rawValue)
+                .font(.system(.title2))
 
-                if weatherForecast.today.weatherDayDaily.moonPhase == .new {
-                    Image(systemName: "moonphase.new.moon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
-                    Image(systemName: "moonphase.waxing.crescent")
-                        .resizable()
-                        .scaledToFit()
-                        .imageScale(.small)
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .firstQuarter {
-                    Image(systemName: "moonphase.first.quarter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingGibous {
-                    Image(systemName: "moonphase.waxing.gibbous")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .full {
-                    Image(systemName: "moonphase.full.moon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningGibous {
-                    Image(systemName: "moonphase.waning.gibbous")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .lastQuarter {
-                    Image(systemName: "moonphase.last.quarter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningCrescent {
-                    Image(systemName: "moonphase.waning.crescent")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
-                }
+            if weatherForecast.today.weatherDayDaily.moonPhase == .new {
+                Image(systemName: "moonphase.new.moon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingCrescent {
+                Image(systemName: "moonphase.waxing.crescent")
+                    .resizable()
+                    .scaledToFit()
+                    .imageScale(.small)
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .firstQuarter {
+                Image(systemName: "moonphase.first.quarter")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waxingGibous {
+                Image(systemName: "moonphase.waxing.gibbous")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .full {
+                Image(systemName: "moonphase.full.moon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningGibous {
+                Image(systemName: "moonphase.waning.gibbous")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .lastQuarter {
+                Image(systemName: "moonphase.last.quarter")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            } else if weatherForecast.today.weatherDayDaily.moonPhase == .waningCrescent {
+                Image(systemName: "moonphase.waning.crescent")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50, alignment: .center)
+            }
 
-                Spacer()
+            Spacer()
 
-                if weatherForecast.current.clouds >= 75 {
-                    Text("The moon is currently obscured due to high cloud coverage.")
-                        .font(.system(.footnote))
-                }
+            if weatherForecast.current.clouds >= 75 {
+                Text("The moon is currently obscured due to high cloud coverage.")
+                    .font(.system(.footnote))
             }
         }
     }
@@ -323,50 +315,48 @@ extension WeatherMainView {
     }
 
     var moonForecast: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "moon.haze.fill")
-                        .foregroundStyle(.secondary)
-                    Text("MOON")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
-
-                HStack(spacing: -40) {
-                    VStack(spacing: -100) {
-                        Circle()
-                            .trim(from: 0.5, to: 0.75)
-                            .stroke(.black, lineWidth: 2)
-                            .frame(width: 100, height: 100)
-                        Circle()
-                            .fill(.blue)
-                            .frame(width: 10, height: 10)
-                            .offset(x: -50, y: 50)
-                        Text(weatherForecast.today.weatherDayDaily.moonrise.toTimestamp3())
-                            .offset(x: -50, y: 150)
-                            .bold()
-                    }
-
-                    Image(systemName: "moon.fill")
-                        .offset(y: -40)
-
-                    VStack(spacing: -100) {
-                        Circle()
-                            .trim(from: 0.75, to: 1.0)
-                            .stroke(.black, lineWidth: 2)
-                            .frame(width: 100, height: 100)
-                        Circle()
-                            .fill(.black)
-                            .frame(width: 10, height: 10)
-                            .offset(x: 50, y: 50)
-                        Text(weatherForecast.today.weatherDayDaily.moonset.toTimestamp3())
-                            .offset(x: 50, y: 150)
-                            .bold()
-                    }
-                }
-                .offset(x: 20)
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "moon.haze.fill")
+                    .foregroundStyle(.secondary)
+                Text("MOON")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
             }
+
+            HStack(spacing: -40) {
+                VStack(spacing: -100) {
+                    Circle()
+                        .trim(from: 0.5, to: 0.75)
+                        .stroke(.black, lineWidth: 2)
+                        .frame(width: 100, height: 100)
+                    Circle()
+                        .fill(.blue)
+                        .frame(width: 10, height: 10)
+                        .offset(x: -50, y: 50)
+                    Text(weatherForecast.today.weatherDayDaily.moonrise.toTimestamp3())
+                        .offset(x: -50, y: 150)
+                        .bold()
+                }
+
+                Image(systemName: "moon.fill")
+                    .offset(y: -40)
+
+                VStack(spacing: -100) {
+                    Circle()
+                        .trim(from: 0.75, to: 1.0)
+                        .stroke(.black, lineWidth: 2)
+                        .frame(width: 100, height: 100)
+                    Circle()
+                        .fill(.black)
+                        .frame(width: 10, height: 10)
+                        .offset(x: 50, y: 50)
+                    Text(weatherForecast.today.weatherDayDaily.moonset.toTimestamp3())
+                        .offset(x: 50, y: 150)
+                        .bold()
+                }
+            }
+            .offset(x: 20)
         }
     }
 

@@ -38,7 +38,7 @@ struct WeatherView: View {
                 dataSave.weatherMainViews[safe: dataSave.selection]?
                     .weatherForecast.current.weather.background.image
                     .scaledToFill()
-                    .opacity(0)
+                    .opacity(0.7)
             )
             .scrollDisabled(true)
         } detail: {

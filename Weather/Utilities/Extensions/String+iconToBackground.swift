@@ -11,29 +11,34 @@ import SwiftUI
 extension String {
     func iconToBackground() -> IconImage {
         var name: String = "Night"
+        var color: Color = .red
 
         if self == "01d" {
             name = "Clear"
-        } else if self == "01n" {
+            color = .blue
+        } else if self == "01n" || self == "02n" {
             name = "Night"
-        } else if self == "02d" {
+            color = .black
+        } else if self == "02d" || self == "50d" || self == "50n" {
             name = "PartlyCloudy"
-        } else if self == "02n" {
-            name = "Night"
+            color = .blue
         } else if self.hasPrefix("03") || self.hasPrefix("04") {
             name = "Cloudy"
-        } else if self == "09d" || self == "09n" {
+            color = .gray
+        } else if self == "09d" || self == "09n" || self == "10d" {
             name = "Rainy"
-        } else if self == "10d" {
-            name = "Rainy"
+            color = .blue
         } else if self == "10n" {
             name = "RainNight"
+            color = Color(nsColor: .darkGray)
         } else if self == "13d" || self == "13n" {
             name = "Snowy"
-        } else if self == "50d" || self == "50n" {
-            name = "PartlyCloudy"
+            color = .white
         }
 
-        return IconImage(image: Image(name).resizable())
+        return IconImage(
+            image: Image(name).resizable(),
+            color: color
+        )
     }
 }

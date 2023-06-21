@@ -55,12 +55,13 @@ extension WeatherMainView {
                 }
             }
         }
+        .background(
+            weatherForecast.current.weather.background.color
+        )
     }
 
     @ViewBuilder
     var hourlyForecast: some View {
-        @State var hours: Int = 0
-
         HStack(spacing: 5) {
             Image(systemName: "clock")
                 .foregroundStyle(.secondary)
@@ -68,13 +69,14 @@ extension WeatherMainView {
                 .foregroundStyle(.secondary)
         }
 
-        HStack {
-            ForEach(weatherForecast.today.weatherHours) { hour in
-                HourItemView(weatherHour: hour)
-            }
-            Divider()
-            ForEach(weatherForecast.weatherDays[1].weatherHours) { hour in
-                HourItemView(weatherHour: hour)
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(weatherForecast.today.weatherHours) { hour in
+                    HourItemView(weatherHour: hour)
+                }
+                ForEach(weatherForecast.weatherDays[1].weatherHours) { hour in
+                    HourItemView(weatherHour: hour)
+                }
             }
         }
     }
@@ -130,6 +132,9 @@ Ending: \(alert.endTime.toTimestamp2())
                         .foregroundStyle(.secondary)
                 }
             }
+            .background(
+                weatherForecast.current.weather.background.color
+            )
         }
     }
 

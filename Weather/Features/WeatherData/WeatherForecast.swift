@@ -15,8 +15,7 @@ struct WeatherForecast {
     init(coordinateLocation: Location, _ dataSave: DataSave) {
         /// Get the weather data
         weatherData = getHourlyWeatherData(location: coordinateLocation, save: dataSave)
-        address = coordinateLocation.locationString
-        weatherMinutes = weatherData.minutes
+        address = coordinateLocation.locationString; weatherMinutes = weatherData.minutes
 
         var weatherHours: [WeatherHour] = weatherData.hours
         var todayWeatherHours: [WeatherHour] = [], otherDayHours: [WeatherHour] = []
@@ -51,7 +50,7 @@ struct WeatherForecast {
                     weatherDays.append(
                         WeatherDay(
                             weatherHours: otherDayHours,
-                            weatherDay: weatherData.days[day],
+                            weatherDay: weatherData.days[safe: day] ?? .init(json: .null),
                             isConverted: currentHour.converted
                         )
                     )
