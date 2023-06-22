@@ -9,22 +9,21 @@ import Foundation
 import SwiftUI
 
 struct SidebarItemView: View {
-    var item: WeatherMainView, weatherForecast: WeatherForecast, weatherDay: WeatherDayDaily
-
-    init(weatherItem: WeatherMainView, save: DataSave) {
-        item = weatherItem
-        weatherForecast = item.weatherForecast
-        weatherDay = weatherForecast.today.weatherDayDaily
+    init(
+        forecast: WeatherForecast,
+        selection: Int
+    ) {
+        self.weatherForecast = forecast
+        self.weatherDay = weatherForecast.today.weatherDayDaily
+        self.selection = selection
     }
 
+    let selection: Int
+    let weatherForecast: WeatherForecast
+    let weatherDay: WeatherDayDaily
+
     var body: some View {
-        NavigationLink {
-            item
-                .background(
-                    weatherForecast.current.weather.background.image
-                        .scaledToFill()
-                )
-        } label: {
+        NavigationLink(value: selection) {
             VStack(spacing: 25) {
                 HStack {
                     VStack(alignment: .leading) {

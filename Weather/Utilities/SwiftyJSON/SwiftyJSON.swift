@@ -68,13 +68,13 @@ extension SwiftyJSONError: CustomNSError {
  See http://www.json.org
  */
 public enum Type: Int {
-case number
-case string
-case bool
-case array
-case dictionary
-case null
-case unknown
+    case number
+    case string
+    case bool
+    case array
+    case dictionary
+    case null
+    case unknown
 }
 
 // MARK: - JSON Base

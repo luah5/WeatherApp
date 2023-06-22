@@ -23,25 +23,23 @@ extension WeatherMainView {
 
     // MARK: - Humidity View
     var humidity: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "humidity")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                    Text("HUMIDITY")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
-
-                Text("\(weatherForecast.current.humidity)%")
-                    .font(.system(.title))
-
-                Spacer()
-
-                Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "humidity")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
+                Text("HUMIDITY")
                     .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
             }
+
+            Text("\(weatherForecast.current.humidity)%")
+                .font(.system(.title))
+
+            Spacer()
+
+            Text("The dew point is \(weatherForecast.current.dewPoint.toInt())º")
+                .font(.system(.footnote))
         }
     }
 

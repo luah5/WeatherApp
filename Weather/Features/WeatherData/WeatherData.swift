@@ -11,16 +11,16 @@ import Foundation
 struct WeatherData {
     var hours: [WeatherHour], minutes: [WeatherMinute], precipitationInNextHour: Bool, alerts: [WeatherAlert]
     var days: [WeatherDayDaily]
-    var location: String, timezoneOffset: Int
+    let location: String, timezoneOffset: Int
 
     init(json: JSON) {
-        precipitationInNextHour = false
-        hours = []; minutes = []; alerts = []; days = []
+        self.precipitationInNextHour = false
+        self.hours = []; self.minutes = []; self.alerts = []; self.days = []
 
-        timezoneOffset = Int(json["timezone_offset"].stringValue) ?? 0
-        location = json["timezone"].stringValue.split(separator: "/")[1].toString()
+        self.timezoneOffset = Int(json["timezone_offset"].stringValue) ?? 0
+        self.location = json["timezone"].stringValue.split(separator: "/")[1].toString()
 
-        hours.append(
+        self.hours.append(
             WeatherHour(
                 json: json["current"],
                 isConverted: false,
@@ -30,7 +30,7 @@ struct WeatherData {
 
         if json["alerts"].exists() {
             for index in 0...(json["alerts"].count - 1) {
-                alerts.append(
+                self.alerts.append(
                     WeatherAlert(
                         json: json["alerts"][index]
                     )
@@ -39,7 +39,7 @@ struct WeatherData {
         }
 
         for index in 0...(json["hourly"].count - 1) {
-            hours.append(
+            self.hours.append(
                 WeatherHour(
                     json: json["hourly"][index],
                     isConverted: false,
@@ -49,7 +49,7 @@ struct WeatherData {
         }
 
         for index in 0...4 {
-            days.append(
+            self.days.append(
                 WeatherDayDaily(
                     json: json["daily"][index]
                 )
@@ -57,7 +57,7 @@ struct WeatherData {
         }
 
         for index in 0...(json["minutely"].count - 1) {
-            minutes.append(
+            self.minutes.append(
                 WeatherMinute(
                     json: json["minutely"][index]
                 )

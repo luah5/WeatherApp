@@ -55,9 +55,6 @@ extension WeatherMainView {
                 }
             }
         }
-        .background(
-            weatherForecast.current.weather.background.color
-        )
     }
 
     @ViewBuilder
@@ -69,13 +66,12 @@ extension WeatherMainView {
                 .foregroundStyle(.secondary)
         }
 
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(weatherForecast.today.weatherHours) { hour in
-                    HourItemView(weatherHour: hour)
-                }
-                ForEach(weatherForecast.weatherDays[1].weatherHours) { hour in
-                    HourItemView(weatherHour: hour)
+                ForEach(weatherForecast.weatherDays) { day in
+                    ForEach(day.weatherHours) { hour in
+                        HourItemView(weatherHour: hour)
+                    }
                 }
             }
         }
@@ -132,9 +128,6 @@ Ending: \(alert.endTime.toTimestamp2())
                         .foregroundStyle(.secondary)
                 }
             }
-            .background(
-                weatherForecast.current.weather.background.color
-            )
         }
     }
 

@@ -9,7 +9,7 @@ import Foundation
 
 /// A struct for getting the weather description and icon
 struct WeatherDescription {
-    var mainDescription: String, description: String, icon: IconImage, background: IconImage
+    let mainDescription: String, description: String, icon: IconImage, background: IconImage
 
     /// Default intializer, takes one argument: a JSON object.
     init(json: JSON) {

@@ -30,14 +30,16 @@ struct WeatherView: View {
             List(selection: $dataSave.selection) {
                 Section {
                     ForEach(dataSave.weatherMainViews) { item in
-                        SidebarItemView(weatherItem: item, save: dataSave)
+                        SidebarItemView(
+                            forecast: item.weatherForecast,
+                            selection: item.index
+                        )
                     }
                 }
             }
             .background(
                 dataSave.weatherMainViews[safe: dataSave.selection]?
-                    .weatherForecast.current.weather.background.image
-                    .scaledToFill()
+                    .weatherForecast.current.weather.background.color
                     .opacity(0.7)
             )
             .scrollDisabled(true)

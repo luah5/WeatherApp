@@ -24,3 +24,15 @@ extension Substring {
         return String(describing: self)
     }
 }
+
+extension Collection {
+    func toString() -> String {
+        return String(describing: self)
+    }
+}
+
+extension Double {
+    func toString() -> String {
+        return String(describing: self)
+    }
+}

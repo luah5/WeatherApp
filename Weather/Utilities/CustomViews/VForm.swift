@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct VForm<Content: View>: View {
-    @ViewBuilder var content: Content
     let opacity: Double = 0.5
+    let color: Color
+    let content: Content
+
+    init(color: Color = .cyan, @ViewBuilder content: () -> Content) {
+        if color == .cyan {
+            self.color = LazyWeatherData().background.color.lerp(to: .white, progress: 0.6)
+        } else {
+            self.color = color.lerp(to: .white, progress: 0.6)
+        }
+        self.content = content()
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,7 +36,7 @@ struct VForm<Content: View>: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 5)
-                .foregroundStyle(.white)
+                .foregroundColor(color)
                 .opacity(opacity)
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)

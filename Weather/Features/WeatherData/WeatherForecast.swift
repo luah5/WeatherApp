@@ -14,8 +14,8 @@ struct WeatherForecast {
 
     init(coordinateLocation: Location, _ dataSave: DataSave) {
         /// Get the weather data
-        weatherData = getHourlyWeatherData(location: coordinateLocation, save: dataSave)
-        address = coordinateLocation.locationString; weatherMinutes = weatherData.minutes
+        self.weatherData = getHourlyWeatherData(location: coordinateLocation, save: dataSave)
+        self.address = coordinateLocation.locationString; weatherMinutes = weatherData.minutes
 
         var weatherHours: [WeatherHour] = weatherData.hours
         var todayWeatherHours: [WeatherHour] = [], otherDayHours: [WeatherHour] = []
@@ -31,12 +31,12 @@ struct WeatherForecast {
         var lastDay: Int = Int(weatherHours[1].time
             .toTimestamp()
             .split(separator: " ").first!)!, day: Int = 0
-        precipitationInNext24H = 0
+        self.precipitationInNext24H = 0
 
         /// For some reason swift will throw "Return from initializer without initializing all stored properties"
         /// The following code is to fix it
         self.current = weatherHours.first!
-        weatherDays = []
+        self.weatherDays = []
 
         /// Loop through the weather hours (excluding the first one)
         for index in 1...weatherHours.count - 1 {
@@ -47,7 +47,7 @@ struct WeatherForecast {
 
             if currentDay != lastDay {
                 if !(day == 0) && !otherDayHours.isEmpty {
-                    weatherDays.append(
+                    self.weatherDays.append(
                         WeatherDay(
                             weatherHours: otherDayHours,
                             weatherDay: weatherData.days[safe: day] ?? .init(json: .null),

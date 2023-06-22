@@ -7,8 +7,9 @@
 
 import Foundation
 
-/// Removes the trailing zeros in a Float.
 extension Float {
+    /// Removes zeros from a float
+    /// - Returns: A String copy of the float with removed zeros
     func removeZeros() -> String {
         return String(format: "%g", self)
     }

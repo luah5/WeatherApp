@@ -14,15 +14,15 @@ struct WeatherMainView: View, Identifiable {
     var id: UUID = UUID()
 
     init(location: Location, id: Int, save: DataSave) {
-        coordLocation = location
+        self.coordLocation = location
         var weatherSave = WeatherSave()
 
-        weatherForecast = WeatherForecast(
+        self.weatherForecast = WeatherForecast(
             coordinateLocation: location,
             save
         )
 
-        index = id
+        self.index = id
         DispatchQueue.global(qos: .background).async {
             while true {
                 sleep(600)

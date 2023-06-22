@@ -9,12 +9,12 @@ import SwiftUI
 
 /// This view is for showing the hours of every WeatherDay
 struct HourItemView: View {
-    var hour: WeatherHour
-    @State private var presented: Bool = false
-
     init(weatherHour: WeatherHour) {
-        hour = weatherHour
+        self.hour = weatherHour
     }
+
+    let hour: WeatherHour
+    @State private var presented: Bool = false
 
     var body: some View {
         let split: [String.SubSequence] = hour.time.toTimestamp().split(separator: " ")

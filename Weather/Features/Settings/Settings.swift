@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Settings: ObservableObject {
+class SettingsData: ObservableObject {
     enum Units: String, CaseIterable {
         case metric = "Metric"
         case imperial = "Imperial"

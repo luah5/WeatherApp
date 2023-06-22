@@ -9,13 +9,11 @@ import Foundation
 
 /// Extends Int and returns the proper way to say a date.
 extension Int {
+    /// Converts an Int to the suffix of a date
+    /// - Returns: A String being the correct suffix for a date
     func getProperDateWord() -> String {
         let selfString: String = self.toString()
         let end: String = String(describing: selfString.last ?? "4")
-
-        if selfString.first == "1" {
-            return "th"
-        }
 
         if end == "1" {
             return "st"
