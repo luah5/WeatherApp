@@ -45,41 +45,39 @@ extension WeatherMainView {
 
     // MARK: - Feels Like View
     var feelsLike: some View {
-        VStack {
-            VForm {
-                HStack(spacing: 5) {
-                    Image(systemName: "thermometer.medium")
-                        .controlSize(.small)
-                        .foregroundStyle(.secondary)
-                    Text("FEELS LIKE")
-                        .font(.system(.footnote))
-                        .foregroundStyle(.secondary)
-                }
-                Text("\(weatherForecast.current.feelsLike.toInt())º")
-                    .font(.system(.largeTitle))
+        VForm {
+            HStack(spacing: 5) {
+                Image(systemName: "thermometer.medium")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
+                Text("FEELS LIKE")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+            }
+            Text("\(weatherForecast.current.feelsLike.toInt())º")
+                .font(.system(.largeTitle))
 
-                Spacer()
+            Spacer()
 
-                let tempDiff: Float = weatherForecast.current.feelsLike - weatherForecast.current.temp
-                let current: WeatherHour = weatherForecast.current
-                if tempDiff >= -2 && tempDiff <= 2 {
-                    Text("Similar to the real temperature.")
+            let tempDiff: Float = weatherForecast.current.feelsLike - weatherForecast.current.temp
+            let current: WeatherHour = weatherForecast.current
+            if tempDiff >= -2 && tempDiff <= 2 {
+                Text("Similar to the real temperature.")
+                    .font(.system(.footnote))
+            } else if current.humidity >= 70 {
+                if tempDiff > 2 {
+                    Text("Humidity is making it feel warmer.")
                         .font(.system(.footnote))
-                } else if current.humidity >= 70 {
-                    if tempDiff > 2 {
-                        Text("Humidity is making it feel warmer.")
-                            .font(.system(.footnote))
-                    } else if tempDiff < -2 {
-                        Text("Humidity is making it feel cooler.")
-                            .font(.system(.footnote))
-                    }
-                } else if (current.windSpeed >= 5 || current.windGust >= 10) && tempDiff < -2 {
-                    Text("Wind is making it feel cooler.")
-                        .font(.system(.footnote))
-                } else if (current.windSpeed <= 2.5 || current.windGust <= 2.5) && tempDiff > 2 {
-                    Text("Wind is making it feel warmer.")
+                } else if tempDiff < -2 {
+                    Text("Humidity is making it feel cooler.")
                         .font(.system(.footnote))
                 }
+            } else if (current.windSpeed >= 5 || current.windGust >= 10) && tempDiff < -2 {
+                Text("Wind is making it feel cooler.")
+                    .font(.system(.footnote))
+            } else if (current.windSpeed <= 2.5 || current.windGust <= 2.5) && tempDiff > 2 {
+                Text("Wind is making it feel warmer.")
+                    .font(.system(.footnote))
             }
         }
     }

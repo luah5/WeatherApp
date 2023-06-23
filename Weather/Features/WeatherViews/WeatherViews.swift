@@ -9,6 +9,7 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
+var reloads: Int = 0
 /// Extends WeatherView and adds the main body
 extension WeatherMainView {
     // MARK: - Views
@@ -85,6 +86,22 @@ extension WeatherMainView {
             Text("4-DAY FORECAST")
                 .foregroundStyle(.secondary)
         }
+        VStack {
+            dayInfo(
+                day: weatherForecast.today,
+                timestamp: weatherForecast.today.weatherHours[0]
+                    .time.toTimestamp4()
+            )
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(weatherForecast.today.weatherHours) { hour in
+                        HourItemView(weatherHour: hour)
+                    }
+                }
+            }
+        }
+
         ForEach(weatherForecast.weatherDays) { day in
             VStack {
                 dayInfo(
@@ -164,16 +181,50 @@ Ending: \(alert.endTime.toTimestamp2())
     }
 
     @ViewBuilder
+    private func popoverDayInfo(_ day: WeatherDay) -> some View {
+        Text("Conditions")
+            .bold()
+            .frame(alignment: .center)
+        ScrollView(.vertical) {
+            VStack {
+                HStack {
+                    Text(
+"""
+\(day.weatherHours[Int(day.weatherHours.count / 2)].temp.toString())º
+"""
+                    )
+                    .font(.title)
+                    day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
+                        .resizable()
+                        .frame(width: 10, height: 10)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
     private func dayInfo(day: WeatherDay, timestamp: String) -> some View {
+        @State var showsPopover: Bool = false
+
         HStack(spacing: 30) {
-            Text(timestamp)
-                .font(.system(size: 14, weight: .semibold))
-                .help("The day of the forecast.")
+            if day == weatherForecast.today {
+                Text("Today")
+                    .font(.system(size: 14, weight: .semibold))
+                    .help("The day of the forecast.")
+            } else {
+                Text(timestamp)
+                    .font(.system(size: 14, weight: .semibold))
+                    .help("The day of the forecast.")
+            }
 
             day.weatherHours[Int(day.weatherHours.count / 2)].weather.icon.image
                 .scaledToFill()
                 .controlSize(.large)
                 .frame(width: 25, height: 25)
+                .popover(isPresented: $showsPopover) {
+                    popoverDayInfo(day)
+                        .frame(width: 200, height: 300)
+                }
 
             if day.weatherHours[
                 Int(day.weatherHours.count) / 2
@@ -185,9 +236,14 @@ Ending: \(alert.endTime.toTimestamp2())
                 .bold()
             }
 
-            Text("\(day.minTemp.toInt())º")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(.secondary)
+            Button {
+                showsPopover.toggle()
+            } label: {
+                Text("\(day.minTemp.toInt())º")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.secondary)
+            }
+            .buttonStyle(.plain)
 
             tempView(day: day)
 

@@ -14,10 +14,10 @@ struct WeatherApp: App {
             WeatherView()
                 .presentedWindowToolbarStyle(.expanded)
                 .onAppear {
-                    WeatherSave()
+                    _ = WeatherSave(true)
                 }
                 .onDisappear {
-                    WeatherSave()
+                    _ = WeatherSave(true)
                 }
         }
         .commands {

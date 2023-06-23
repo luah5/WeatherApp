@@ -56,17 +56,21 @@ struct WeatherData {
             )
         }
 
-        for index in 0...(json["minutely"].count - 1) {
-            self.minutes.append(
-                WeatherMinute(
-                    json: json["minutely"][index]
+        if json["minutely"].exists() {
+            for index in 0...(json["minutely"].count - 1) {
+                self.minutes.append(
+                    WeatherMinute(
+                        json: json["minutely"][index]
+                    )
                 )
-            )
 
-            if (Float(json["minutely"][index]["precipitation"].stringValue) ?? 0) > 1
-                && precipitationInNextHour != true {
-                precipitationInNextHour = true
+                if (Float(json["minutely"][index]["precipitation"].stringValue) ?? 0) > 1
+                    && precipitationInNextHour != true {
+                    precipitationInNextHour = true
+                }
             }
+        } else {
+
         }
     }
 }

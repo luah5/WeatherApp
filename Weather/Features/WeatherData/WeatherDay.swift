@@ -8,7 +8,11 @@
 import Foundation
 
 /// A weather day with respective weather hours used by the WeatherForecast struct
-struct WeatherDay: Identifiable {
+struct WeatherDay: Identifiable, Equatable {
+    static func == (lhs: WeatherDay, rhs: WeatherDay) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     let weatherHours: [WeatherHour], minTemp: Float, maxTemp: Float, weatherDayDaily: WeatherDayDaily
     let id: UUID = UUID()
 

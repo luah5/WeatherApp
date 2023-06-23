@@ -10,10 +10,12 @@ import Foundation
 struct WeatherSave {
     var twoDay: [WeatherSaveInstance], fiveDay: [WeatherSaveInstance]
 
-    init() {
+    init(_ shouldReload: Bool = false) {
         twoDay = []; fiveDay = []
 
-        reloadAll()
+        if shouldReload {
+            reloadAll()
+        }
         decodeFromUserDefaults()
     }
 
