@@ -14,14 +14,10 @@ struct MapForm<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Spacer()
-
                 VStack(alignment: .center, spacing: 20) {
                     content
                         .frame(alignment: .center)
                 }
-
-                Spacer()
             }
             .frame(maxWidth: .infinity)
             .padding(10)
