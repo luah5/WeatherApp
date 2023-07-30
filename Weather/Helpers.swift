@@ -23,7 +23,7 @@ func getAddressFromCoordinates(location: Location) -> String {
     let url: String = "https://geocode.maps.co/reverse?lat=\(lat)&lon=\(lon)"
 
     guard let url = URL(string: url) else {
-        fatalError()
+        return "Error"
     }
 
     do {
@@ -44,7 +44,7 @@ func getAddressFromCoordinates(location: Location) -> String {
             return address["country"].stringValue
         }
     } catch {
-        fatalError()
+        return "Error"
     }
 
     return "Error"

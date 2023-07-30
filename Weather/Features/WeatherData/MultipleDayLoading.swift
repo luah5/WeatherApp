@@ -34,24 +34,27 @@ func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
         location.urlVersion
     )
 
-    for instance in weatherSave where instance.url == url {
-        return WeatherData(json: instance.json)
+    for save in weatherSave where save.url == url { return WeatherData(json: save.json) }
+
+    guard let first = weatherSave.first else {
+        fatalError("Weather Saves is empty.")
     }
 
-    fatalError("Error gathering weather data in foreground.")
+    return WeatherData(json: first.json)
 }
 
 @discardableResult
 /// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
+    let weatherSave: [WeatherSaveInstance] = WeatherSave().fiveDay
     var hours: [FiveDayWeatherHour] = []
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/forecast?",
         location.urlVersion
     )
 
-    for instance in WeatherSave().fiveDay where instance.url == url {
-        let json: JSON = instance.json
+    for save in weatherSave where save.url == url {
+        let json: JSON = save.json
 
         for index in 16...(json["list"].count - 1) {
             hours.append(FiveDayWeatherHour(json: json["list"][index]))
@@ -60,5 +63,13 @@ func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeat
         return hours
     }
 
-    fatalError("Error gathering weather data in foreground.")
+    guard let first = weatherSave.first else {
+        fatalError("Weather Saves is empty.")
+    }
+
+    for index in 16...(first.json["list"].count - 1) {
+        hours.append(FiveDayWeatherHour(json: first.json["list"][index]))
+    }
+
+    return hours
 }

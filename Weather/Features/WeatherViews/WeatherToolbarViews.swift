@@ -11,13 +11,19 @@ import MapKit
 extension WeatherView {
     @ViewBuilder
     var toolbarViews: some View {
+        @State var isLoading: Bool = false
+
         Button {
             sheetIsPresented.toggle()
         } label: {
-            HStack(spacing: 5) {
-                Image(systemName: "plus.app")
-                    .foregroundStyle(.secondary)
-                Text("Add Location")
+            if isLoading {
+                ProgressView()
+            } else {
+                HStack(spacing: 5) {
+                    Image(systemName: "plus.app")
+                        .foregroundStyle(.secondary)
+                    Text("Add Location")
+                }
             }
         }
         .disabled(dataSave.weatherMainViews.count >= 10)
@@ -27,6 +33,7 @@ extension WeatherView {
                 Map(coordinateRegion: $region)
 
                 Button {
+                    isLoading = true
                     sheetIsPresented = false
 
                     DispatchQueue.global(qos: .userInteractive).async {
@@ -57,6 +64,7 @@ extension WeatherView {
                             )
                         )
 
+                        isLoading = false
                         dataSave.selection += 1
                     }
                 } label: {
