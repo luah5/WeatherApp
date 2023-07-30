@@ -28,7 +28,8 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
 @discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
-    let weatherSave: [WeatherSaveInstance] = WeatherSave().twoDay
+    var weatherSave: [WeatherSaveInstance] = WeatherSave().twoDay
+    if weatherSave.isEmpty { weatherSave = WeatherSave(true).twoDay }
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/onecall?",
         location.urlVersion
@@ -46,7 +47,8 @@ func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
 @discardableResult
 /// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
-    let weatherSave: [WeatherSaveInstance] = WeatherSave().fiveDay
+    var weatherSave: [WeatherSaveInstance] = WeatherSave().fiveDay
+    if WeatherSave().fiveDay.isEmpty { weatherSave = WeatherSave(true).fiveDay }
     var hours: [FiveDayWeatherHour] = []
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/forecast?",
