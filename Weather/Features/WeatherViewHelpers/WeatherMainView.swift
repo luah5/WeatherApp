@@ -25,8 +25,8 @@ struct WeatherMainView: View, Identifiable {
         self.index = id
         DispatchQueue.global(qos: .background).async {
             while true {
-                sleep(600)
                 weatherSave.reloadAll()
+                sleep(600)
             }
         }
     }

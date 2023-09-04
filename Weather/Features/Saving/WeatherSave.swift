@@ -10,12 +10,17 @@ import Foundation
 struct WeatherSave {
     var twoDay: [WeatherSaveInstance], fiveDay: [WeatherSaveInstance]
 
-    init(_ shouldReload: Bool = false) {
+    init(_ shouldReload: Bool?) {
         twoDay = []; fiveDay = []
 
-        if shouldReload {
+        if shouldReload ?? false {
             reloadAll()
         }
+
+        if !(shouldReload ?? false) {
+
+        }
+
         decodeFromUserDefaults()
     }
 
@@ -29,8 +34,8 @@ struct WeatherSave {
             forKey: "weatherSave5Day"
         ) ?? "Error,Error,0|"
 
-        for instance in weatherSave2Day.split(separator: "|") {
-            let splittedInstance1 = instance.toString().split(separator: "'''")
+        weatherSave2Day.split(separator: "|").forEach {
+            let splittedInstance1 = $0.toString().split(separator: "'''")
             let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
             if currentTime - Int(splittedInstance2[1].toString())! >= maxTime2Day {
@@ -48,8 +53,8 @@ struct WeatherSave {
             )
         }
 
-        for instance2 in weatherSave5Day.split(separator: "|") {
-            let splittedInstance1 = instance2.toString().split(separator: "'''")
+        weatherSave5Day.split(separator: "|").forEach {
+            let splittedInstance1 = $0.toString().split(separator: "'''")
             let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
             if currentTime - Int(splittedInstance2[1].toString())! >= maxTime5Day {
@@ -80,13 +85,9 @@ struct WeatherSave {
         )
         var twoDayString: String = "", fiveDayString: String = ""
 
-        for hour in twoDay {
-            twoDayString += "'''\(hour.json)''',\(hour.url),\(time)|"
-        }
+        twoDay.forEach { twoDayString += "'''\($0.json)''',\($0.url),\(time)|" }
 
-        for hour2 in fiveDay {
-            fiveDayString += "'''\(hour2.json)''',\(hour2.url),\(time)|"
-        }
+        fiveDay.forEach { fiveDayString += "'''\($0.json)''',\($0.url),\(time)|" }
 
         UserDefaults.standard.set(
             twoDayString,

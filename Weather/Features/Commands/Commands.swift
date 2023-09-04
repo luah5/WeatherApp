@@ -13,8 +13,10 @@ struct WACommands: Commands {
         CommandMenu("Split") {
             Button("Split vertically") { }
                 .keyboardShortcut("[")
+                .disabled(true)
             Button("Split horizontally") { }
                 .keyboardShortcut("]")
+                .disabled(true)
         }
     }
 }

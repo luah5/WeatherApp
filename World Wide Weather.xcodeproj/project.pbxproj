@@ -118,6 +118,7 @@
 		85E535C12A2318D300C3093B /* String+iconToBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E535C02A2318D300C3093B /* String+iconToBackground.swift */; };
 		85E7420B2A0806C20026C647 /* SineLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7420A2A0806C20026C647 /* SineLine.swift */; };
 		85EB22252A29F50100E7A926 /* SidebarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB22242A29F50100E7A926 /* SidebarItemView.swift */; };
+		85F16F162A8B71A800518954 /* Bool3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F16F152A8B71A800518954 /* Bool3.swift */; };
 		85FE6B602A0C17F3003F7F1C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */; };
 /* End PBXBuildFile section */
 
@@ -228,6 +229,7 @@
 		85E535C02A2318D300C3093B /* String+iconToBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iconToBackground.swift"; sourceTree = "<group>"; };
 		85E7420A2A0806C20026C647 /* SineLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineLine.swift; sourceTree = "<group>"; };
 		85EB22242A29F50100E7A926 /* SidebarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItemView.swift; sourceTree = "<group>"; };
+		85F16F152A8B71A800518954 /* Bool3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool3.swift; sourceTree = "<group>"; };
 		85FE6B5F2A0C17F3003F7F1C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -462,6 +464,7 @@
 		85CD0C552A10301A00E531FD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				85F16F142A8B719000518954 /* Custom Types */,
 				854158332A2FC849002DA57B /* SwiftyJSON */,
 				85E535BD2A22932D00C3093B /* CustomViews */,
 				85730EA029ED97EA001DB918 /* Extensions */,
@@ -498,6 +501,14 @@
 				853862D72A29C2A000F4C947 /* MapForm.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		85F16F142A8B719000518954 /* Custom Types */ = {
+			isa = PBXGroup;
+			children = (
+				85F16F152A8B71A800518954 /* Bool3.swift */,
+			);
+			path = "Custom Types";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -779,6 +790,7 @@
 				858EA0B329F8F1BF0021EAAC /* FiveDayWeatherHour.swift in Sources */,
 				858EA0C929FADFDA0021EAAC /* FiveDayWeatherHourToWeatherHour.swift in Sources */,
 				85E7420B2A0806C20026C647 /* SineLine.swift in Sources */,
+				85F16F162A8B71A800518954 /* Bool3.swift in Sources */,
 				85DC8D3E2A4457CB002FDD88 /* LazyWeatherData.swift in Sources */,
 				85C9E60D29F83F460025BD42 /* Output.swift in Sources */,
 				85CD0C5B2A10B03700E531FD /* Locations.swift in Sources */,
@@ -847,7 +859,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 24;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -875,9 +887,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = WorldWideWeatherWidgetExtensionRelease.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 24;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -933,6 +946,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -995,6 +1009,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1011,6 +1026,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Release;
 		};
@@ -1027,8 +1043,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
-				DEVELOPMENT_TEAM = 5ZQ9284762;
-				ENABLE_PREVIEWS = NO;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "World Wide Weather";
@@ -1064,8 +1080,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
-				DEVELOPMENT_TEAM = 5ZQ9284762;
-				ENABLE_PREVIEWS = NO;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "World Wide Weather";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
@@ -1083,6 +1099,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1095,7 +1112,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.2;
 				MARKETING_VERSION = 1.0;
@@ -1115,7 +1132,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.2;
 				MARKETING_VERSION = 1.0;
@@ -1134,7 +1151,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WeatherUITests;
@@ -1152,7 +1169,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5ZQ9284762;
+				DEVELOPMENT_TEAM = 36973VT7Q3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = RaymondVleeshouwer.WeatherUITests;

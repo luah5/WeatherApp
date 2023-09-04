@@ -113,58 +113,63 @@ extension WeatherMainView {
 
     // MARK: - UV Index View
     var uvi: some View {
-        VForm {
-            HStack(spacing: 5) {
-                Image(systemName: "sun.max.fill")
-                    .controlSize(.small)
-                    .foregroundStyle(.secondary)
-                Text("UV INDEX")
-                    .font(.system(.footnote))
-                    .foregroundStyle(.secondary)
-            }
-            VStack(alignment: .leading) {
-                Text("\(weatherForecast.current.uvi)")
-                    .font(.system(.title))
-                    .padding(.trailing)
-
-                if weatherForecast.current.uvi < 2 {
-                    Text("Low")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi <= 5 {
-                    Text("Moderate")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi <= 8 {
-                    Text("High")
-                        .font(.system(.title2))
-                } else if weatherForecast.current.uvi > 10 {
-                    Text("Extreme")
-                        .font(.system(.title2))
+        Button {
+            print("Clicked!")
+        } label: {
+            VForm {
+                HStack(spacing: 5) {
+                    Image(systemName: "sun.max.fill")
+                        .controlSize(.small)
+                        .foregroundStyle(.secondary)
+                    Text("UV INDEX")
+                        .font(.system(.footnote))
+                        .foregroundStyle(.secondary)
                 }
-            }
+                VStack(alignment: .leading) {
+                    Text("\(weatherForecast.current.uvi)")
+                        .font(.system(.title))
+                        .padding(.trailing)
 
-            Spacer()
+                    if weatherForecast.current.uvi < 2 {
+                        Text("Low")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi <= 5 {
+                        Text("Moderate")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi <= 8 {
+                        Text("High")
+                            .font(.system(.title2))
+                    } else if weatherForecast.current.uvi > 10 {
+                        Text("Extreme")
+                            .font(.system(.title2))
+                    }
+                }
 
-            GeometryReader { geometry in
-                ZStack {
-                    LinearGradient(
-                        gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                    .cornerRadius(5)
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 20, height: geometry.size.height)
-                        .offset(
-                            x: self.markerOffset(
-                                for: CGFloat(weatherForecast.current.uvi) + 0.5,
-                                in: geometry.size.width
-                            )
+                Spacer()
+
+                GeometryReader { geometry in
+                    ZStack {
+                        LinearGradient(
+                            gradient: Gradient(colors: [.green, .yellow, .red, .purple]),
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
+                        .cornerRadius(5)
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 20, height: geometry.size.height)
+                            .offset(
+                                x: self.markerOffset(
+                                    for: CGFloat(weatherForecast.current.uvi) + 0.5,
+                                    in: geometry.size.width
+                                )
+                            )
+                    }
                 }
+                .frame(maxWidth: .infinity, minHeight: 5, maxHeight: 5)
             }
-            .frame(width: 200, height: 5)
         }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Sun Position View
