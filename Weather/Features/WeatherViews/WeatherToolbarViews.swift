@@ -14,7 +14,7 @@ extension WeatherView {
         @State var isLoading: Bool = false
 
         Button {
-            sheetIsPresented.toggle()
+            mapShown.toggle()
         } label: {
             if isLoading {
                 ProgressView()
@@ -28,13 +28,13 @@ extension WeatherView {
         }
         .disabled(dataSave.weatherMainViews.count >= 10)
         .keyboardShortcut("n")
-        .sheet(isPresented: $sheetIsPresented) {
+        .sheet(isPresented: $mapShown) {
             ZStack {
                 Map(coordinateRegion: $region)
 
                 Button {
                     isLoading = true
-                    sheetIsPresented = false
+                    mapShown = false
 
                     DispatchQueue.global(qos: .userInteractive).async {
                         dataSave.coordinateLocations.coordinates.append(
@@ -65,7 +65,7 @@ extension WeatherView {
                         )
 
                         isLoading = false
-                        dataSave.selection += 1
+                        dataSave.intSelection += 1
                     }
                 } label: {
                     Image(systemName: "mappin")
@@ -88,14 +88,14 @@ extension WeatherView {
         .buttonStyle(.bordered)
 
         Button {
-            dataSave.weatherMainViews.remove(at: dataSave.selection)
-            dataSave.coordinateLocations.coordinates.remove(at: dataSave.selection)
+            dataSave.weatherMainViews.remove(at: dataSave.intSelection)
+            dataSave.coordinateLocations.coordinates.remove(at: dataSave.intSelection)
 
             DispatchQueue.global(qos: .background).async {
                 UserDefaults.standard.setValue(dataSave.coordinateLocations.encode(), forKey: "locations")
             }
 
-            dataSave.selection = dataSave.weatherMainViews.count - 1
+            dataSave.intSelection = dataSave.weatherMainViews.count - 1
         } label: {
             HStack(spacing: 5) {
                 Image(systemName: "trash")

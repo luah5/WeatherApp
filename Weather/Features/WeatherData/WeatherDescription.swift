@@ -8,7 +8,12 @@
 import Foundation
 
 /// A struct for getting the weather description and icon
-struct WeatherDescription {
+struct WeatherDescription: Identifiable, Hashable {
+    static func == (lhs: WeatherDescription, rhs: WeatherDescription) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    let id: UUID = UUID()
     let mainDescription: String, description: String, icon: IconImage, background: IconImage
 
     /// Default intializer, takes one argument: a JSON object.

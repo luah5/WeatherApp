@@ -10,21 +10,17 @@ import Foundation
 struct WeatherSave {
     var twoDay: [WeatherSaveInstance], fiveDay: [WeatherSaveInstance]
 
-    init(_ shouldReload: Bool?) {
+    init(_ shouldReload: Bool3) {
         twoDay = []; fiveDay = []
 
-        if shouldReload ?? false {
-            reloadAll()
-        }
+        if shouldReload == .positive { reloadAll(); decodeFromUserDefaults() }
 
-        if !(shouldReload ?? false) {
+        if shouldReload == .negative { decodeFromUserDefaults(false) }
 
-        }
-
-        decodeFromUserDefaults()
+        if shouldReload == .other { decodeFromUserDefaults(true) }
     }
 
-    private mutating func decodeFromUserDefaults() {
+    private mutating func decodeFromUserDefaults(_ canReload: Bool = true) {
         let maxTime2Day: Int = 300; let maxTime5Day: Int = 1800
         let currentTime: Int = Int(Date().timeIntervalSince1970)
         let weatherSave2Day: String = UserDefaults.standard.string(
@@ -39,7 +35,7 @@ struct WeatherSave {
             let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
             if currentTime - Int(splittedInstance2[1].toString())! >= maxTime2Day {
-                reloadURL(url: splittedInstance2[0].toString())
+                if canReload { reloadURL(url: splittedInstance2[0].toString()) }
             }
 
             twoDay.append(
@@ -58,7 +54,7 @@ struct WeatherSave {
             let splittedInstance2 = splittedInstance1[1].split(separator: ",")
 
             if currentTime - Int(splittedInstance2[1].toString())! >= maxTime5Day {
-                reloadURL(url: splittedInstance2[0].toString())
+                if canReload { reloadURL(url: splittedInstance2[0].toString()) }
             }
 
             fiveDay.append(

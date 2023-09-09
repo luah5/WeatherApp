@@ -25,20 +25,16 @@ func throwNSAlert(messageText: String, severity: NSAlert.Style) {
     alert.runModal()
 }
 
-@discardableResult
 /// Gets the hourly weather data for 2 days.
 func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
-    var weatherSave: [WeatherSaveInstance] = WeatherSave().twoDay
-    print("Did make it")
-    if weatherSave.isEmpty { weatherSave = WeatherSave(true).twoDay }
-    print("2")
+    var weatherSave: [WeatherSaveInstance] = WeatherSave(.positive).twoDay
+    if weatherSave.isEmpty { weatherSave = WeatherSave(.other).twoDay }
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/onecall?",
         location.urlVersion
     )
 
     for save in weatherSave where save.url == url {
-        print("Loaded!")
         return WeatherData(json: save.json)
     }
 
@@ -46,15 +42,14 @@ func getHourlyWeatherData(location: Location, save: DataSave) -> WeatherData {
         fatalError("Weather Saves is empty.")
     }
 
-    print("Loaded!")
     return WeatherData(json: first.json)
 }
 
 @discardableResult
 /// Gets the 5 day weather data every 3 hours.
 func getThreeHourWeatherData(location: Location, save: DataSave) -> [FiveDayWeatherHour] {
-    var weatherSave: [WeatherSaveInstance] = WeatherSave().fiveDay
-    if WeatherSave().fiveDay.isEmpty { weatherSave = WeatherSave(true).fiveDay }
+    var weatherSave: [WeatherSaveInstance] = WeatherSave(.positive).fiveDay
+    if WeatherSave(.negative).fiveDay.isEmpty { weatherSave = WeatherSave(.other).fiveDay }
     var hours: [FiveDayWeatherHour] = []
     let url: String = constructURL(
         "https://api.openweathermap.org/data/2.5/forecast?",

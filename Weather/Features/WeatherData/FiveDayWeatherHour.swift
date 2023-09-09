@@ -8,7 +8,9 @@
 import Foundation
 
 /// This struct exists so that when five days worth of weather data is loaded it can be converted to a WeatherHour.
-struct FiveDayWeatherHour {
+struct FiveDayWeatherHour: Identifiable, Hashable {
+
+    let id: UUID = UUID()
     let pressure: Int, temp: Float, minTemp: Float, maxTemp: Float, feelsLike: Float, humidity: Int
     var clouds: Int, weather: WeatherDescription, threeHourRain: Float, time: Int, icon: String, mainDesc: String
     let visibility: Int, windGust: Float, windDeg: Int, windSpeed: Float, chanceOfRain: Int, desc: String

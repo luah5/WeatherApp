@@ -11,16 +11,19 @@ import SwiftUI
 struct SidebarItemView: View {
     init(
         forecast: WeatherForecast,
-        selection: Int
+        selection: Int,
+        dataSave: DataSave
     ) {
         self.weatherForecast = forecast
         self.weatherDay = weatherForecast.today.weatherDayDaily
         self.selection = selection
+        self.dataSave = dataSave
     }
 
     let selection: Int
     let weatherForecast: WeatherForecast
     let weatherDay: WeatherDayDaily
+    @ObservedObject var dataSave: DataSave
 
     var body: some View {
         NavigationLink(value: selection) {

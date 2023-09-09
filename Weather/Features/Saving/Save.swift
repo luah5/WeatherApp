@@ -8,8 +8,8 @@
 import Foundation
 
 /// A structure to save data between sessions
-struct DataSave {
-    var coordinateLocations: Locations, weatherMainViews: [WeatherMainView], selection: Int
+class DataSave: ObservableObject {
+    var coordinateLocations: Locations, weatherMainViews: [WeatherMainView], intSelection: Int
 
     init() {
         weatherMainViews = []
@@ -26,11 +26,11 @@ struct DataSave {
             UserDefaults.standard.set(coordinateLocations.encode(), forKey: "locations")
         }
 
-        selection = 0
-        if UserDefaults.standard.string(forKey: "location_selection") == nil {
-            UserDefaults.standard.set(0, forKey: "location_selection")
+        if let selection = UserDefaults.standard.value(forKey: "location_selection") {
+            intSelection = Int(String(describing: selection)) ?? 0
         } else {
-            selection = Int(UserDefaults.standard.string(forKey: "location_selection")!) ?? 0
+            UserDefaults.standard.set(0, forKey: "location_selection")
+            intSelection = 0
         }
 
         coordinateLocations = Locations(

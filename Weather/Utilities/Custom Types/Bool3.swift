@@ -7,9 +7,8 @@
 
 import Foundation
 
-enum Bool3: Int {
-    case False = 0
-    case True = 1
+enum Bool3: Int, RawRepresentable, CaseIterable {
+    case negative = 0
+    case positive = 1
     case other = 2
 }
-

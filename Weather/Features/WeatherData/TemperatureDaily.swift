@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct TemperatureDaily {
-    var morning: Float, day: Float, evening: Float, night: Float
-    var min: Float, max: Float
+struct TemperatureDaily: Identifiable, Hashable {
+    let id: UUID = UUID()
+    let morning: Float, day: Float, evening: Float, night: Float
+    let min: Float, max: Float
 
     init(json: JSON) {
         morning = Float(json["morn"].stringValue) ?? 0

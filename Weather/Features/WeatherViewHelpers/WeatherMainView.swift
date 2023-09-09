@@ -9,13 +9,16 @@ import SwiftUI
 import MapKit
 
 /// The weather view that is shown in the main view
-struct WeatherMainView: View, Identifiable {
-    var coordLocation: Location, index: Int, weatherForecast: WeatherForecast
-    var id: UUID = UUID()
+struct WeatherMainView: View, Identifiable, Hashable {
+    static func == (lhs: WeatherMainView, rhs: WeatherMainView) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    let id: UUID = UUID()
+    let coordLocation: Location, index: Int, weatherForecast: WeatherForecast
 
     init(location: Location, id: Int, save: DataSave) {
         self.coordLocation = location
-        var weatherSave = WeatherSave()
 
         self.weatherForecast = WeatherForecast(
             coordinateLocation: location,
@@ -25,7 +28,7 @@ struct WeatherMainView: View, Identifiable {
         self.index = id
         DispatchQueue.global(qos: .background).async {
             while true {
-                weatherSave.reloadAll()
+                _ = WeatherSave(.positive)
                 sleep(600)
             }
         }

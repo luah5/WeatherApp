@@ -8,7 +8,12 @@
 import Foundation
 
 /// A struct for getting the weather forecast see [#10](https://github.com/luah5/WeatherApp/issues/10)
-struct WeatherForecast {
+struct WeatherForecast: Identifiable, Hashable {
+    static func == (lhs: WeatherForecast, rhs: WeatherForecast) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    let id: UUID = UUID()
     var current: WeatherHour, today: WeatherDay, weatherDays: [WeatherDay], weatherMinutes: [WeatherMinute]
     var weatherData: WeatherData, precipitationInNext24H: Float, address: String
 

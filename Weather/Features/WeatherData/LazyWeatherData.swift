@@ -29,7 +29,6 @@ struct LazyWeatherData {
 
             index += 1
         }
-        print(json["current"], "cool")
         self.background = json["current"]["weather"][0]["icon"].stringValue.iconToBackground()
     }
 }

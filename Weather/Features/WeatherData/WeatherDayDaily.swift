@@ -7,18 +7,23 @@
 
 import Foundation
 
-struct WeatherDayDaily {
+struct WeatherDayDaily: Identifiable, Hashable {
+    static func == (lhs: WeatherDayDaily, rhs: WeatherDayDaily) -> Bool {
+        lhs.id == rhs.id
+    }
+
     enum MoonPhase: String {
         case new = "New Moon"
         case waxingCrescent = "Waxing Crescent"
         case firstQuarter = "First Quarter"
-        case waxingGibous = "Waxing Gibous"
+        case waxingGibous = "Waxing Gibbous"
         case full = "Full Moon"
-        case waningGibous = "Waning Gibous"
+        case waningGibous = "Waning Gibbous"
         case lastQuarter = "Last Quarter"
         case waningCrescent = "Waning Crescent"
     }
 
+    let id: UUID = UUID()
     let weather: WeatherDescription, dewPoint: Float, humidity: Int, chanceOfRain: Float
     let temperatureDaily: TemperatureDaily, feelsLikeDaily: FeelsLikeDaily
     let windSpeed: Float, windGust: Float, windDirection: Int

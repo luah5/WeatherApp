@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct FeelsLikeDaily {
-    var morning: Float, day: Float, evening: Float, night: Float
+struct FeelsLikeDaily: Identifiable, Hashable {
+    var id: UUID = UUID()
+    let morning: Float, day: Float, evening: Float, night: Float
 
     init(json: JSON) {
         morning = Float(json["morn"].stringValue) ?? 0

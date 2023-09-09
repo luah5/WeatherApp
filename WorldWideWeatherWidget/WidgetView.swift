@@ -12,7 +12,7 @@ struct LazyDataSave {
 
     init() {
         data = WeatherData(
-            json: WeatherSave().twoDay.first!.json
+            json: WeatherSave(.positive).twoDay.first!.json
         )
     }
 }

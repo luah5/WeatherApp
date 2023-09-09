@@ -8,7 +8,11 @@
 import Foundation
 
 /// A weather hour contained by a WeatherDay
-struct WeatherHour: Identifiable {
+struct WeatherHour: Identifiable, Hashable {
+    static func == (lhs: WeatherHour, rhs: WeatherHour) -> Bool {
+        lhs.id == rhs.id
+    }
+
     let windGust: Float, pressure: Int, temp: Float, clouds: Int, dewPoint: Float, visibility: Int, time: Int
     let humidity: Int, feelsLike: Float, uvi: Int, windDeg: Float, windSpeed: Float, weather: WeatherDescription
     var precipitation: Float, chanceOfRain: Int, converted: Bool, windDegInt: Int, snowPrecipitation: Float

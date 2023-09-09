@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-/// This struct exists as a sort of override so that "print" statements can be run within views
+/// This struct exists as a sort of override so that print statements can be run within views
 struct Output: View {
     var args: String
 

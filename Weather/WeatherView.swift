@@ -10,9 +10,8 @@ import MapKit
 
 /// The main view for viewing the weather
 struct WeatherView: View {
-    @State var sheetIsPresented: Bool = false
     @State var splits: Int = 1
-    @State var index: Int = -1
+    @State var mapShown: Bool = false
     @State var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
             latitude: 51.5,
@@ -27,29 +26,35 @@ struct WeatherView: View {
 
     var body: some View {
         NavigationSplitView {
-            List(selection: $dataSave.selection) {
-                Section {
-                    ForEach(dataSave.weatherMainViews) { item in
-                        SidebarItemView(
-                            forecast: item.weatherForecast,
-                            selection: item.index
-                        )
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: 25)
+                List(selection: $dataSave.intSelection) {
+                    Section {
+                        ForEach(dataSave.weatherMainViews) { item in
+                            SidebarItemView(
+                                forecast: item.weatherForecast,
+                                selection: item.index,
+                                dataSave: dataSave
+                            )
+                        }
                     }
                 }
             }
             .background(
-                dataSave.weatherMainViews[safe: dataSave.selection]?
-                    .weatherForecast.current.weather.background.color
+                dataSave.selectedWeatherMainView?.weatherForecast.current.weather.background.color
                     .opacity(0.7)
             )
-            .scrollDisabled(true)
         } detail: {
-            dataSave.weatherMainViews[safe: dataSave.selection]
-                .background(
-                    dataSave.weatherMainViews[safe: dataSave.selection]?
-                        .weatherForecast.current.weather.background.image
-                        .scaledToFill()
-                )
+            if let selection = dataSave.selectedWeatherMainView {
+                selection
+                    .background(
+                        selection.weatherForecast.current.weather.background.image
+                            .scaledToFill()
+                    )
+            } else {
+                Text("Loading, waiting for DataSave to complete initializing")
+            }
         }
         .toolbar {
             toolbarViews
@@ -57,6 +62,7 @@ struct WeatherView: View {
         }
         .navigationSplitViewColumnWidth(300)
         .navigationTitle("")
-        .toolbarBackground(Color.accentColor.opacity(0), for: .automatic)
+        .toolbarBackground(Color.accentColor.opacity(0), for: .windowToolbar)
+        //.toolbar(.hidden, for: .)
     }
 }

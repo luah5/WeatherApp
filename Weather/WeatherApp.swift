@@ -13,11 +13,13 @@ struct WeatherApp: App {
         WindowGroup {
             WeatherView()
                 .presentedWindowToolbarStyle(.expanded)
+                .toolbar(.hidden, for: .windowToolbar)
                 .onAppear {
-                    _ = WeatherSave(true)
+                    print("Appeared!")
+                    DispatchQueue.global(qos: .userInitiated).async { _ = WeatherSave(.positive) }
                 }
                 .onDisappear {
-                    _ = WeatherSave(true)
+                    DispatchQueue.global(qos: .userInitiated).async { _ = WeatherSave(.positive) }
                 }
         }
         .commands {

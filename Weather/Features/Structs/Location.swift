@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-struct Location {
+struct Location: Hashable {
     var lat: Double, lon: Double, urlVersion: String, locationString: String
 
     init(lat: Double, lon: Double, location: String) {

@@ -8,7 +8,12 @@
 import Foundation
 
 /// A structure for handling weather data
-struct WeatherData {
+struct WeatherData: Identifiable, Hashable {
+    static func == (lhs: WeatherData, rhs: WeatherData) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    let id: UUID = UUID()
     var hours: [WeatherHour], minutes: [WeatherMinute], precipitationInNextHour: Bool, alerts: [WeatherAlert]
     var days: [WeatherDayDaily]
     let location: String, timezoneOffset: Int
